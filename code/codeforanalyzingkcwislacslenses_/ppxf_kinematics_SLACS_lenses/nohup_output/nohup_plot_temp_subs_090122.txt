@@ -1,0 +1,143 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+libGL error: MESA-LOADER: failed to open r600: /usr/lib/dri/r600_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: r600
+libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: swrast
+final_kinematics_visualization_plotting_template_subsets.py:152: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  plt.figure()
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0029-0055.
+
+Mean velocity: 4.349921065634241
+
+SDSSJ0029-0055 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0037-0942.
+
+Mean velocity: 20.128715580229553
+
+SDSSJ0037-0942 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0330-0020.
+
+Mean velocity: 8.606372876036874
+
+SDSSJ0330-0020 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1112+0826.
+
+Mean velocity: 19.815624771463423
+
+SDSSJ1112+0826 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1204+0358.
+
+Mean velocity: -0.11075259053662334
+
+SDSSJ1204+0358 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1250+0523.
+
+Mean velocity: 17.544961420437748
+
+SDSSJ1250+0523 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1306+0600.
+
+Mean velocity: -7.4168180068605425
+
+SDSSJ1306+0600 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1402+6321.
+
+Mean velocity: 9.543476105911449
+
+SDSSJ1402+6321 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1531-0105.
+
+Mean velocity: 0.09657420980879666
+
+SDSSJ1531-0105 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1538+5817.
+
+Mean velocity: 27.446816364820823
+
+SDSSJ1538+5817 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1621+3931.
+
+Mean velocity: 18.20318637526853
+
+SDSSJ1621+3931 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1627-0053.
+
+Mean velocity: 8.691079928090035
+
+SDSSJ1627-0053 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1630+4520.
+
+Mean velocity: 9.804396228503315
+Traceback (most recent call last):
+  File "final_kinematics_visualization_plotting_template_subsets.py", line 161, in <module>
+    plt.savefig(save_dir + obj_name + '_VD_map.png')
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/pyplot.py", line 958, in savefig
+    res = fig.savefig(*args, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/figure.py", line 3019, in savefig
+    self.canvas.print_figure(fname, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/backends/backend_qtagg.py", line 85, in print_figure
+    super().print_figure(*args, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 2325, in print_figure
+    **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 1648, in wrapper
+    return func(*args, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/_api/deprecation.py", line 412, in wrapper
+    return func(*inner_args, **inner_kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/backends/backend_agg.py", line 543, in print_png
+    dpi=self.figure.dpi, metadata=metadata, pil_kwargs=pil_kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/image.py", line 1675, in imsave
+    image.save(fname, **pil_kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/PIL/Image.py", line 2317, in save
+    fp = builtins.open(filename, "w+b")
+FileNotFoundError: [Errno 2] No such file or directory: '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/mosaics/SDSSJ1630+4520/SDSSJ1630+4520_final_kinematics_template_subsets_310822/SDSSJ1630+4520_VD_map.png'

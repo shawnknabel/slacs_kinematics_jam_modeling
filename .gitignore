@@ -1,0 +1,3 @@
+# git ignore file - listed files and filetypes will not be added to commits
+
+*.fits

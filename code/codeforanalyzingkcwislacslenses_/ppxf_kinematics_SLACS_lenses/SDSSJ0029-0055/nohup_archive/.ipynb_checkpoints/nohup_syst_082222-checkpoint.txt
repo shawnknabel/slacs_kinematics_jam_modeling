@@ -1,0 +1,67 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+################################################
+Beginning model l0a0d0w0
+################################################
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.150146484375
+velscale of the templates is [16.62554097]
+get templates from /data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/xshooter_lib/all_dr2_fits_G789K012//templates_vs2.fits
+[ 900  901  902 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       124       218
+chi2/DOF: 0.004009; DOF: 2719; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 17/124
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12     7.2
+Elapsed time in pPXF: 3.73 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.150146484375
+velscale of the templates is [16.62554097]
+[ 900  901  902 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       124       218
+chi2/DOF: 0.004009; DOF: 2719; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+         1
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.3     5.4
+Elapsed time in pPXF: 0.07 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.150146484375
+velscale of the templates is [16.62554097]
+[ 900  901  902 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       124       218
+chi2/DOF: 0.05206; DOF: 2719; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+         1
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.3     5.4
+Elapsed time in pPXF: 0.10 s
+Traceback (most recent call last):
+  File "SDSSJ0029-0055_ppxf_kinematics_systematics.py", line 225, in <module>
+    plot=False)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/ppxf/kcwi_util.py", line 1039, in get_velocity_dispersion_deredshift
+    pp.chi2) 
+  File "<__array_function__ internals>", line 6, in concatenate
+ValueError: all the input arrays must have same number of dimensions, but the array at index 0 has 1 dimension(s) and the array at index 2 has 0 dimension(s)

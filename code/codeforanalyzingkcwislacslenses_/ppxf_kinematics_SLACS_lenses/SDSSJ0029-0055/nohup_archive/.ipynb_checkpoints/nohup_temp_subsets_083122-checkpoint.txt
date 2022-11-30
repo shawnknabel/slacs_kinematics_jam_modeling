@@ -1,0 +1,7 @@
+################################################
+Beginning model l0a0d0w0
+################################################
+Traceback (most recent call last):
+  File "SDSSJ0029-0055_ppxf_kinematics_systematics_template_subsets.py", line 187, in <module>
+    plot=True)
+TypeError: ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift() got an unexpected keyword argument 'aperture'

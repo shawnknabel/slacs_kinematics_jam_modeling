@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/local/shawnknabel/slacs_kinematics/slacs_kinematics/code/codeforanalyzingkcwislacslenses_/ppxf_kinematics_SLACS_lenses/SDSSJ0330-0020/SDSSJ0330-0020_ppxf_kinematics_adjust_for_contaminant.py", line 18, in <module>
+    from ppxf.kcwi_util import register_sauron_colormap
+ModuleNotFoundError: No module named 'ppxf'

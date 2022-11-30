@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "ppxf_kinematics_SLACS_lens_SDSSJ0029-0055.py", line 78, in <module>
+    hdu = fits.open(dir + name + ".fits")
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/io/fits/hdu/hdulist.py", line 174, in fitsopen
+    lazy_load_hdus, ignore_missing_simple, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/io/fits/hdu/hdulist.py", line 411, in fromfile
+    lazy_load_hdus=lazy_load_hdus, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/io/fits/hdu/hdulist.py", line 1064, in _readfrom
+    fileobj = _File(fileobj, mode=mode, memmap=memmap, cache=cache)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/utils/decorators.py", line 536, in wrapper
+    return function(*args, **kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/io/fits/file.py", line 170, in __init__
+    self._open_filename(fileobj, mode, overwrite)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/io/fits/file.py", line 558, in _open_filename
+    self._file = fileobj_open(self.name, IO_FITS_MODES[mode])
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/astropy/io/fits/util.py", line 390, in fileobj_open
+    return open(filename, mode, buffering=0)
+FileNotFoundError: [Errno 2] No such file or directory: '/local/shawnknabel/data/CF_mosaics/SDSSJ0029-0055/KCWI_J0029_icubes_mosaic_0.1457.fits'

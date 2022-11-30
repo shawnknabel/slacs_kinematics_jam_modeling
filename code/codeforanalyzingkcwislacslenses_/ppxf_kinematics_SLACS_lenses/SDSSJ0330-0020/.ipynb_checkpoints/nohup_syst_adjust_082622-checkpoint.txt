@@ -1,0 +1,4 @@
+  File "SDSSJ0330-0020_ppxf_kinematics_systematics_adjust_contam.py", line 220
+    if pp.chi2 < 1"
+                  ^
+SyntaxError: EOL while scanning string literal

@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/pathlib.py", line 1273, in mkdir
+    self._accessor.mkdir(self, mode)
+FileExistsError: [Errno 17] File exists: '/home/shawnknabel/.cache/matplotlib'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "SDSSJ1538+5817_ppxf_kinematics_systematics.py", line 18, in <module>
+    import matplotlib.pyplot as plt
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/pyplot.py", line 49, in <module>
+    import matplotlib.colorbar
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/colorbar.py", line 21, in <module>
+    from matplotlib import _api, collections, cm, colors, contour, ticker
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/contour.py", line 13, in <module>
+    from matplotlib.backend_bases import MouseButton
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/backend_bases.py", line 46, in <module>
+    from matplotlib import (
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/textpath.py", line 8, in <module>
+    from matplotlib import _text_helpers, dviread, font_manager
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/font_manager.py", line 1447, in <module>
+    fontManager = _load_fontmanager()
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/font_manager.py", line 1431, in _load_fontmanager
+    mpl.get_cachedir(), f"fontlist-v{FontManager.__version__}.json")
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/__init__.py", line 273, in wrapper
+    ret = func(**kwargs)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/__init__.py", line 521, in get_cachedir
+    return _get_config_or_cache_dir(_get_xdg_cache_dir)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/matplotlib/__init__.py", line 473, in _get_config_or_cache_dir
+    configdir.mkdir(parents=True, exist_ok=True)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/pathlib.py", line 1273, in mkdir
+    self._accessor.mkdir(self, mode)
+KeyboardInterrupt

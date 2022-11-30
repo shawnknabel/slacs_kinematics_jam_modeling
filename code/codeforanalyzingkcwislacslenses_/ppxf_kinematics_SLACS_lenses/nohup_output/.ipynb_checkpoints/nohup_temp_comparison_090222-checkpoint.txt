@@ -1,0 +1,10 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0029-0055.
+
+Traceback (most recent call last):
+  File "final_kinematics_visualization_plotting_template_difference_comparison.py", line 177, in <module>
+    plt.savefig(save_dir + obj_name + '_VD_difference_tempsubsets_minus_Tranges_map.png')
+NameError: name 'save_dir' is not defined

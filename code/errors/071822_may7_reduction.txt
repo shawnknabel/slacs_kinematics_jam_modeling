@@ -1,0 +1,1322 @@
+(kcwidrp) shawnknabel@scorza2:/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/raw_files/2021may07_B$ reduce_kcwi -f kb*.fits -g
+2022-07-18 13:22:13,664 Starting Bokeh server version 2.4.2 (running on Tornado 6.1)
+2022-07-18 13:22:13,665 User authentication hooks NOT provided (default user enabled)
+2022-07-18 13:22:13,667 Bokeh app running at: http://localhost:5006/
+2022-07-18 13:22:13,667 Starting Bokeh server with process id: 11470
+2022-07-18 13:22:17:KCWI:INFO: reading proc table file: kcwi.proc
+2022-07-18 13:22:18:DRPF:INFO: Framework initialized
+2022-07-18 13:22:23:DRPF:INFO: Framework main loop started
+2022-07-18 13:22:23,357 WebSocket connection opened
+2022-07-18 13:22:23,359 ServerConnection created
+2022-07-18 13:22:23:KCWI:INFO: Enabling BOKEH plots
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name start_bokeh, action StartBokeh, arg name undef, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00001.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00002.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00003.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00004.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00005.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00006.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00007.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00008.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00009.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00010.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00011.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00012.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00013.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00014.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00015.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00016.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00017.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00018.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00019.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00020.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00021.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00022.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00023.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00024.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00025.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00026.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00027.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00028.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00029.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00030.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00031.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00032.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00033.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00034.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00035.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00036.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00037.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00038.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00039.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00040.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00041.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name add_only, action add_to_dataframe_only, arg name kb210507_00042.fits, recurr False
+2022-07-18 13:22:28:KCWI:INFO: ------------------- Ingesting file kb210507_00001.fits -------------------
+2022-07-18 13:22:28:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00001.fits
+2022-07-18 13:22:28:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:28:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:28:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:28:KCWI:INFO: Looking for frames with CCDCFG = 2211010
+2022-07-18 13:22:28:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:28:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:28:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:28:KCWI:INFO: Looking for frames with STATEID = 5a1a11b2ce9e2466a614763f (kcwi_focus)
+2022-07-18 13:22:28:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:28:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:28:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:28:KCWI:INFO: Looking for frames with STATEID = 5a1a11b2ce9e2466a614763f (kcwi_focus)
+2022-07-18 13:22:28:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:28:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:28:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:28:KCWI:INFO: Looking for frames with STATEID = 5a1a11b2ce9e2466a614763f (kcwi_focus)
+2022-07-18 13:22:28:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:28:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:28:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:28:KCWI:INFO: Looking for frames with STATEID = 5a1a11b2ce9e2466a614763f (kcwi_focus)
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00001.fits, recurr False
+2022-07-18 13:22:28:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:28:KCWI:INFO: ******* GROUPID is 2021-05-06-1 
+2022-07-18 13:22:28:KCWI:INFO: ******* STATEID is kcwi_focus (5a1a11b2ce9e2466a614763f) 
+2022-07-18 13:22:28:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:28:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00001.fits, recurr False
+2022-07-18 13:22:28:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00001.fits, recurr False
+2022-07-18 13:22:28:KCWI:INFO: ------------------- Ingesting file kb210507_00002.fits -------------------
+2022-07-18 13:22:29:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00002.fits
+2022-07-18 13:22:29:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:29:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00002.fits, recurr False
+2022-07-18 13:22:29:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:29:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:29:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:29:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:29:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00002.fits, recurr False
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00002.fits, recurr False
+2022-07-18 13:22:29:KCWI:INFO: ------------------- Ingesting file kb210507_00003.fits -------------------
+2022-07-18 13:22:29:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00003.fits
+2022-07-18 13:22:29:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:29:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00003.fits, recurr False
+2022-07-18 13:22:29:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:29:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:29:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:29:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:29:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00003.fits, recurr False
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00003.fits, recurr False
+2022-07-18 13:22:29:KCWI:INFO: ------------------- Ingesting file kb210507_00004.fits -------------------
+2022-07-18 13:22:29:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00004.fits
+2022-07-18 13:22:29:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:29:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:29:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:29:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:29:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00004.fits, recurr False
+2022-07-18 13:22:29:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:29:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:29:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:29:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:29:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00004.fits, recurr False
+2022-07-18 13:22:29:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00004.fits, recurr False
+2022-07-18 13:22:29:KCWI:INFO: ------------------- Ingesting file kb210507_00005.fits -------------------
+2022-07-18 13:22:30:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00005.fits
+2022-07-18 13:22:30:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:30:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00005.fits, recurr False
+2022-07-18 13:22:30:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:30:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:30:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:30:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:30:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:30:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00005.fits, recurr False
+2022-07-18 13:22:30:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00005.fits, recurr False
+2022-07-18 13:22:30:KCWI:INFO: ------------------- Ingesting file kb210507_00006.fits -------------------
+2022-07-18 13:22:30:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00006.fits
+2022-07-18 13:22:30:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:30:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:30:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:30:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:30:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:30:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00006.fits, recurr False
+2022-07-18 13:22:30:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:30:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:30:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:30:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:30:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:30:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00006.fits, recurr False
+2022-07-18 13:22:30:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00006.fits, recurr False
+2022-07-18 13:22:30:KCWI:INFO: ------------------- Ingesting file kb210507_00007.fits -------------------
+2022-07-18 13:22:31:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00007.fits
+2022-07-18 13:22:31:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:31:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00007.fits, recurr False
+2022-07-18 13:22:31:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:31:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:31:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:31:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:31:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:31:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00007.fits, recurr False
+2022-07-18 13:22:31:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00007.fits, recurr False
+2022-07-18 13:22:31:KCWI:INFO: ------------------- Ingesting file kb210507_00008.fits -------------------
+2022-07-18 13:22:31:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00008.fits
+2022-07-18 13:22:31:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:31:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:31:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:31:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:31:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:31:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00008.fits, recurr False
+2022-07-18 13:22:31:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:31:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:31:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:31:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:31:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:31:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00008.fits, recurr False
+2022-07-18 13:22:31:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00008.fits, recurr False
+2022-07-18 13:22:31:KCWI:INFO: ------------------- Ingesting file kb210507_00009.fits -------------------
+2022-07-18 13:22:32:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00009.fits
+2022-07-18 13:22:32:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:32:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00009.fits, recurr False
+2022-07-18 13:22:32:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:32:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:32:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:32:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:32:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:32:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00009.fits, recurr False
+2022-07-18 13:22:32:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00009.fits, recurr False
+2022-07-18 13:22:32:KCWI:INFO: ------------------- Ingesting file kb210507_00010.fits -------------------
+2022-07-18 13:22:32:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00010.fits
+2022-07-18 13:22:32:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:32:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:32:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:32:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:32:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:32:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00010.fits, recurr False
+2022-07-18 13:22:32:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:32:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:32:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:32:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:32:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:32:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00010.fits, recurr False
+2022-07-18 13:22:32:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00010.fits, recurr False
+2022-07-18 13:22:32:KCWI:INFO: ------------------- Ingesting file kb210507_00011.fits -------------------
+2022-07-18 13:22:32,735 404 GET /favicon.ico (127.0.0.1) 0.34ms
+2022-07-18 13:22:32,770 WebSocket connection opened
+2022-07-18 13:22:32,770 ServerConnection created
+2022-07-18 13:22:33:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00011.fits
+2022-07-18 13:22:33:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:33:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00011.fits, recurr False
+2022-07-18 13:22:33:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:33:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:33:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:33:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:33:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00011.fits, recurr False
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00011.fits, recurr False
+2022-07-18 13:22:33:KCWI:INFO: ------------------- Ingesting file kb210507_00012.fits -------------------
+2022-07-18 13:22:33:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00012.fits
+2022-07-18 13:22:33:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:33:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00012.fits, recurr False
+2022-07-18 13:22:33:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:33:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:33:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:33:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:33:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00012.fits, recurr False
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00012.fits, recurr False
+2022-07-18 13:22:33:KCWI:INFO: ------------------- Ingesting file kb210507_00013.fits -------------------
+2022-07-18 13:22:33:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00013.fits
+2022-07-18 13:22:33:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:33:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:33:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:33:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:33:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00013.fits, recurr False
+2022-07-18 13:22:33:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:33:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:33:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:33:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:33:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00013.fits, recurr False
+2022-07-18 13:22:33:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00013.fits, recurr False
+2022-07-18 13:22:33:KCWI:INFO: ------------------- Ingesting file kb210507_00014.fits -------------------
+2022-07-18 13:22:34:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00014.fits
+2022-07-18 13:22:34:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:34:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00014.fits, recurr False
+2022-07-18 13:22:34:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:34:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:34:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:34:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:34:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:34:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00014.fits, recurr False
+2022-07-18 13:22:34:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00014.fits, recurr False
+2022-07-18 13:22:34:KCWI:INFO: ------------------- Ingesting file kb210507_00015.fits -------------------
+2022-07-18 13:22:34:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00015.fits
+2022-07-18 13:22:34:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:34:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:34:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:34:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:34:KCWI:INFO: Looking for frames with STATEID = 0 (Shared Bias)
+2022-07-18 13:22:34:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00015.fits, recurr False
+2022-07-18 13:22:34:KCWI:INFO: ******* FILE TYPE DETERMINED AS BIAS
+2022-07-18 13:22:34:KCWI:INFO: ******* GROUPID is 2021-05-07-2 
+2022-07-18 13:22:34:KCWI:INFO: ******* STATEID is Shared Bias (0) 
+2022-07-18 13:22:34:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:34:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:34:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00015.fits, recurr False
+2022-07-18 13:22:34:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00015.fits, recurr False
+2022-07-18 13:22:34:KCWI:INFO: ------------------- Ingesting file kb210507_00016.fits -------------------
+2022-07-18 13:22:35:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00016.fits
+2022-07-18 13:22:35:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with CCDCFG = 1111000
+2022-07-18 13:22:35:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00016.fits, recurr False
+2022-07-18 13:22:35:KCWI:INFO: ******* FILE TYPE DETERMINED AS CONTBARS
+2022-07-18 13:22:35:KCWI:INFO: ******* GROUPID is 2021-05-07-16 
+2022-07-18 13:22:35:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:35:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:35:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:35:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00016.fits, recurr False
+2022-07-18 13:22:35:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00016.fits, recurr False
+2022-07-18 13:22:35:KCWI:INFO: ------------------- Ingesting file kb210507_00017.fits -------------------
+2022-07-18 13:22:35:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00017.fits
+2022-07-18 13:22:35:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with CCDCFG = 1111000
+2022-07-18 13:22:35:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:35:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:35:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:35:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:35:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00017.fits, recurr False
+2022-07-18 13:22:35:KCWI:INFO: ******* FILE TYPE DETERMINED AS ARCLAMP
+2022-07-18 13:22:35:KCWI:INFO: ******* GROUPID is 2021-05-07-17 
+2022-07-18 13:22:35:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:35:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00017.fits, recurr False
+2022-07-18 13:22:35:KCWI:INFO: Skipping arc lamp file kb210507_00017.fits (not the default lamp)
+2022-07-18 13:22:35:KCWI:INFO: ** Resetting next event to None to stop processing the file ** 
+2022-07-18 13:22:35:DRPF:INFO: Event failed: name process_arc, action ProcessArc, arg name kb210507_00017.fits, recurr False
+2022-07-18 13:22:35:KCWI:INFO: ------------------- Ingesting file kb210507_00018.fits -------------------
+2022-07-18 13:22:36:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00018.fits
+2022-07-18 13:22:36:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with CCDCFG = 1111000
+2022-07-18 13:22:36:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00018.fits, recurr False
+2022-07-18 13:22:36:KCWI:INFO: ******* FILE TYPE DETERMINED AS ARCLAMP
+2022-07-18 13:22:36:KCWI:INFO: ******* GROUPID is 2021-05-07-18 
+2022-07-18 13:22:36:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:36:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:36:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:36:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00018.fits, recurr False
+2022-07-18 13:22:36:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00018.fits, recurr False
+2022-07-18 13:22:36:KCWI:INFO: ------------------- Ingesting file kb210507_00019.fits -------------------
+2022-07-18 13:22:36:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00019.fits
+2022-07-18 13:22:36:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:36:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:36:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:36:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:36:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:36:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00019.fits, recurr False
+2022-07-18 13:22:36:KCWI:INFO: ******* FILE TYPE DETERMINED AS FLATLAMP
+2022-07-18 13:22:36:KCWI:INFO: ******* GROUPID is 2021-05-07-19 
+2022-07-18 13:22:36:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:36:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:36:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:36:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00019.fits, recurr False
+2022-07-18 13:22:36:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00019.fits, recurr False
+2022-07-18 13:22:36:KCWI:INFO: ------------------- Ingesting file kb210507_00020.fits -------------------
+2022-07-18 13:22:37:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00020.fits
+2022-07-18 13:22:37:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:37:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00020.fits, recurr False
+2022-07-18 13:22:37:KCWI:INFO: ******* FILE TYPE DETERMINED AS FLATLAMP
+2022-07-18 13:22:37:KCWI:INFO: ******* GROUPID is 2021-05-07-19 
+2022-07-18 13:22:37:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:37:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:37:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00020.fits, recurr False
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00020.fits, recurr False
+2022-07-18 13:22:37:KCWI:INFO: ------------------- Ingesting file kb210507_00021.fits -------------------
+2022-07-18 13:22:37:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00021.fits
+2022-07-18 13:22:37:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:37:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00021.fits, recurr False
+2022-07-18 13:22:37:KCWI:INFO: ******* FILE TYPE DETERMINED AS FLATLAMP
+2022-07-18 13:22:37:KCWI:INFO: ******* GROUPID is 2021-05-07-19 
+2022-07-18 13:22:37:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:37:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:37:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00021.fits, recurr False
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00021.fits, recurr False
+2022-07-18 13:22:37:KCWI:INFO: ------------------- Ingesting file kb210507_00022.fits -------------------
+2022-07-18 13:22:37:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00022.fits
+2022-07-18 13:22:37:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:37:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:37:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:37:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:37:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00022.fits, recurr False
+2022-07-18 13:22:37:KCWI:INFO: ******* FILE TYPE DETERMINED AS FLATLAMP
+2022-07-18 13:22:37:KCWI:INFO: ******* GROUPID is 2021-05-07-19 
+2022-07-18 13:22:37:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:37:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:37:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00022.fits, recurr False
+2022-07-18 13:22:37:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00022.fits, recurr False
+2022-07-18 13:22:37:KCWI:INFO: ------------------- Ingesting file kb210507_00023.fits -------------------
+2022-07-18 13:22:38:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00023.fits
+2022-07-18 13:22:38:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:38:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00023.fits, recurr False
+2022-07-18 13:22:38:KCWI:INFO: ******* FILE TYPE DETERMINED AS FLATLAMP
+2022-07-18 13:22:38:KCWI:INFO: ******* GROUPID is 2021-05-07-19 
+2022-07-18 13:22:38:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:38:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:38:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:38:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00023.fits, recurr False
+2022-07-18 13:22:38:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00023.fits, recurr False
+2022-07-18 13:22:38:KCWI:INFO: ------------------- Ingesting file kb210507_00024.fits -------------------
+2022-07-18 13:22:38:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00024.fits
+2022-07-18 13:22:38:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:38:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:38:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:38:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:38:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:38:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00024.fits, recurr False
+2022-07-18 13:22:38:KCWI:INFO: ******* FILE TYPE DETERMINED AS FLATLAMP
+2022-07-18 13:22:38:KCWI:INFO: ******* GROUPID is 2021-05-07-19 
+2022-07-18 13:22:38:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:38:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:38:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:38:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00024.fits, recurr False
+2022-07-18 13:22:38:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00024.fits, recurr False
+2022-07-18 13:22:38:KCWI:INFO: ------------------- Ingesting file kb210507_00025.fits -------------------
+2022-07-18 13:22:39:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00025.fits
+2022-07-18 13:22:39:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:39:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00025.fits, recurr False
+2022-07-18 13:22:39:KCWI:INFO: ******* FILE TYPE DETERMINED AS DOMEFLAT
+2022-07-18 13:22:39:KCWI:INFO: ******* GROUPID is 2021-05-07-25 
+2022-07-18 13:22:39:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:39:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:39:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:39:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00025.fits, recurr False
+2022-07-18 13:22:39:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00025.fits, recurr False
+2022-07-18 13:22:39:KCWI:INFO: ------------------- Ingesting file kb210507_00026.fits -------------------
+2022-07-18 13:22:39:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00026.fits
+2022-07-18 13:22:39:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:39:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:39:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:39:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:39:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:39:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00026.fits, recurr False
+2022-07-18 13:22:39:KCWI:INFO: ******* FILE TYPE DETERMINED AS DOMEFLAT
+2022-07-18 13:22:39:KCWI:INFO: ******* GROUPID is 2021-05-07-25 
+2022-07-18 13:22:39:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:39:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:39:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:39:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00026.fits, recurr False
+2022-07-18 13:22:39:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00026.fits, recurr False
+2022-07-18 13:22:39:KCWI:INFO: ------------------- Ingesting file kb210507_00027.fits -------------------
+2022-07-18 13:22:40:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00027.fits
+2022-07-18 13:22:40:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:40:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00027.fits, recurr False
+2022-07-18 13:22:40:KCWI:INFO: ******* FILE TYPE DETERMINED AS DOMEFLAT
+2022-07-18 13:22:40:KCWI:INFO: ******* GROUPID is 2021-05-07-25 
+2022-07-18 13:22:40:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:40:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:40:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00027.fits, recurr False
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00027.fits, recurr False
+2022-07-18 13:22:40:KCWI:INFO: ------------------- Ingesting file kb210507_00028.fits -------------------
+2022-07-18 13:22:40:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00028.fits
+2022-07-18 13:22:40:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:40:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00028.fits, recurr False
+2022-07-18 13:22:40:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:40:KCWI:INFO: ******* GROUPID is 2021-05-07-28 
+2022-07-18 13:22:40:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:40:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:40:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00028.fits, recurr False
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00028.fits, recurr False
+2022-07-18 13:22:40:KCWI:INFO: ------------------- Ingesting file kb210507_00029.fits -------------------
+2022-07-18 13:22:40:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00029.fits
+2022-07-18 13:22:40:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:40:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:40:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:40:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:40:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00029.fits, recurr False
+2022-07-18 13:22:40:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:40:KCWI:INFO: ******* GROUPID is 2021-05-07-29 
+2022-07-18 13:22:40:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:40:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:40:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00029.fits, recurr False
+2022-07-18 13:22:40:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00029.fits, recurr False
+2022-07-18 13:22:40:KCWI:INFO: ------------------- Ingesting file kb210507_00030.fits -------------------
+2022-07-18 13:22:41:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00030.fits
+2022-07-18 13:22:41:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:41:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00030.fits, recurr False
+2022-07-18 13:22:41:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:41:KCWI:INFO: ******* GROUPID is 2021-05-07-30 
+2022-07-18 13:22:41:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:41:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:41:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00030.fits, recurr False
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00030.fits, recurr False
+2022-07-18 13:22:41:KCWI:INFO: ------------------- Ingesting file kb210507_00031.fits -------------------
+2022-07-18 13:22:41:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00031.fits
+2022-07-18 13:22:41:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:41:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00031.fits, recurr False
+2022-07-18 13:22:41:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:41:KCWI:INFO: ******* GROUPID is 2021-05-07-31 
+2022-07-18 13:22:41:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:41:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:41:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00031.fits, recurr False
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00031.fits, recurr False
+2022-07-18 13:22:41:KCWI:INFO: ------------------- Ingesting file kb210507_00032.fits -------------------
+2022-07-18 13:22:41:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00032.fits
+2022-07-18 13:22:41:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:41:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:41:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:41:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:41:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00032.fits, recurr False
+2022-07-18 13:22:41:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:41:KCWI:INFO: ******* GROUPID is 2021-05-07-32 
+2022-07-18 13:22:41:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:41:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:41:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00032.fits, recurr False
+2022-07-18 13:22:41:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00032.fits, recurr False
+2022-07-18 13:22:41:KCWI:INFO: ------------------- Ingesting file kb210507_00033.fits -------------------
+2022-07-18 13:22:42:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00033.fits
+2022-07-18 13:22:42:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:42:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00033.fits, recurr False
+2022-07-18 13:22:42:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:42:KCWI:INFO: ******* GROUPID is 2021-05-07-33 
+2022-07-18 13:22:42:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:42:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:42:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:42:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00033.fits, recurr False
+2022-07-18 13:22:42:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00033.fits, recurr False
+2022-07-18 13:22:42:KCWI:INFO: ------------------- Ingesting file kb210507_00034.fits -------------------
+2022-07-18 13:22:42:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00034.fits
+2022-07-18 13:22:42:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:42:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:42:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:42:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:42:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:42:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00034.fits, recurr False
+2022-07-18 13:22:42:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:42:KCWI:INFO: ******* GROUPID is 2021-05-07-34 
+2022-07-18 13:22:42:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:42:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:42:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:42:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00034.fits, recurr False
+2022-07-18 13:22:42:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00034.fits, recurr False
+2022-07-18 13:22:42:KCWI:INFO: ------------------- Ingesting file kb210507_00035.fits -------------------
+2022-07-18 13:22:43:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00035.fits
+2022-07-18 13:22:43:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:43:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00035.fits, recurr False
+2022-07-18 13:22:43:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:43:KCWI:INFO: ******* GROUPID is 2021-05-07-35 
+2022-07-18 13:22:43:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:43:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:43:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:43:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00035.fits, recurr False
+2022-07-18 13:22:43:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00035.fits, recurr False
+2022-07-18 13:22:43:KCWI:INFO: ------------------- Ingesting file kb210507_00036.fits -------------------
+2022-07-18 13:22:43:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00036.fits
+2022-07-18 13:22:43:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:43:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:43:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:43:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:43:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:43:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00036.fits, recurr False
+2022-07-18 13:22:43:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:43:KCWI:INFO: ******* GROUPID is 2021-05-07-36 
+2022-07-18 13:22:43:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:43:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:43:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:43:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00036.fits, recurr False
+2022-07-18 13:22:43:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00036.fits, recurr False
+2022-07-18 13:22:43:KCWI:INFO: ------------------- Ingesting file kb210507_00037.fits -------------------
+2022-07-18 13:22:44:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00037.fits
+2022-07-18 13:22:44:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:44:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00037.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:44:KCWI:INFO: ******* GROUPID is 2021-05-07-37 
+2022-07-18 13:22:44:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:44:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:44:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00037.fits, recurr False
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00037.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ------------------- Ingesting file kb210507_00038.fits -------------------
+2022-07-18 13:22:44:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00038.fits
+2022-07-18 13:22:44:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:44:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00038.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:44:KCWI:INFO: ******* GROUPID is 2021-05-07-38 
+2022-07-18 13:22:44:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:44:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:44:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00038.fits, recurr False
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00038.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ------------------- Ingesting file kb210507_00039.fits -------------------
+2022-07-18 13:22:44:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00039.fits
+2022-07-18 13:22:44:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:44:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00039.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:44:KCWI:INFO: ******* GROUPID is 2021-05-07-39 
+2022-07-18 13:22:44:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:44:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:44:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00039.fits, recurr False
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00039.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ------------------- Ingesting file kb210507_00040.fits -------------------
+2022-07-18 13:22:44:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00040.fits
+2022-07-18 13:22:44:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:44:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:44:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:44:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:44:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00040.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:44:KCWI:INFO: ******* GROUPID is 2021-05-07-40 
+2022-07-18 13:22:44:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:44:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:44:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00040.fits, recurr False
+2022-07-18 13:22:44:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00040.fits, recurr False
+2022-07-18 13:22:44:KCWI:INFO: ------------------- Ingesting file kb210507_00041.fits -------------------
+2022-07-18 13:22:45:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00041.fits
+2022-07-18 13:22:45:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:45:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00041.fits, recurr False
+2022-07-18 13:22:45:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:45:KCWI:INFO: ******* GROUPID is 2021-05-07-41 
+2022-07-18 13:22:45:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:45:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:45:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:45:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00041.fits, recurr False
+2022-07-18 13:22:45:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00041.fits, recurr False
+2022-07-18 13:22:45:KCWI:INFO: ------------------- Ingesting file kb210507_00042.fits -------------------
+2022-07-18 13:22:45:KCWI:INFO: <<< read 1 imgs and 1 tables out of 2 hdus in kb210507_00042.fits
+2022-07-18 13:22:45:KCWI:INFO: Looking for MBIAS frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is MBIAS
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with CCDCFG = 1101009
+2022-07-18 13:22:45:KCWI:INFO: Looking for CONTBARS frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is CONTBARS
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:KCWI:INFO: Looking for MFLAT frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is MFLAT
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:KCWI:INFO: Looking for INVSENS frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is INVSENS
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:KCWI:INFO: Looking for ARCLAMP frames
+2022-07-18 13:22:45:KCWI:INFO: Camera is BLUE
+2022-07-18 13:22:45:KCWI:INFO: Target type is ARCLAMP
+2022-07-18 13:22:45:KCWI:INFO: Looking for frames with STATEID = 5faddd9cce9e245c077b1eae (BL_Small)
+2022-07-18 13:22:45:DRPF:INFO: Event completed: name next_file, action ingest_file, arg name kb210507_00042.fits, recurr False
+2022-07-18 13:22:45:KCWI:INFO: ******* FILE TYPE DETERMINED AS OBJECT
+2022-07-18 13:22:45:KCWI:INFO: ******* GROUPID is 2021-05-07-42 
+2022-07-18 13:22:45:KCWI:INFO: ******* STATEID is BL_Small (5faddd9cce9e245c077b1eae) 
+2022-07-18 13:22:45:KCWI:WARNING: Already processed (already in proctab)
+2022-07-18 13:22:45:KCWI:WARNING: Pushing noop to queue
+2022-07-18 13:22:45:DRPF:INFO: Event completed: name file_ingested, action action_planner, arg name kb210507_00042.fits, recurr False
+2022-07-18 13:22:45:DRPF:INFO: Event completed: name noop, action noop, arg name kb210507_00042.fits, recurr False
+2022-07-18 13:22:46:DRPF:INFO: No new events - do nothing
+2022-07-18 13:22:46:DRPF:INFO: Exiting main loop
+2022-07-18 13:22:46,131 WebSocket connection closed: code=None, reason=None
+(kcwidrp) shawnknabel@scorza2:/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/raw_files/2021may07_B$ 
+

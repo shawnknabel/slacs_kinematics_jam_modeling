@@ -1,0 +1,15 @@
+#####################################################
+#####################################################
+
+Beginning final kinematics script for object SDSSJ0037-0942.
+
+Traceback (most recent call last):
+  File "final_kinematics_covariance_template_subsets.py", line 213, in <module>
+    V = np.genfromtxt(f'{syst_dir}{obj_name}_systematics_V.txt', delimiter=',')
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/numpy/lib/npyio.py", line 1793, in genfromtxt
+    fid = np.lib._datasource.open(fname, 'rt', encoding=encoding)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/numpy/lib/_datasource.py", line 193, in open
+    return ds.open(path, mode, encoding=encoding, newline=newline)
+  File "/local/shawnknabel/anaconda3/envs/astroconda/lib/python3.7/site-packages/numpy/lib/_datasource.py", line 533, in open
+    raise IOError("%s not found." % path)
+OSError: /data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/mosaics/SDSSJ0037-0942/SDSSJ0037-0942_systematics_temp_subsets_310822/SDSSJ0037-0942_systematics_V.txt not found.

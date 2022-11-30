@@ -1,0 +1,4 @@
+  File "plot_cropped_datacubes.py", line 33
+    norm = simple_norm(np.nansum(hdu[0].data, axis=0), 'sqrt')
+    ^
+IndentationError: unexpected indent

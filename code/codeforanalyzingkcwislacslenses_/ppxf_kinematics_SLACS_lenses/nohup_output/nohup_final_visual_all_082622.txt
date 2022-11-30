@@ -1,0 +1,137 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+libGL error: MESA-LOADER: failed to open r600: /usr/lib/dri/r600_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: r600
+libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: swrast
+final_kinematics_visualization_plotting.py:130: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`).
+  plt.figure()
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0029-0055.
+
+Mean velocity: 4.349921065634241
+
+SDSSJ0029-0055 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0037-0942.
+
+Mean velocity: 20.128715580229553
+
+SDSSJ0037-0942 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ0330-0020.
+
+Mean velocity: 8.606372876036874
+
+SDSSJ0330-0020 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1112+0826.
+
+Mean velocity: 19.815624771463423
+
+SDSSJ1112+0826 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1204+0358.
+
+Mean velocity: -0.11075259053662334
+
+SDSSJ1204+0358 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1250+0523.
+
+Mean velocity: 17.544961420437748
+
+SDSSJ1250+0523 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1306+0600.
+
+Mean velocity: -7.4168180068605425
+
+SDSSJ1306+0600 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1402+6321.
+
+Mean velocity: 9.543476105911449
+
+SDSSJ1402+6321 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1531-0105.
+
+Mean velocity: 0.09657420980879666
+
+SDSSJ1531-0105 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1538+5817.
+
+Mean velocity: 27.446816364820823
+
+SDSSJ1538+5817 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1621+3931.
+
+Mean velocity: 18.20318637526853
+
+SDSSJ1621+3931 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1627-0053.
+
+Mean velocity: 8.691079928090035
+
+SDSSJ1627-0053 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ1630+4520.
+
+Mean velocity: 9.804396228503315
+
+SDSSJ1630+4520 has completed
+###########################################################
+#####################################################
+#####################################################
+
+Beginning final kinematics visualization and plotting script for object SDSSJ2303+1422.
+
+Mean velocity: 8.38113351027936
+
+SDSSJ2303+1422 has completed
+###########################################################
+
+###########################################################
+###########################################################
+Done.

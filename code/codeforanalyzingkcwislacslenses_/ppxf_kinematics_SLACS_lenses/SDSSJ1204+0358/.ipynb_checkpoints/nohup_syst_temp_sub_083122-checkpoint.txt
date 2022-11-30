@@ -1,0 +1,5398 @@
+Warning: Ignoring XDG_SESSION_TYPE=wayland on Gnome. Use QT_QPA_PLATFORM=wayland to run on Wayland anyway.
+################################################
+Beginning model l0a0d0w0
+################################################
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+get templates from /data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/xshooter_lib/random_subset_selections/all_dr2_fits_G789K012_rand_subset_1//templates_vs2.fits
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       252
+chi2/DOF: 0.009598; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 3; Func calls: 11; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 9/66
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.8     5.1
+Elapsed time in pPXF: 2.56 s
+chi2 < 1
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       252
+chi2/DOF: 0.009598; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+         1
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.6     4.5
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       252
+chi2/DOF: 3.402e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+         1
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.6     4.5
+Elapsed time in pPXF: 0.11 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       267
+chi2/DOF: 0.008567; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.972
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.8     4.7
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       267
+chi2/DOF: 3.427e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.972
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.8     4.7
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       250       268
+chi2/DOF: 0.006517; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.93
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.4     4.3
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       250       268
+chi2/DOF: 2.784e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.93
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.4     4.3
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       250       255
+chi2/DOF: 0.007127; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.959
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.2     4.1
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       250       255
+chi2/DOF: 2.667e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.959
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.2     4.1
+Elapsed time in pPXF: 0.16 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       266
+chi2/DOF: 0.006148; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.804
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.9     4.8
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       266
+chi2/DOF: 3.667e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.804
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.9     4.8
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       269
+chi2/DOF: 0.008112; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.842
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.5     5.3
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       269
+chi2/DOF: 4.557e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.842
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.5     5.3
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       269
+chi2/DOF: 0.007601; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.795
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.5
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       269
+chi2/DOF: 4.076e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.795
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.5
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       252
+chi2/DOF: 0.006887; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.6
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       252
+chi2/DOF: 5.037e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.6
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       283       264
+chi2/DOF: 0.008487; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.828
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       283       264
+chi2/DOF: 3.798e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.828
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       236       259
+chi2/DOF: 0.005567; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.649
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.5
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       236       259
+chi2/DOF: 5.019e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.649
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.5
+Elapsed time in pPXF: 0.26 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       269
+chi2/DOF: 0.007601; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.795
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.5
+Elapsed time in pPXF: 0.26 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       269
+chi2/DOF: 4.076e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.795
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.5
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       252       253
+chi2/DOF: 0.006472; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.55
+Formal errors:
+     dV    dsigma   dh3      dh4
+       7     6.8
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       252       253
+chi2/DOF: 7.131e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.55
+Formal errors:
+     dV    dsigma   dh3      dh4
+       7     6.8
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       252
+chi2/DOF: 0.006887; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.6
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       252
+chi2/DOF: 5.037e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       232       260
+chi2/DOF: 0.007310; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.2       6
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       232       260
+chi2/DOF: 6.208e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.2       6
+Elapsed time in pPXF: 0.16 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       252       253
+chi2/DOF: 0.006472; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.55
+Formal errors:
+     dV    dsigma   dh3      dh4
+       7     6.8
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       252       253
+chi2/DOF: 7.131e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.55
+Formal errors:
+     dV    dsigma   dh3      dh4
+       7     6.8
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       283       264
+chi2/DOF: 0.008487; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.828
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.53 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       283       264
+chi2/DOF: 3.798e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.828
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.14 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       260       255
+chi2/DOF: 0.006137; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.432
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       260       255
+chi2/DOF: 0.0001082; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.432
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       249       244
+chi2/DOF: 0.004799; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.477
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.6     6.5
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       249       244
+chi2/DOF: 6.789e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.477
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.6     6.5
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       265       255
+chi2/DOF: 0.005676; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.422
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.5     8.3
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       265       255
+chi2/DOF: 9.996e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.422
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.5     8.3
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       289       266
+chi2/DOF: 0.006036; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.479
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.1       8
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       289       266
+chi2/DOF: 7.935e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.479
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.1       8
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       260       255
+chi2/DOF: 0.006137; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.432
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       260       255
+chi2/DOF: 0.0001082; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.432
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       253
+chi2/DOF: 0.005650; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.367
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.7     9.5
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       253
+chi2/DOF: 0.0001331; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.367
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.7     9.5
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       240
+chi2/DOF: 0.006227; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.491
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.2       7
+Elapsed time in pPXF: 0.25 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       240
+chi2/DOF: 8.255e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.491
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.2       7
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       230       262
+chi2/DOF: 0.005412; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.744
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.9     4.8
+Elapsed time in pPXF: 0.26 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       230       262
+chi2/DOF: 3.923e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.744
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.9     4.8
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       228       257
+chi2/DOF: 0.004868; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.614
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.5     5.3
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       228       257
+chi2/DOF: 5.112e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.614
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.5     5.3
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       238       261
+chi2/DOF: 0.005790; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.854
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.4     4.3
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       238       261
+chi2/DOF: 3.031e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.854
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.4     4.3
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       245
+chi2/DOF: 0.005409; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.329
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       245
+chi2/DOF: 0.0001667; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.329
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       240
+chi2/DOF: 0.004317; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.357
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.2       8
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       240
+chi2/DOF: 0.0001159; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.357
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.2       8
+Elapsed time in pPXF: 0.26 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       277       259
+chi2/DOF: 0.005432; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.297
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.30 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       277       259
+chi2/DOF: 0.0001867; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.297
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       245
+chi2/DOF: 0.005409; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.329
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       245
+chi2/DOF: 0.0001667; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.329
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       238
+chi2/DOF: 0.005694; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.365
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.1     8.9
+Elapsed time in pPXF: 0.15 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       238
+chi2/DOF: 0.0001468; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.365
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.1     8.9
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       241
+chi2/DOF: 0.004085; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.452
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.4     6.2
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       241
+chi2/DOF: 6.498e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.452
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.4     6.2
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       234
+chi2/DOF: 0.01387; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.449
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       234
+chi2/DOF: 0.0002404; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.449
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       232       230
+chi2/DOF: 0.004110; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.261
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       232       230
+chi2/DOF: 0.0001973; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.261
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       257
+chi2/DOF: 0.004852; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.24
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       257
+chi2/DOF: 0.0002674; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.24
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       242
+chi2/DOF: 0.003879; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.341
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.3       8
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       242
+chi2/DOF: 0.0001126; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.341
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.3       8
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       263       253
+chi2/DOF: 0.006409; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.348
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       263       253
+chi2/DOF: 0.0001664; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.348
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       228
+chi2/DOF: 0.004906; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.253
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       228
+chi2/DOF: 0.0002460; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.253
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       231       231
+chi2/DOF: 0.005542; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.264
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       231       231
+chi2/DOF: 0.0002624; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.264
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       279       259
+chi2/DOF: 0.006144; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.283
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      13
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       279       259
+chi2/DOF: 0.0002293; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.283
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      13
+Elapsed time in pPXF: 0.15 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       255
+chi2/DOF: 0.006423; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.396
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.7     9.4
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       255
+chi2/DOF: 0.0001269; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.396
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.7     9.4
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       214       253
+chi2/DOF: 0.03144; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.499
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      16
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       214       253
+chi2/DOF: 0.0005195; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.499
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      16
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       251       255
+chi2/DOF: 0.01474; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.413
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       251       255
+chi2/DOF: 0.0002924; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.413
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       222       229
+chi2/DOF: 0.04069; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.605
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       222       229
+chi2/DOF: 0.0003781; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.605
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       216       223
+chi2/DOF: 0.04764; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.729
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       216       223
+chi2/DOF: 0.0003004; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.729
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       225       226
+chi2/DOF: 0.009133; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.445
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       225       226
+chi2/DOF: 0.0001505; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.445
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       242       243
+chi2/DOF: 0.005941; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.401
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.5
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       242       243
+chi2/DOF: 0.0001230; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.401
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.5
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       248       247
+chi2/DOF: 0.005616; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.309
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       248       247
+chi2/DOF: 0.0001915; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.309
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       222       251
+chi2/DOF: 0.006906; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.527
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.4     7.2
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       222       251
+chi2/DOF: 9.891e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.527
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.4     7.2
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       231       211
+chi2/DOF: 0.02007; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.535
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       231       211
+chi2/DOF: 0.0002010; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.535
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       217       250
+chi2/DOF: 0.007421; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.617
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.5     6.3
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       217       250
+chi2/DOF: 7.903e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.617
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.5     6.3
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       242
+chi2/DOF: 0.005219; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.385
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.5     8.3
+Elapsed time in pPXF: 0.15 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       242
+chi2/DOF: 0.0001178; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.385
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.5     8.3
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       247
+chi2/DOF: 0.004941; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.298
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       247
+chi2/DOF: 0.0001824; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.298
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       223       250
+chi2/DOF: 0.006068; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.503
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.3       7
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       223       250
+chi2/DOF: 9.404e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.503
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.3       7
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       224       250
+chi2/DOF: 0.007854; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+       0.7
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.9     5.7
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       224       250
+chi2/DOF: 6.204e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+       0.7
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.9     5.7
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       214
+chi2/DOF: 0.07687; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.833
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      13
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       214
+chi2/DOF: 0.0003117; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.833
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      13
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       235       202
+chi2/DOF: 0.05140; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.945
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.7
+Elapsed time in pPXF: 0.16 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       235       202
+chi2/DOF: 0.0001503; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.945
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.7
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       242       212
+chi2/DOF: 0.1294; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.965
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.16 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       242       212
+chi2/DOF: 0.0003723; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.965
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       256       233
+chi2/DOF: 0.1139; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.819
+Formal errors:
+     dV    dsigma   dh3      dh4
+      18      17
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       256       233
+chi2/DOF: 0.0004704; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.819
+Formal errors:
+     dV    dsigma   dh3      dh4
+      18      17
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       200
+chi2/DOF: 0.1756; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.05
+Formal errors:
+     dV    dsigma   dh3      dh4
+      15      14
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       200
+chi2/DOF: 0.0003517; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.05
+Formal errors:
+     dV    dsigma   dh3      dh4
+      15      14
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       261       203
+chi2/DOF: 0.1096; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.763
+Formal errors:
+     dV    dsigma   dh3      dh4
+      16      16
+Elapsed time in pPXF: 0.12 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       261       203
+chi2/DOF: 0.0004280; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.763
+Formal errors:
+     dV    dsigma   dh3      dh4
+      16      16
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       257       284
+chi2/DOF: 0.04650; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.538
+Formal errors:
+     dV    dsigma   dh3      dh4
+      22      22
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       257       284
+chi2/DOF: 0.0006415; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.538
+Formal errors:
+     dV    dsigma   dh3      dh4
+      22      22
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       285       269
+chi2/DOF: 0.01012; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.401
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      13
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       285       269
+chi2/DOF: 0.0001954; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.401
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      13
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       272       231
+chi2/DOF: 0.004099; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.254
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      10
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       272       231
+chi2/DOF: 0.0001612; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.254
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      10
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       204
+chi2/DOF: 0.07297; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.867
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       204
+chi2/DOF: 0.0002564; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.867
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       245
+chi2/DOF: 0.02088; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.418
+Formal errors:
+     dV    dsigma   dh3      dh4
+      16      15
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       245
+chi2/DOF: 0.0004417; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.418
+Formal errors:
+     dV    dsigma   dh3      dh4
+      16      15
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       164
+chi2/DOF: 0.7005; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.96
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      13
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       164
+chi2/DOF: 0.0003445; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.96
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      13
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       161
+chi2/DOF: 1.822; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+       1.7
+Formal errors:
+     dV    dsigma   dh3      dh4
+      23      24
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       161
+chi2/DOF: 0.001130; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+       1.7
+Formal errors:
+     dV    dsigma   dh3      dh4
+      23      24
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       185
+chi2/DOF: 1.045; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.77
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      19
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       185
+chi2/DOF: 0.0007398; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.77
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      19
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       274       247
+chi2/DOF: 0.1659; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.685
+Formal errors:
+     dV    dsigma   dh3      dh4
+      27      27
+Elapsed time in pPXF: 0.14 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       274       247
+chi2/DOF: 0.0009968; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.685
+Formal errors:
+     dV    dsigma   dh3      dh4
+      27      27
+Elapsed time in pPXF: 0.15 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       302       241
+chi2/DOF: 0.06155; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.643
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       302       241
+chi2/DOF: 0.0003495; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.643
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       298       168
+chi2/DOF: 0.6611; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+      15      15
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       298       168
+chi2/DOF: 0.0003211; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.68
+Formal errors:
+     dV    dsigma   dh3      dh4
+      15      15
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       216       232
+chi2/DOF: 0.02203; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.504
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      12
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       216       232
+chi2/DOF: 0.0003142; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.504
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      12
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       285       189
+chi2/DOF: 0.03377; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.455
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       285       189
+chi2/DOF: 0.0002780; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.455
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       238
+chi2/DOF: 0.004058; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.283
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.9     9.7
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       238
+chi2/DOF: 0.0001451; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.283
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.9     9.7
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       294       215
+chi2/DOF: 0.08631; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.555
+Formal errors:
+     dV    dsigma   dh3      dh4
+      21      21
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       294       215
+chi2/DOF: 0.0005727; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.555
+Formal errors:
+     dV    dsigma   dh3      dh4
+      21      21
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       255       217
+chi2/DOF: 0.01898; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.376
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       255       217
+chi2/DOF: 0.0003398; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.376
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       292       265
+chi2/DOF: 0.006725; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.446
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.1       9
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       292       265
+chi2/DOF: 9.951e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.446
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.1       9
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       282       257
+chi2/DOF: 0.004249; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.315
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10     9.7
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       282       257
+chi2/DOF: 0.0001266; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.315
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10     9.7
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       244
+chi2/DOF: 0.006122; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.219
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      16
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       244
+chi2/DOF: 0.0003803; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.219
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      16
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       282
+chi2/DOF: 0.09950; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.772
+Formal errors:
+     dV    dsigma   dh3      dh4
+      22      22
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       282
+chi2/DOF: 0.0006312; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.772
+Formal errors:
+     dV    dsigma   dh3      dh4
+      22      22
+Elapsed time in pPXF: 0.28 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       304       270
+chi2/DOF: 0.006249; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.507
+Formal errors:
+     dV    dsigma   dh3      dh4
+       8     7.9
+Elapsed time in pPXF: 0.27 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       304       270
+chi2/DOF: 7.004e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.507
+Formal errors:
+     dV    dsigma   dh3      dh4
+       8     7.9
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       308       270
+chi2/DOF: 0.006951; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.474
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.1     8.9
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       308       270
+chi2/DOF: 8.802e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 5; Func calls: 17; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.474
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.1     8.9
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       266
+chi2/DOF: 0.01240; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.396
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       266
+chi2/DOF: 0.0002821; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.396
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       285       277
+chi2/DOF: 0.004518; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.332
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      10
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       285       277
+chi2/DOF: 0.0001352; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.332
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      10
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       250       278
+chi2/DOF: 0.006540; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.227
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      19
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       250       278
+chi2/DOF: 0.0005026; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.227
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      19
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       271       199
+chi2/DOF: 0.8484; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.59
+Formal errors:
+     dV    dsigma   dh3      dh4
+      21      21
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       271       199
+chi2/DOF: 0.0006748; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.59
+Formal errors:
+     dV    dsigma   dh3      dh4
+      21      21
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       294       247
+chi2/DOF: 0.007166; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.441
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       294       247
+chi2/DOF: 9.490e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.441
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       291       249
+chi2/DOF: 0.006405; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.471
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.7
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       291       249
+chi2/DOF: 7.637e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.471
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.7
+Elapsed time in pPXF: 0.15 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       278       252
+chi2/DOF: 0.004756; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.312
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       278       252
+chi2/DOF: 0.0001389; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.312
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       271       254
+chi2/DOF: 0.007911; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.762
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       271       254
+chi2/DOF: 4.145e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.762
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       252       257
+chi2/DOF: 0.006719; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 3; Func calls: 11; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.217
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      18
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       252       257
+chi2/DOF: 0.0004713; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 3; Func calls: 11; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.217
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      18
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       271       254
+chi2/DOF: 0.007911; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.762
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       271       254
+chi2/DOF: 4.145e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.762
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.6     5.4
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       218       248
+chi2/DOF: 0.006479; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.589
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.3     6.1
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       218       248
+chi2/DOF: 7.476e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.589
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.3     6.1
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       305       177
+chi2/DOF: 0.1462; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.718
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       305       177
+chi2/DOF: 0.0004012; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.718
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       267       242
+chi2/DOF: 0.01339; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.362
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       267       242
+chi2/DOF: 0.0002846; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.362
+Formal errors:
+     dV    dsigma   dh3      dh4
+      14      14
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       255       250
+chi2/DOF: 0.006558; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.893
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.3     4.1
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       255       250
+chi2/DOF: 2.672e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.893
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.3     4.1
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       252
+chi2/DOF: 0.006270; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.881
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.3     4.1
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       240       252
+chi2/DOF: 2.912e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.881
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.3     4.1
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       231
+chi2/DOF: 0.006158; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.303
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       231
+chi2/DOF: 0.0002193; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.303
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       250
+chi2/DOF: 0.007040; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.376
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.15 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       250
+chi2/DOF: 0.0001608; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.376
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       252
+chi2/DOF: 0.006237; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+       0.4
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.3       9
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       252
+chi2/DOF: 0.0001264; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+       0.4
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.3       9
+Elapsed time in pPXF: 0.05 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       251       249
+chi2/DOF: 0.008510; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.933
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.6     4.5
+Elapsed time in pPXF: 0.16 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       251       249
+chi2/DOF: 3.226e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.933
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.6     4.5
+Elapsed time in pPXF: 0.11 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       246
+chi2/DOF: 0.004731; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.268
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.06 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       246
+chi2/DOF: 0.0001993; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.268
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.10 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       258
+chi2/DOF: 0.007163; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.635
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.5     6.4
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       258
+chi2/DOF: 5.912e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.635
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.5     6.4
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       224       250
+chi2/DOF: 0.006860; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.664
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       224       250
+chi2/DOF: 5.987e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.664
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.6
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       253
+chi2/DOF: 0.008063; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.726
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.9     5.7
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       253
+chi2/DOF: 5.667e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.726
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.9     5.7
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       240
+chi2/DOF: 0.006681; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.19
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      19
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       268       240
+chi2/DOF: 0.0005124; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.19
+Formal errors:
+     dV    dsigma   dh3      dh4
+      19      19
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       258
+chi2/DOF: 0.007163; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.635
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.5     6.4
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       258
+chi2/DOF: 5.912e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.635
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.5     6.4
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       230
+chi2/DOF: 0.006083; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.353
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.4     9.2
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       230
+chi2/DOF: 0.0001650; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.353
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.4     9.2
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       249
+chi2/DOF: 0.005885; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.822
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.4     4.2
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       249
+chi2/DOF: 2.973e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.822
+Formal errors:
+     dV    dsigma   dh3      dh4
+     4.4     4.2
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       263
+chi2/DOF: 0.006061; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.743
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.2     5.1
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       263
+chi2/DOF: 4.061e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.743
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.2     5.1
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       231
+chi2/DOF: 0.006158; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.303
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       231
+chi2/DOF: 0.0002193; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.303
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       226       226
+chi2/DOF: 0.1060; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.08
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       226       226
+chi2/DOF: 0.0002982; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.08
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       253
+chi2/DOF: 0.007070; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.688
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.7
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       253
+chi2/DOF: 5.544e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.688
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.8     5.7
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       240
+chi2/DOF: 0.006987; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.36
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       240
+chi2/DOF: 0.0001897; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.36
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       242       264
+chi2/DOF: 0.007886; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.777
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.7     5.6
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       242       264
+chi2/DOF: 4.974e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.777
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.7     5.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       248
+chi2/DOF: 0.007799; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.677
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.1     5.9
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       248
+chi2/DOF: 6.150e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.677
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.1     5.9
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       243
+chi2/DOF: 0.005707; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.339
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10     9.9
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       247       243
+chi2/DOF: 0.0001643; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.339
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10     9.9
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       242
+chi2/DOF: 0.006423; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.322
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       242
+chi2/DOF: 0.0002062; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.322
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.29 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       230
+chi2/DOF: 0.006083; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.353
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.4     9.2
+Elapsed time in pPXF: 0.30 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       230
+chi2/DOF: 0.0001650; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.353
+Formal errors:
+     dV    dsigma   dh3      dh4
+     9.4     9.2
+Elapsed time in pPXF: 0.25 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       251       230
+chi2/DOF: 0.09676; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.607
+Formal errors:
+     dV    dsigma   dh3      dh4
+      22      21
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       251       230
+chi2/DOF: 0.0007332; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.607
+Formal errors:
+     dV    dsigma   dh3      dh4
+      22      21
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       251
+chi2/DOF: 0.006831; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.499
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.6
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       251
+chi2/DOF: 8.602e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.499
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.6
+Elapsed time in pPXF: 0.32 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       230
+chi2/DOF: 0.004125; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.238
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       230
+chi2/DOF: 0.0002264; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.238
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       251
+chi2/DOF: 0.006831; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.499
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.6
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       262       251
+chi2/DOF: 8.602e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.499
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       215
+chi2/DOF: 0.01991; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.332
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      16
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       245       215
+chi2/DOF: 0.0004897; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.332
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      16
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       236       259
+chi2/DOF: 0.005100; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.689
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.1     4.9
+Elapsed time in pPXF: 0.12 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       236       259
+chi2/DOF: 4.132e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.689
+Formal errors:
+     dV    dsigma   dh3      dh4
+     5.1     4.9
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       260
+chi2/DOF: 0.005325; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.57
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.3     6.1
+Elapsed time in pPXF: 0.26 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       260
+chi2/DOF: 5.952e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.57
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.3     6.1
+Elapsed time in pPXF: 0.25 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       249       211
+chi2/DOF: 0.04478; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.742
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       249       211
+chi2/DOF: 0.0002052; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.742
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      11
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       266
+chi2/DOF: 0.007757; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.369
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       237       266
+chi2/DOF: 0.0002210; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.369
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      12
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       233       249
+chi2/DOF: 0.006782; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.644
+Formal errors:
+     dV    dsigma   dh3      dh4
+       6     5.8
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       233       249
+chi2/DOF: 5.973e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.644
+Formal errors:
+     dV    dsigma   dh3      dh4
+       6     5.8
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       240
+chi2/DOF: 0.006987; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.36
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.16 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       227       240
+chi2/DOF: 0.0001897; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.36
+Formal errors:
+     dV    dsigma   dh3      dh4
+      10      10
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       241       263
+chi2/DOF: 0.006844; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.592
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.9     6.8
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       241       263
+chi2/DOF: 7.380e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.592
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.9     6.8
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       225       251
+chi2/DOF: 0.006906; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.576
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.8     6.6
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       225       251
+chi2/DOF: 8.171e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.576
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.8     6.6
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       250
+chi2/DOF: 0.004844; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.279
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       259       250
+chi2/DOF: 0.0001951; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.279
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       251
+chi2/DOF: 0.005476; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.27
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      13
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       258       251
+chi2/DOF: 0.0002408; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.27
+Formal errors:
+     dV    dsigma   dh3      dh4
+      13      13
+Elapsed time in pPXF: 0.23 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       238
+chi2/DOF: 0.005668; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.374
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.9     8.7
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       238
+chi2/DOF: 0.0001115; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.374
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.9     8.7
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       219
+chi2/DOF: 0.01741; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.347
+Formal errors:
+     dV    dsigma   dh3      dh4
+      15      15
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       246       219
+chi2/DOF: 0.0003972; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.347
+Formal errors:
+     dV    dsigma   dh3      dh4
+      15      15
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       238
+chi2/DOF: 0.005668; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.374
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.9     8.7
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       238
+chi2/DOF: 0.0001115; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.374
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.9     8.7
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       265
+chi2/DOF: 0.004360; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.539
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.2       6
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       239       265
+chi2/DOF: 5.905e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.539
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.2       6
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       171
+chi2/DOF: 0.8088; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.57
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      18
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       243       171
+chi2/DOF: 0.0006644; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      1.57
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      18
+Elapsed time in pPXF: 0.18 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       231
+chi2/DOF: 0.1048; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.712
+Formal errors:
+     dV    dsigma   dh3      dh4
+      20      19
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       269       231
+chi2/DOF: 0.0005536; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.712
+Formal errors:
+     dV    dsigma   dh3      dh4
+      20      19
+Elapsed time in pPXF: 0.12 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       263       256
+chi2/DOF: 0.004661; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.422
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.6
+Elapsed time in pPXF: 0.10 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       263       256
+chi2/DOF: 8.367e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.422
+Formal errors:
+     dV    dsigma   dh3      dh4
+     7.8     7.6
+Elapsed time in pPXF: 0.19 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       223       270
+chi2/DOF: 0.005735; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.368
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      10
+Elapsed time in pPXF: 0.17 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       223       270
+chi2/DOF: 0.0001852; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.368
+Formal errors:
+     dV    dsigma   dh3      dh4
+      11      10
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       225       251
+chi2/DOF: 0.005987; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.549
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.6     6.4
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       225       251
+chi2/DOF: 7.763e-05; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.549
+Formal errors:
+     dV    dsigma   dh3      dh4
+     6.6     6.4
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       315       262
+chi2/DOF: 0.01760; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.381
+Formal errors:
+     dV    dsigma   dh3      dh4
+      18      17
+Elapsed time in pPXF: 0.12 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       315       262
+chi2/DOF: 0.0003256; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.381
+Formal errors:
+     dV    dsigma   dh3      dh4
+      18      17
+Elapsed time in pPXF: 0.14 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       318       269
+chi2/DOF: 0.005350; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.222
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.26 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       318       269
+chi2/DOF: 0.0002975; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.222
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.27 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       286       231
+chi2/DOF: 0.07498; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.687
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.24 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       286       231
+chi2/DOF: 0.0003932; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.687
+Formal errors:
+     dV    dsigma   dh3      dh4
+      17      17
+Elapsed time in pPXF: 0.27 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       288       246
+chi2/DOF: 0.005472; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.29
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.22 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       288       246
+chi2/DOF: 0.0001733; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+      0.29
+Formal errors:
+     dV    dsigma   dh3      dh4
+      12      11
+Elapsed time in pPXF: 0.27 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       261       260
+chi2/DOF: 0.006190; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.436
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.21 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       261       260
+chi2/DOF: 0.0001081; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%): 1/1
+Templates weights:
+     0.436
+Formal errors:
+     dV    dsigma   dh3      dh4
+     8.8     8.6
+Elapsed time in pPXF: 0.20 s
+CRVAL1 is 3329.5
+CDELT1 is 0.5
+NAXIS1 is 5215 5215
+velscale of the data is [33.25108194]
+no sky spectrum (i.e., no background_source)
+h2 = 0.14984130859375
+[ 424  425  426 ... 5212 5213 5214]
+ Best Fit:       Vel     sigma
+ comp.  0:       234       268
+chi2/DOF: 0.005919; DOF: 2717; degree = 4; mdegree = 0
+method = capfit; Jac calls: 4; Func calls: 14; Status: 2
+linear_method = lsq_box; Nonzero Templates (>0.1%):

@@ -1,0 +1,7 @@
+################################################
+Beginning model l0a0d0w0
+################################################
+Traceback (most recent call last):
+  File "SDSSJ0330-0020_ppxf_kinematics_systematics_adjust_contam.py", line 182, in <module>
+    ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift(libary_dir_xshooter,
+NameError: name 'libary_dir_xshooter' is not defined

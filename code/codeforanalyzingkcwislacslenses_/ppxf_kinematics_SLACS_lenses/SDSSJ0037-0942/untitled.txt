@@ -1,0 +1,9 @@
+# data directory.
+data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
+
+# Set 'obj_name', 'z', 'T_exp'
+obj_name = 'SDSSJ0037-0942'
+obj_abbr = obj_name[4:9] # e.g. J0029
+z = 0.195 # lens redshift
+T_exp = 1800*3*60 #266 * 60
+lens_center_x,lens_center_y = 59, 137
