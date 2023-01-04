@@ -778,11 +778,14 @@ def calculate_minlevel (img, size, plot=True):
 #############################################################################
 # function to fit the kcwi image with a convolution of hst image and a gaussian psf
 
-def fit_kcwi_sigma_psf (sigma_psf, hst_img, kcwi_img, hst_scale=0.05, kcwi_scale=0.1457, plot=False):
+def fit_kcwi_sigma_psf (x, hst_img=None, kcwi_img=None, hst_scale=0.05, kcwi_scale=0.1457, plot=False):
     '''
     Fits the KCWI image with a convolution of the HST image and a Gaussian PSF with given sigma.
     Inputs:
-        sigma_psf - float, sigma of Gaussian PSF, fitting parameter for optimization 
+        x is the guess and consists of:
+            sigma_psf - float, sigma of Gaussian PSF, arcsec, fitting parameter for optimization 
+            offset_x - int, offset allows for recentering to find the best value of sigma_psf, fitting parameter for optimization 
+            offset_y - int, fitting parameter for optimization 
         hst_img - array (size n), 3 arcsec HST image
         kcwi_img - array (size m), 3 arcsec KCWI image
         hst_scale - float, pixel scale of HST image, default 0.05 "/pix
@@ -791,10 +794,14 @@ def fit_kcwi_sigma_psf (sigma_psf, hst_img, kcwi_img, hst_scale=0.05, kcwi_scale
         residual - array (size m), subtraction of kcwi_img from convolved hst model
                     We will optimize with least squares
     '''
-
-    # make gaussian kernel with sigma_psf
-    gaussian_2D_kernel = Gaussian2DKernel(sigma_psf)
     
+    sigma_psf = x[0]
+    offset_x = x[1]
+    offset_y = x[2]
+    
+    # make gaussian kernel with sigma_psf
+    
+    gaussian_2D_kernel = Gaussian2DKernel(sigma_psf/hst_scale) # convolve with HST image pixels
     if plot == True:
         # show the kernel
         plt.imshow(gaussian_2D_kernel, interpolation='none', origin='lower')
@@ -803,10 +810,10 @@ def fit_kcwi_sigma_psf (sigma_psf, hst_img, kcwi_img, hst_scale=0.05, kcwi_scale
         plt.colorbar()
         plt.show()
         plt.clf()
-
+        
     # convolve the hst image and the psf kernel
     convolved_img = convolve(hst_img, gaussian_2D_kernel)
-    
+
     if plot == True:
         # show the images and the convolved image
         plt.imshow(hst_img, origin='lower')
@@ -824,14 +831,14 @@ def fit_kcwi_sigma_psf (sigma_psf, hst_img, kcwi_img, hst_scale=0.05, kcwi_scale
         plt.pause(1)
 
     # make grid with kcwi_img shape times 3... and multiply by ratio of kcwi_scale/hst_scale, divide by 3
-    x = np.arange(3*kcwi_img.shape[0])*kcwi_scale/hst_scale/3
-    y = np.arange(3*kcwi_img.shape[1])*kcwi_scale/hst_scale/3
+    x = np.arange(3*kcwi_img.shape[0])*kcwi_scale/hst_scale/3 - offset_x# add offset values to adjust centering
+    y = np.arange(3*kcwi_img.shape[1])*kcwi_scale/hst_scale/3 - offset_y
     # make grid
     yv, xv = np.meshgrid(x, y)
-    
+
     # map the convolved image to the new grid
     mapped_img = map_coordinates(convolved_img, np.array([xv, yv]), mode='nearest')
-    
+
     # create new array of shape kcwi_img and sum 3x3 sections of the mapped image
     int_mapped_img = np.sum(mapped_img.reshape(kcwi_img.shape[0], 3, kcwi_img.shape[1], 3), axis=(1,3))
 
@@ -840,35 +847,40 @@ def fit_kcwi_sigma_psf (sigma_psf, hst_img, kcwi_img, hst_scale=0.05, kcwi_scale
         plt.title('Integrated mapped image')
         plt.pause(1)
         plt.clf()
-        plt.imshow(int_conv_img, origin='lower')
-        plt.title('Integrated image without mapping')
-        plt.pause(1)
-        plt.clf()
-        plt.imshow(diff, origin='lower')
-        plt.title('Residual between two integrated images')
-        plt.pause(1)
-        plt.clf()
-
+        #plt.imshow(int_conv_img, origin='lower')
+        #plt.title('Integrated image without mapping')
+        #plt.pause(1)
+        #plt.clf()
+        #plt.imshow(diff, origin='lower')
+        #plt.title('Residual between two integrated images')
+        #plt.pause(1)
+        #plt.clf()
+        
     # normalize the images
     # integrated mapped image
-    int_mapped_img_norm = int_mapped_img / np.max(int_mapped_img)
+    int_mapped_img_norm = int_mapped_img / np.sum(int_mapped_img)
     # kcwi image
-    kcwi_img_norm = kcwi_img / np.max(kcwi_img)
+    kcwi_img_norm = kcwi_img / np.sum(kcwi_img)
 
     # take residual of normed images
     residual = int_mapped_img_norm - kcwi_img_norm
     
     plt.imshow(residual, origin='lower')
+    if plot==True:
+        plt.colorbar()
     plt.title('Residual')
-    
+
     # return the residual flattened
     return residual.ravel()
 
 
 ########################################################################################
 
-def optimize_sigma_psf_fit (fit_kcwi_sigma_psf, sigma_psf_guess, 
-                            hst_img, kcwi_img, hst_scale=0.050, kcwi_scale=0.1457, plot=True):
+
+########################################################################################
+
+def optimize_sigma_psf_fit (fit_kcwi_sigma_psf, sigma_psf_guess=0.5, offset_x_guess=0., offset_y_guess=0., # use offset 
+                            hst_img=None, kcwi_img=None, hst_scale=0.050, kcwi_scale=0.1457, plot=True):
     '''
     Function to optimize with least squares optimization the fit of KCWI sigma_psf by convolving the HST img
     with Gaussian PSF.
@@ -879,26 +891,33 @@ def optimize_sigma_psf_fit (fit_kcwi_sigma_psf, sigma_psf_guess,
         - kcwi_img
     '''
     
-    # optimize the function
-    result = lsq(fit_kcwi_sigma_psf, x0=sigma_psf_guess, kwargs={'hst_img':hst_img,'kcwi_img':kcwi_img,
-                                                                 'plot':False})
+    x0 = np.array([sigma_psf_guess, offset_x_guess, offset_y_guess], dtype=float)
     
+    # optimize the function
+    result = lsq(fit_kcwi_sigma_psf, x0=x0, kwargs={'hst_img':hst_img,'kcwi_img':kcwi_img,
+                                                                 'plot':False})
+    print(result.x.shape)
     # state the best-fit sigma-psf and loss function value
-    best_fit = result.x[0]*hst_scale
+    best_fit_psf = result.x[0]
+    offset_x = result.x[1]
+    offset_y = result.x[2]
     loss = result.cost
-    print(f'Best fit sigma-PSF is {best_fit} arcsec')
+    print(result.status)
+    print(f'Best fit sigma-PSF is {best_fit_psf} arcsec')
     print(f'Best fit loss function value is {loss}')
+    print(f'Offsets: {offset_x},{offset_y}')
     
     # take best_residual
     best_residual = result.fun.reshape(kcwi_img.shape)
+    print(f'Sum residual {np.sum(abs(best_residual))}')
     
     # show residual
     if plot == True:
         plt.imshow(best_residual, origin='lower')
+        plt.colorbar()
         plt.title('Best fit residual')
         
-    return best_fit, loss, best_residual
-    
+    return best_fit_psf, loss, best_residual
     
     
 #########################################################################
