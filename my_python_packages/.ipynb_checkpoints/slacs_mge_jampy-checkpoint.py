@@ -133,7 +133,18 @@ def import_center_crop (file_dir, obj_name, obj_abbr, data_source='HST', plot=Tr
         header = hdu[0].header
         
         # get kcwi position angle N thru E
-        kcwi_pa = header['ROTDEST'] # I still haven't determined what this angle is relative to. I *believe* it's N->E
+        # bring kcwi_pas.txt 
+        kcwi_pas = np.genfromtxt(f'{data_dir}tables/kcwi_pas.txt')
+        kcwi_pa = kcwi_pas[obj_names==obj_name]
+        kcwi_pa_header = header['ROTDEST'] # I still haven't determined what this angle is relative to. I *believe* it's N->E
+        
+        if kcwi_pa != kcwi_pa_header:
+            print('PA in header doesnt match')
+        
+        if kcwi_pa != 0:
+            # rotate by the kcwi pa
+            kcwi_img = rotate(kcwi_img, -kcwi_pa)
+            print('Rotate image by ', kcwi_pa)
         
         # pixel scale
         kcwi_scale = 0.1457  # arcsec/pixel r_eff_V
@@ -925,8 +936,10 @@ def rotate_bins (PA, xbin_arcsec, ybin_arcsec, V_bin, plot=True):
 
     # rotate the coordinates and append to array
     for i in range(len(xbin_arcsec)):
-        xbin[i], ybin[i] = rotate_points(xbin_arcsec[i], ybin_arcsec[i], PA) 
-
+        xb, yb = rotate_points(xbin_arcsec[i], ybin_arcsec[i], PA) 
+        xbin[i]= xb
+        ybin[i]= yb 
+        
     if plot==True: # check that it worked
         PA_kin_rot, dPA_kin_rot, velocity_offset_rot = fit_kinematic_pa(xbin, ybin, V_bin)
         PA_kin_correction = 90 - PA_kin_rot
@@ -1216,9 +1229,12 @@ def optimize_sigma_psf_fit (fit_kcwi_sigma_psf, sigma_psf_guess=0.5, offset_x_gu
     
     # show residual
     if plot == True:
+        plt.figure()
         plt.imshow(best_residual, origin='lower')
         plt.colorbar()
         plt.title('Best fit residual')
+        plt.pause(1)
+        plt.clf()
         
     return best_fit_psf, loss, best_residual
     
