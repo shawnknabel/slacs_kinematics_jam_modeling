@@ -56,7 +56,7 @@ obj_name = 'SDSSJ1112+0826'
 obj_abbr = obj_name[4:9] # e.g. J0029
 z = 0.273 # lens redshift
 z_bs = 0.629
-T_exp = 1800*4*60 #266 * 60
+T_exp = 1800*4 # this has been fixed
 lens_center_x,lens_center_y = 64, 131
 
 #------------------------------------------------------------------------------

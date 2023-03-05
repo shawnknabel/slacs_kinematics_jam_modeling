@@ -57,7 +57,7 @@ obj_name = 'SDSSJ0330-0020'
 obj_abbr = obj_name[4:9] # e.g. J0029
 z = 0.351 # lens redshift
 z_bs = 1.071 # background source redshift... additional piece for contamination
-T_exp = 1800*6*60 #266 * 60
+T_exp = 1800*6 #######*60 #266 * 60
 lens_center_x,lens_center_y = 59, 133
 
 #KCWI mosaic datacube

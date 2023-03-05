@@ -1,0 +1,10 @@
+################################################
+################################################
+################################################
+Starting object {obj_name}
+################################################
+
+Traceback (most recent call last):
+  File "SDSSJ0029-0055_ppxf_kinematics_systematics_022423.py", line 75, in <module>
+    ppxf_inputs = pd.read_csv(f'{tables_dir}ppxf_input_table.csv')
+NameError: name 'tables_dir' is not defined

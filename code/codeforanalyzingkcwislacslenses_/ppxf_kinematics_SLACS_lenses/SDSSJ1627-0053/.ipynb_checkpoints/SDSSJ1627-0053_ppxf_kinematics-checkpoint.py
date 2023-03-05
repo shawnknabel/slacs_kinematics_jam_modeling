@@ -43,7 +43,7 @@ data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
 obj_name = 'SDSSJ1627-0053'
 obj_abbr = obj_name[4:9] # e.g. J0029
 z = 0.208 # lens redshift
-T_exp = 1800*5*60 + 960*60 #266 * 60
+T_exp = 1800*5 + 960 # corrected #266 * 60
 lens_center_x,lens_center_y = 56, 134
 
 #------------------------------------------------------------------------------

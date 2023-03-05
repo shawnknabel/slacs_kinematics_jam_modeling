@@ -29,6 +29,8 @@ from ppxf.kcwi_util import stellar_type
 
 import pathlib
 
+import pickle
+
 register_sauron_colormap()
 
 
@@ -41,8 +43,50 @@ data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
 obj_name = 'SDSSJ2303+1422'
 obj_abbr = obj_name[4:9] # e.g. J0029
 z = 0.155 # lens redshift
-T_exp = 1800*3*60 #266 * 60
+T_exp = 1800*3 # corrected
 lens_center_x,lens_center_y = 58, 124
+
+#------------------------------------------------------------------------------
+# Kinematics systematics initial choices
+
+# stellar templates library
+stellar_templates_library = 'all_dr2_fits_G789K012'
+
+# aperture
+aperture = 'R1'
+
+# wavelength range
+wave_min = 320
+wave_max = 430 # CF set to 428
+
+# degree of the additive Legendre polynomial in ppxf
+degree = 5 # 110/25 = 4.4 round up
+
+#------------------------------------------------------------------------------
+# Information specific to KCWI and templates
+
+## R=3600. spectral resolution is ~ 1.42A
+FWHM = 1.42 #1.42
+
+FWHM_tem_xshooter = 0.43 #0.43
+
+## initial estimate of the noise
+noise = 0.014
+
+# velocity scale ratio
+velscale_ratio = 2
+
+#------------------------------------------------------------------------------
+# variable settings in ppxf and utility functions
+
+# cut the datacube at lens center, radius given here
+radius_in_pixels = 21
+
+# target SN for voronoi binning
+vorbin_SN_target = 20
+
+# global template spectrum chi2 threshold
+global_template_spectrum_chi2_threshold = 1
 
 #------------------------------------------------------------------------------
 
@@ -50,7 +94,7 @@ lens_center_x,lens_center_y = 58, 124
 Step 0: input the necessary information of the datacube
 '''
 #libary directory # chih-fan spelled wrong :)
-libary_dir_xshooter = f'{data_dir}xshooter_lib/all_dr2_fits_G789K012/'
+libary_dir_xshooter = f'{data_dir}xshooter_lib/{stellar_templates_library}/'
 library_dir_xshooter_all = f'{data_dir}xshooter_lib/all_dr2_fits/'
     
 # object directory
@@ -64,20 +108,7 @@ pathlib.Path(save_dir).mkdir(parents=True, exist_ok=True)
 name = f'KCWI_{obj_abbr}_icubes_mosaic_0.1457'
 
 #spectrum from the lens center # using R=1
-spectrum_aperture = f'{dir}{obj_abbr}_central_spectrum_R1.fits' 
-spectrum_aperture_R2 = f'{dir}{obj_abbr}_central_spectrum_R2.fits'
-
-## R=3600. spectral resolution is ~ 1.42A
-FWHM = 1.42 #1.42
-
-FWHM_tem_xshooter = 0.43 #0.43
-
-## initial estimate of the noise
-noise = 0.014
-
-# degree of the additive Legendre polynomial in ppxf
-degree = 2
-
+spectrum_aperture = f'{dir}{obj_abbr}_central_spectrum_{aperture}.fits' 
 
 '''
 Step 1: visualization of the KCWI mosaic datacube
@@ -86,9 +117,6 @@ Step 1: visualization of the KCWI mosaic datacube
 hdu = fits.open(dir + name + ".fits")
 visualization(hdu)
 plt.savefig(dir + obj_name + '_mosaic.png')
-
-# cut the datacube at lens center, radius given here
-radius_in_pixels = 21
 
 # crop, plot, save
 plt.figure()
@@ -101,10 +129,7 @@ plt.savefig(dir + obj_name + '_crop.png')
 Step 2: obtain the global template of the lensing galaxy
 '''
 
-# set parameters for ppxf
-wave_min = 320
-wave_max = 428
-velscale_ratio = 2
+
 
 # fit center spectrum with templates
 plt.figure()
@@ -121,9 +146,18 @@ templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy, quasar = \
                                                       FWHM_tem=FWHM_tem_xshooter,
                                                       plot=True)
 
+# flag and reject if pp.chi2 > threshold
+assert pp.chi2 < global_template_spectrum_chi2_threshold, f'Global template spectrum chi2 {pp.chi2} exceeds threshold of {global_template_spectrum_chi2_threshold}. Try again please.'
+
 # plot the spectrum and template fits
 plt.savefig(save_dir + obj_name + '_global_template_spectrum.png')
 plt.show()
+
+# save the pp object as a pickle
+# write file
+pickle_file = open(f'{save_dir}global_template_spectrum_fit.pkl', 'wb')
+pickle.dump(pp, pickle_file)
+pickle_file.close()
 
 # save variables for future use, show number of stars
 nTemplates_xshooter = templates.shape[1]
@@ -207,7 +241,7 @@ plt.clf()
 
 ## conduct the voronoi binning (produce the map for mapping pixels to bins)
 plt.figure()
-voronoi_binning(20, dir, name)
+voronoi_binning(vorbin_SN_target, dir, name)
 plt.tight_layout()
 plt.savefig(dir + obj_name + '_voronoi_binning.png')
 plt.pause(1)

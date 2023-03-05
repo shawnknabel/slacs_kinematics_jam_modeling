@@ -1,0 +1,4 @@
+  File "slacs_ppxf_systematics_master.py", line 70
+    date_of_kin = 
+                 ^
+SyntaxError: invalid syntax

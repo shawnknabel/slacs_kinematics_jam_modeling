@@ -1,0 +1,4 @@
+  File "SDSSJ0330-0020_ppxf_kinematics_adjust_for_contaminant_022423.py", line 397
+    voronoi_binning_data = fits.getdata(target_dir +'voronoi_binning_' + obj_name + '_data.fits')
+    ^
+IndentationError: unexpected indent

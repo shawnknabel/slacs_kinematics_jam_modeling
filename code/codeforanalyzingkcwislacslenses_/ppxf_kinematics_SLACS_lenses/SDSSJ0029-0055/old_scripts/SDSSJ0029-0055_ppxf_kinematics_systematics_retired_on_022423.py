@@ -9,17 +9,21 @@ Geoff Chih-Fan Chen, Feb 28 2022 for Shawan Knabel.
 Shawn Knabel, Feb 28 2022 editting for my own machine and directories.
 03/01/22 - SDSSJ0029-0055
 07/12/22 - systematics checks
-
 '''
 
 from astropy.io import fits
-import numpy as np
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+import ppxf
 from ppxf.kcwi_util import register_sauron_colormap
 from ppxf.kcwi_util import visualization
 from ppxf.kcwi_util import get_datacube
 from ppxf.kcwi_util import ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift
+from ppxf.kcwi_util import remove_background_source_from_galaxy_deredshift
+from ppxf.kcwi_util2 import getMaskInFitsFromDS9reg
+from ppxf.kcwi_util import fitting_SN
+from ppxf.kcwi_util import fitting_SN_forshow
 from ppxf.kcwi_util import find_nearest
 from ppxf.kcwi_util import SN_CaHK
 from ppxf.kcwi_util import select_region
@@ -28,10 +32,14 @@ from ppxf.kcwi_util import get_voronoi_binning_data
 from ppxf.kcwi_util import get_velocity_dispersion_deredshift
 from ppxf.kcwi_util import kinematics_map
 from ppxf.kcwi_util import stellar_type
+from scipy.optimize import minimize
 
-import pathlib # to create directory
-
+from pathlib import Path # to create directory
 import pickle
+from datetime import date
+today = date.today()
+
+register_sauron_colormap()
 
 from time import perf_counter as timer
 # register first tick
@@ -50,7 +58,7 @@ stellar_library_dir = f'{data_dir}xshooter_lib/'
 obj_name = 'SDSSJ0029-0055'
 obj_abbr = obj_name[4:9] # e.g. J0029
 z = 0.227 # lens redshift
-T_exp = 1800*5*60 #266 * 60
+T_exp = 1800*5
 lens_center_x,lens_center_y = 60, 129
 
 #------------------------------------------------------------------------------

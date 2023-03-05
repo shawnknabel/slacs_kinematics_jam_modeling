@@ -1,0 +1,32 @@
+#############################################################
+Hold onto your butts!
+
+Outputs will be in /data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/kinematics/2023-02-27_12/
+
+#############################################################
+SDSSJ0330-0020 J0330
+
+J0330 must be fit with the background source. Be careful.
+################################################
+################################################
+
+Working with S/N target  10
+
+################################################
+################################################
+
+Working with  no_g
+
+################################################
+Beginning model l0a0d0w0
+################################################
+CRVAL1 is 3328.5
+CDELT1 is 0.5
+NAXIS1 is 5216 5216
+velscale of the data is [33.25713266]
+Traceback (most recent call last):
+  File "slacs_ppxf_systematics_master.py", line 279, in <module>
+    plot=True)
+  File "/usr/local/anaconda3/lib/python3.7/site-packages/ppxf/kcwi_util.py", line 194, in ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift
+    lamRange1_q = lamRange1_q/(1+z_bs) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
+TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'

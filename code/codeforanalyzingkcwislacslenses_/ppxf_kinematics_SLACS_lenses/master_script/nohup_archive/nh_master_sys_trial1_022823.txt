@@ -1,0 +1,19 @@
+#############################################################
+Hold onto your butts!
+
+Outputs will be in /data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/kinematics/2023-02-27_12/
+
+#############################################################
+SDSSJ0029-0055 J0029
+
+################################################
+################################################
+
+Working with S/N target  10
+
+################################################
+################################################
+Traceback (most recent call last):
+  File "slacs_ppxf_systematics_master.py", line 206, in <module>
+    pathlib.Path(syst_dir).mkdir(parents=True, exist_ok=True) 
+NameError: name 'pathlib' is not defined

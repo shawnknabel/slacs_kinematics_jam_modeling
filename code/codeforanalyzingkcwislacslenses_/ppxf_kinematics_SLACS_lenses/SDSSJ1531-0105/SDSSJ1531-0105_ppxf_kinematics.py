@@ -43,7 +43,7 @@ data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
 obj_name = 'SDSSJ1531-0105'
 obj_abbr = obj_name[4:9] # e.g. J0029
 z = 0.16 # lens redshift
-T_exp = 1200*4*60 # I removed frame 32 which was 80 seconds... couldn't find center to make the mosiac... #+ 80*60 #266 * 60
+T_exp = 1200*4 # corrected # I removed frame 32 which was 80 seconds... couldn't find center to make the mosiac... #+ 80*60 #266 * 60
 lens_center_x,lens_center_y = 60, 129
 
 #------------------------------------------------------------------------------

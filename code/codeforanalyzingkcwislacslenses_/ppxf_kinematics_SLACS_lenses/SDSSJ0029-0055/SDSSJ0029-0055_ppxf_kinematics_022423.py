@@ -66,7 +66,7 @@ stellar_templates_library = 'all_dr2_fits_G789K012'
 aperture = 'R1'
 
 # wavelength range
-wave_min = 320
+wave_min = 340
 wave_max = 430 # CF set to 428
 
 # degree of the additive Legendre polynomial in ppxf
@@ -74,6 +74,8 @@ degree = 5 # 110/25 = 4.4 round up
 
 #------------------------------------------------------------------------------
 # Information specific to KCWI and templates
+
+kcwi_scale = 0.1457
 
 ## R=3600. spectral resolution is ~ 1.42A
 FWHM = 1.42 #1.42
@@ -120,14 +122,12 @@ Step 1: visualization of the KCWI mosaic datacube
 hdu = fits.open(mos_dir + mos_name + ".fits")
 visualization(hdu)
 plt.savefig(mos_dir + obj_name + '_mosaic.png')
+plt.clf()
 
 
 '''
 Step 2: obtain the global template of the lensing galaxy
 '''
-
-
-plt.figure()
 # fit center spectrum with templates
 templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy, quasar = \
     ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift(libary_dir_xshooter,
@@ -145,9 +145,16 @@ templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy, quasar = \
 
 
 # plot the spectrum and template fits
+pp.plot()
+plt.savefig(kin_dir + obj_name + '_global_template_spectrum_full.png')
+plt.savefig(kin_dir + obj_name + '_global_template_spectrum_full.pdf')
+plt.pause(1)
+plt.clf()
+pp.plot()
+plt.xlim(wave_min/1000, wave_max/1000) # it's in microns
+plt.title(f'V {np.around(pp.sol[0], 2)} km/s, VD {np.around(pp.sol[1],2)} km/s')
 plt.savefig(kin_dir + obj_name + '_global_template_spectrum.png')
 plt.savefig(kin_dir + obj_name + '_global_template_spectrum.pdf')
-plt.show()
 
 # flag and reject if pp.chi2 > threshold
 assert pp.chi2 < global_template_spectrum_chi2_threshold, f'Global template spectrum chi2 {pp.chi2} exceeds threshold of {global_template_spectrum_chi2_threshold}. Try again please.'
@@ -245,13 +252,13 @@ for vorbin_SN_target in vorbin_SN_targets:
                   SN_x_center,SN_y_center, radius_in_pixels,
                   max_radius,
                   target_SN, obj_name)
-    plt.savefig(kin_dir + obj_name + '_selected_region.png')
+    plt.savefig(target_dir + obj_name + '_selected_region.png')
     plt.pause(1)
     plt.clf()
 
     ## conduct the voronoi binning (produce the map for mapping pixels to bins)
     plt.figure()
-    voronoi_binning(vorbin_SN_target, kin_dir, obj_name)
+    voronoi_binning(vorbin_SN_target, target_dir, obj_name)
     plt.tight_layout()
     plt.savefig(target_dir + obj_name + '_voronoi_binning.png')
     plt.savefig(target_dir + obj_name + '_voronoi_binning.pdf') 
@@ -261,16 +268,12 @@ for vorbin_SN_target in vorbin_SN_targets:
     ## get voronoi_binning_data based on the map
     get_voronoi_binning_data(mos_dir, target_dir, mos_name, obj_name) # pulls cropped datacube from the mosaic directory and voronoi info from kinematic directory
 
-
     '''
     Step 6: measure the kinematics from the voronoi binning data
     '''
 
     voronoi_binning_data = fits.getdata(target_dir +'voronoi_binning_' + obj_name + '_data.fits')
 
-    # wavelength range for measuring kinematics
-    wave_min = 340
-    wave_max = 430
     get_velocity_dispersion_deredshift(degree=degree,
                                        spectrum_aperture=spectrum_aperture,
                                        voronoi_binning_data=voronoi_binning_data,
