@@ -140,9 +140,9 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             # log the error
             cov_error = open(f'{err_dir}error_logs.txt', 'a')
             cov_error.write('########################################## \n')
-            cov_error.write(f'{vel_mom_name} \n')
+            cov_error.write(f'{vel_mom_name} - bin number {bin_number} \n')
             cov_error.write('Max likelihood and mean are super far apart. Check this fit...  \n')
-            cov_error.write(f'{err_dir}sum_bin_gaussians_mean_max_discrepency_{vel_mom_name}.png \n')
+            cov_error.write(f'{err_dir}sum_bin_gaussians_mean_max_discrepency_{vel_mom_name}_{bin_number}.png \n')
             cov_error.close()
             
             plt.figure(figsize=(8,6))
@@ -164,7 +164,7 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
                 plt.xlabel('Velocity km/s')
             plt.xlabel(r'$\sigma$ km/s')
             plt.legend(loc='upper left')
-            plt.savefig(f'{err_dir}sum_bin_gaussians_mean_max_discrepency_{vel_mom_name}.png', bbox_inches='tight')
+            plt.savefig(f'{err_dir}sum_bin_gaussians_mean_max_discrepency_{vel_mom_name}_{bin_number}.png', bbox_inches='tight')
             plt.show()
             
         # plot it all
@@ -199,9 +199,9 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
         # log the error
         cov_error = open(f'{kin_dir}error_logs.txt', 'a')
         cov_error.write('########################################## \n')
-        cov_error.write(f'{vel_mom_name} \n')
+        cov_error.write(f'{vel_mom_name} - bin number {bin_number} \n')
         cov_error.write(f'Could not make this Gaussian. Check. \n')
-        cov_error.write(f'{err_dir}bin_gaussians_error_{vel_mom_name}.png \n')
+        cov_error.write(f'{err_dir}bin_gaussians_error_{vel_mom_name}_{bin_number}.png \n')
         cov_error.close()
         
         # Make plots to view!
@@ -217,7 +217,7 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
         elif vel_moment == 'V':
             plt.ylabel('Velocity km/s')
         plt.tight_layout()
-        plt.savefig(f'{err_dir}bin_gaussians_error_{vel_mom_name}.png', bbox_inches='tight')
+        plt.savefig(f'{err_dir}bin_gaussians_error_{vel_mom_name}_{bin_number}.png', bbox_inches='tight')
         plt.show()
         
         fit_mu = 0
