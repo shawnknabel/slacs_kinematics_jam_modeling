@@ -1,5 +1,8 @@
 '''
 ###################################################################################################
+#########
+This is modified to run on Hoffman2 in username "knabel" with data in scratch directory
+#########
 Date is 02/27/23 - Shawn
 This is the master script for the systematics test of kinematics 
 This systematics check is where we actually take kinematics measurements.
@@ -70,15 +73,18 @@ date_of_kin = '2023-02-28_2'
 # Directories and files
 
 # data directory
-data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
-stellar_library_dir = f'{data_dir}xshooter_lib/'
+data_dir = '/u/scratch/k/knabel/data/' #'/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
+stellar_library_dir = data_dir #f'{data_dir}xshooter_lib/'
 tables_dir = f'{data_dir}tables/'
 mosaics_dir = f'{data_dir}mosaics/'
-kinematics_full_dir = f'{data_dir}kinematics/'
+#kinematics_full_dir = f'{data_dir}kinematics/'
 cd 
-# create new kinematics directory for today
-kinematics_dir =f'{kinematics_full_dir}{date_of_kin}/'
-print(f'Outputs will be in {kinematics_dir}')
+# point to the kinematics of the specific date
+kinematics_dir = f'{data_dir}{data_of_kin}/'#f'{kinematics_full_dir}{date_of_kin}/'
+# create a systematics directory
+systematics_dir = f'{data_dir}systematics/'
+Path(systematics_dir).mkdir(parents=True, exist_ok=True)
+print(f'Outputs will be in {systematics_dir}')
 print()
 
 # tables
@@ -166,8 +172,10 @@ for i, obj_name in enumerate(obj_names.to_numpy()[:,0]):
     
     mos_dir = f'{mosaics_dir}{obj_name}/' 
     kin_dir = f'{kinematics_dir}{obj_name}/'
-    # create kin_dir if not exists
-    #Path(f'{kin_dir}').mkdir(parents=True, exist_ok=True)
+    
+    # create systematics directory for this object
+    syst_obj_dir = f'{systematics_dir}{obj_name}/'
+    Path(syst_obj_dir).mkdir(parents=True, exist_ok=True)
     
     #KCWI mosaic datacube
     mos_name = f'KCWI_{obj_abbr}_icubes_mosaic_0.1457'
@@ -202,7 +210,7 @@ for i, obj_name in enumerate(obj_names.to_numpy()[:,0]):
         '''
 
         # make systematics directory for the vorbin sn target
-        syst_dir = f'{target_dir}systematics/'
+        syst_dir = f'{syst_obj_dir}{vorbin_SN_target}/'
         Path(syst_dir).mkdir(parents=True, exist_ok=True) 
 
         ## import voronoi binning data
@@ -373,7 +381,7 @@ for i, obj_name in enumerate(obj_names.to_numpy()[:,0]):
                        systematics_chi2, delimiter=',')
 
             # save the chi2 log
-            global_fit_chi2_log.to_csv(f'{g_dir}{obj_name}{g_band}_global_fit_chi2_log.csv')
+            global_fit_chi2_log.to_csv(f'{g_dir}{obj_name}_{g_band}_global_fit_chi2_log.csv')
 
             # plot the systematics
 
