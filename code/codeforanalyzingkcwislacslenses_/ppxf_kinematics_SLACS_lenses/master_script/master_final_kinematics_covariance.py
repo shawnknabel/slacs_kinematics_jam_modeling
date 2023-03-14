@@ -19,22 +19,28 @@ print('#########################################################################
 print('##################################################################################################')
 
 # 
-from astropy.io import fits
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
+
+from astropy.io import fits
 from scipy.optimize import curve_fit
 from statsmodels.stats.correlation_tools import cov_nearest
+
 import pathlib # to create directory
-from datetime import date
-today = date.today().strftime('%d%m%y')
-from time import perf_counter as timer
 import glob
 from pathlib import Path # to create directory
 import pickle
+from datetime import date
+today = date.today().strftime('%d%m%y')
+from time import perf_counter as timer
 # register first tick
 tick = timer()
+
+# command line arguments to select obj_names to be used
+import sys
+obj_index = np.array(sys.argv[1:], dtype=int)
 
 #################################################
 # date and number of initial kinematics run e.g. 2023-02-28_2
@@ -57,6 +63,16 @@ obj_names = ['SDSSJ0029-0055',
              'SDSSJ1630+4520',
              'SDSSJ2303+1422'
             ]
+
+# select the active object names to run from command line
+active_objects = []
+for i in obj_index:
+    active_objects.append(obj_names[i])
+
+obj_names = active_objects
+    
+print(f'Active objects are {obj_names}')
+print()
 
 #################################################
 # functions specific to this script
@@ -88,6 +104,7 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             plt.ylabel('Velocity km/s')
         plt.tight_layout()
         plt.show()
+        plt.close()
     
     # take velocity bounds
     vel_min = y.min() - dy.max() * 3
@@ -114,7 +131,8 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
     
     if plot==True:
         plt.show()
-    
+        plt.close()
+
     max_likelihood = xx[sum_gaussians.argmax()]
     
     # calculate initial guess for Gaussian fit
@@ -145,19 +163,33 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             cov_error.write(f'{err_dir}sum_bin_gaussians_mean_max_discrepency_{vel_mom_name}_{bin_number}.png \n')
             cov_error.close()
             
+            # plot the 81 velocity disperions with error bars
+            f, axarr = plt.subplots(1)
+            axarr.errorbar(x, y, yerr=dy, fmt='o', color='black',
+                      ecolor='lightgray', elinewidth=1, capsize=0)
+            f.set_size_inches(12, 2)
+            plt.xlabel('Solution #')
+            plt.title(f'Bin number {bin_number}')
+            if vel_moment == 'VD':
+                plt.ylabel(r'$\sigma$ km/s')
+            elif vel_moment == 'V':
+                plt.ylabel('Velocity km/s')
+            plt.tight_layout()
+            plt.savefig(f'{err_dir}bin_gaussians_error_{vel_mom_name}_{bin_number}.png', bbox_inches='tight')
+            plt.close()
+            
+            # plot the gaussians
             plt.figure(figsize=(8,6))
-
             for i in range(len(y)):
                 yy = weighted_gaussian(xx, y[i], dy[i], c2[i]) 
                 plt.plot(xx, yy)    
-
             plt.plot(xx, sum_gaussians, '-', c='b', label='sum of gaussians')
             plt.axvline(max_likelihood, c='b', linestyle='--', label=f'Max likelihood {np.around(max_likelihood, 2)}')
             plt.plot(xx, fit_y, '-', c='k', label='Gaussian fit to the sum')
             plt.axvline(fit_mu, linestyle='--', c='k', label=f'mean {np.around(fit_mu, 2)}')
             plt.axvline(fit_mu - fit_sigma, linestyle=':', c='k', label=f'sigma {np.around(fit_sigma, 2)}')
             plt.axvline(fit_mu + fit_sigma, linestyle=':', c='k')
-            plt.title(f'Bin number {i}')
+            plt.title(f'Bin number {bin_number}')
             if vel_moment == 'VD':
                 plt.xlabel(r'$\sigma$ km/s')
             elif vel_moment == 'V':
@@ -165,9 +197,9 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             plt.xlabel(r'$\sigma$ km/s')
             plt.legend(loc='upper left')
             plt.savefig(f'{err_dir}sum_bin_gaussians_mean_max_discrepency_{vel_mom_name}_{bin_number}.png', bbox_inches='tight')
-            plt.show()
+            plt.close()
             
-        # plot it all
+        # plot if plot is True
 
         if plot==True:
             plt.figure(figsize=(8,6))
@@ -182,7 +214,7 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             plt.axvline(fit_mu, linestyle='--', c='k', label=f'mean {np.around(fit_mu, 2)}')
             plt.axvline(fit_mu - fit_sigma, linestyle=':', c='k', label=f'sigma {np.around(fit_sigma, 2)}')
             plt.axvline(fit_mu + fit_sigma, linestyle=':', c='k')
-            plt.title(f'Bin number {i}')
+            plt.title(f'Bin number {bin_number}')
             if vel_moment == 'VD':
                 plt.xlabel(r'$\sigma$ km/s')
             elif vel_moment == 'V':
@@ -190,7 +222,8 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             plt.xlabel(r'$\sigma$ km/s')
             plt.legend(loc='upper left')
             plt.show()
-            
+            plt.close()
+
     except:
         print('Could not make this Gaussian. Check.')
         
@@ -218,10 +251,10 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
             plt.ylabel('Velocity km/s')
         plt.tight_layout()
         plt.savefig(f'{err_dir}bin_gaussians_error_{vel_mom_name}_{bin_number}.png', bbox_inches='tight')
-        plt.show()
+        plt.close()
         
-        fit_mu = 0
-        fit_sigma = 0
+        fit_mu = float('nan')
+        fit_sigma = float('nan')
 
     return fit_mu, fit_sigma
 
@@ -229,6 +262,7 @@ def estimate_systematic_error (k_solutions, velocity, random_error, chi2, vel_mo
 def estimate_covariance (vel1, vel2, mu1, mu2, chi2_1, chi2_2):
     # calculate covariance matrix from individual solution means (vel1 and vel2) as arrays #### Something is wrong, I should be estimating covariance between bins
     # and sample means (mu1, mu2) weighted by product of normalized likelihoods (not correct..)
+    
     likelihood_1 = np.exp( -1/2 * (chi2_1)) # chi2_1 is 81 chi2 for bin 1, so likelihood_1 is 81 likelihoods for bin 1
     normalized_likelihood_1 = likelihood_1/np.sum(likelihood_1)
     likelihood_2 = np.exp( -1/2 * (chi2_2))
@@ -356,7 +390,7 @@ for obj_name in obj_names:
 
         ## import voronoi binning data
         voronoi_binning_data = fits.getdata(target_dir +'voronoi_binning_' + obj_name + '_data.fits')
-        N = voronoi_binning_data.shape[0] # for saving the systematics measurements
+        N = voronoi_binning_data.shape[0] # for saving the systematics measurements # number bins, i think?
 
         '''
         Step 8: systematics tests
@@ -377,6 +411,10 @@ for obj_name in obj_names:
             syst_g_dir = f'{syst_dir}{g_band}/'
             fin_g_dir = f'{fin_kin_dir}{g_band}/' # in final kinematics
             Path(fin_g_dir).mkdir(parents=True, exist_ok=True)
+            
+            # create a mask that indexes good bins and rejects bad ones
+            # bad bin is one for which the sum of gaussians doesn't work or the VD > 350 or [V] > 250
+            bin_mask = np.ones(N)
 
             # bring in systematics data
             V = np.genfromtxt(f'{syst_g_dir}{obj_name}_{g_band}_systematics_V.txt', delimiter=',')
@@ -394,7 +432,6 @@ for obj_name in obj_names:
             # subtract global template velocities from V
             V = V - glob_temp_vel_grid
             ################
-            ####### 09/15/22 - NEW! 
             # calculate Vrms from VD and V
             Vrms = np.sqrt(V**2 + VD**2)
             dVrms = Vrms * (V*dV + VD*dVD)/(V**2 + VD**2)
@@ -428,14 +465,15 @@ for obj_name in obj_names:
                     sigmas = Vrms_sigmas
                     dvel = dVrms
 
-
-                print(f'Calculating {vel_moment}s and sigmas')
-                print()
-                print()
-
                 vel_mom_name = f'{vorbin_SN_target}_{g_band}_{vel_moment}'
+                num_bins = len(vel)
 
-                for i in range(len(vel)): # vel[i] is 81 velocities in ith bin...
+                print(f'Calculating {vel_moment}s and errors')
+                print()
+                print()
+                print(f'{num_bins} bins.')
+
+                for i in range(num_bins): # vel[i] is 81 velocities in ith bin...
 
                     ##### 09/15/22 - Doing this to the whole array before this step
                     # if vel_moment=V, correct for global template velocity
@@ -444,47 +482,146 @@ for obj_name in obj_names:
 
                     print('###################')
                     print(f'Bin number {i}')
-                    velocity_measurements[i], sigmas[i] = estimate_systematic_error(81, vel[i], dvel[i], chi2[i],
-                                                                                    vel_moment,
-                                                                                    bin_number=i,
-                                                                                    err_dir=err_dir,
-                                                                                    vel_mom_name=vel_mom_name,
-                                                                                    plot=False)
-                    print(velocity_measurements[i])
+                    
+                    if bin_mask[i] == 0:
+                        print('Bin has already been rejected.')
+                    
+                    else: # do the measurements, estimate error
+                        velocity_measurements[i], sigmas[i] = estimate_systematic_error(81, vel[i], dvel[i], chi2[i],
+                                                                                            vel_moment,
+                                                                                            bin_number=i,
+                                                                                            err_dir=err_dir,
+                                                                                            vel_mom_name=vel_mom_name,
+                                                                                            plot=False)
+
+                        print(velocity_measurements[i])
+                        # update the mask if the bin is bad
+                        if (np.isnan(velocity_measurements[i])):
+                            bin_mask[i] = 0
+                            # log the error
+                            cov_error = open(f'{err_dir}error_logs.txt', 'a')
+                            cov_error.write('########################################## \n')
+                            cov_error.write(f'{vel_mom_name} \n')
+                            cov_error.write(f'Masking bin {i} because it failed to be Gaussian. \n')
+                            cov_error.close()
+                            print(f'Masking bin {i} because it failed to be Gaussian.')
+                        elif (vel_moment=='VD' and velocity_measurements[i] > 350):
+                            bin_mask[i] = 0
+                            # log the error
+                            cov_error = open(f'{err_dir}error_logs.txt', 'a')
+                            cov_error.write('########################################## \n')
+                            cov_error.write(f'{vel_mom_name} \n')
+                            cov_error.write(f'Masking bin {i} because VD > 350 km/s. \n')
+                            cov_error.close()
+                            print(f'Masking bin {i} because VD > 350 km/s.')
+                        elif(vel_moment=='V' and abs(velocity_measurements[i]) > 200):
+                            bin_mask[i] = 0
+                            # log the error
+                            cov_error = open(f'{err_dir}error_logs.txt', 'a')
+                            cov_error.write('########################################## \n')
+                            cov_error.write(f'{vel_mom_name} \n')
+                            cov_error.write(f'Masking bin {i} because V > 200 km/s. \n')
+                            cov_error.close()
+                            print(f'Masking bin {i} because |V| > 200 km/s.')
+                        else:
+                            print('Bin is good.')
 
                 # save velocity measurements
                 np.savetxt(f'{fin_g_dir}{obj_name}_{vel_mom_name}_binned.txt', 
                            velocity_measurements,
                            delimiter=',')
+                
+                print()
+                print('####################################')
+                print()
+                print(f'{obj_name} {vel_mom_name} error estimates finished.')
+                print()
+                
+            # save the bin mask
+            np.savetxt(f'{fin_g_dir}{obj_name}_{vel_mom_name}_bin_mask.txt', 
+                           bin_mask,
+                           delimiter=',')
+            
+            print()
+            print('####################################')
+            print()
+            print(f'{obj_name} {vorbin_SN_target} {g_band} error estimates finished.')
+            print(f'Now covariances.')
+            print()
+            
+            #############################################################
+            # Covariance matrices with masked bin maps
+             
+            for vel_moment in ['VD','V','Vrms']: 
 
+                if vel_moment == 'VD':
+                    velocity_measurements = velocity_dispersions
+                    vel = VD
+                    sigmas = VD_sigmas
+                    dvel = dVD
+                elif vel_moment == 'V':
+                    velocity_measurements = velocities
+                    vel = V
+                    sigmas = V_sigmas
+                    dvel = dV
+                elif vel_moment == 'Vrms':
+                    velocity_measurements = rms_velocities
+                    vel = Vrms
+                    sigmas = Vrms_sigmas
+                    dvel = dVrms
+
+                vel_mom_name = f'{vorbin_SN_target}_{g_band}_{vel_moment}'
+
+
+                print(f'Calculating {vel_mom_name} covariance matrix')
+                print()
+                print()
                 ####################################
-                # calculate covariance matrix
-
+                # calculate covariance matrices
+                
+                # bad bins
+                bad_bins = np.argwhere(bin_mask==0)
+                num_bad_bins = len(bad_bins)
+                print(f'Bins {bad_bins} are bad, out of {num_bins}.')
+                
+                # mask index
+                covariance_matrix_mask = np.ones((len(vel), len(vel)))
+                # empty matrix
                 covariance_matrix = np.zeros((len(vel), len(vel)))
 
                 for i in range(len(vel)):
                     for j in range(len(vel)):
-                        if j == i:
-                            covariance_matrix[i,j] = sigmas[i]**2
+                        # ignore if rejected by max
+                        if (bin_mask[i] == 0) or (bin_mask[j] == 0):
+                            # if either bin is bad
+                            covariance_matrix[i,j] = float('nan')
+                            covariance_matrix_mask[i,j] = 0
                         else:
-                            covariance_matrix[i,j] = estimate_covariance (vel[i], vel[j], 
-                                                                          velocity_measurements[i], 
-                                                                          velocity_measurements[j], 
-                                                                          chi2[i], 
-                                                                          chi2[j])
-
-                # check if covariance matrix is positive semi-definite, correct if not                            
-                if is_pos_semidef(covariance_matrix) != True:
+                            if j == i:
+                                covariance_matrix[i,j] = sigmas[i]**2
+                            else:
+                                covariance_matrix[i,j] = estimate_covariance (vel[i], vel[j], 
+                                                                              velocity_measurements[i], 
+                                                                              velocity_measurements[j], 
+                                                                              chi2[i], 
+                                                                              chi2[j])
+                
+                # take a covariance matrix that is masked 
+                num_good_bins = num_bins - num_bad_bins
+                covariance_matrix_masked = covariance_matrix[covariance_matrix_mask==1].reshape((num_good_bins, num_good_bins))
+                
+                # check if masked covariance matrix is positive semi-definite, correct if not                            
+                if is_pos_semidef(covariance_matrix_masked) != True:
                     print('Approximating closest positive semi-definite covariance matrix')
-                    covariance_matrix = cov_nearest(covariance_matrix)
-                    if is_pos_semidef(covariance_matrix):
-                        cov_matrix_header = 'This covariance matrix has been smoothed to the closest positive semi-definite covariance matrix'
+                    covariance_matrix = cov_nearest(covariance_matrix_masked)
+                    if is_pos_semidef(covariance_matrix_masked):
+                        cov_matrix_header = f'This covariance matrix has been smoothed to the closest positive semi-definite covariance matrix, bad bins {bad_bins}'
                     else:
                         print('Approximating again with lower threshold')
-                        covariance_matrix = cov_nearest(covariance_matrix, threshold=1e-13)
-                        cov_matrix_header = 'This covariance matrix has been smoothed to the closest positive semi-definite covariance matrix'
+                        covariance_matrix_masked = cov_nearest(covariance_matrix_masked, threshold=1e-13)
+                        cov_matrix_header = f'This covariance matrix has been smoothed to the closest positive semi-definite covariance matrix, bad bins {bad_bins}'
                     # if still not true, save it, note it, move on
-                    if is_pos_semidef(covariance_matrix) != True:
+                    if is_pos_semidef(covariance_matrix_masked) != True:
                         # log the error
                         cov_error = open(f'{err_dir}error_logs.txt', 'a')
                         cov_error.write('########################################## \n')
@@ -492,24 +629,96 @@ for obj_name in obj_names:
                         cov_error.write(f"covariance matrix still not positive semi-definite, take a closer look - {fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix.txt \n")
                         cov_error.close()
                         # save the covariance matrix with header saying it is not positive semi-definite
-                        cov_matrix_header = 'This covariance matrix is not positive semi-definite'
+                        cov_matrix_header = f'This covariance matrix is not positive semi-definite, bad bins {bad_bins}'
                         print(f"covariance matrix still not positive semi-definite, take a closer look - {fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix.txt")
-                        with numpy.printoptions(threshold=numpy.inf): # print it so you can see
-                            print(cov_matrix)
                         
                     # save covariance matrix
                     np.savetxt(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix.txt', covariance_matrix,
                                delimiter=',', header=cov_matrix_header)
+                    # save masked covariance matrix
+                    np.savetxt(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix_masked.txt', covariance_matrix_masked,
+                               delimiter=',', header=cov_matrix_header)
 
 
                 else:
-                    # save covariance matrix
+                    # save covariance matrix (with bad bins)
                     np.savetxt(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix.txt', covariance_matrix,
                                delimiter=',')
+                    # save masked covariance matrix
+                    np.savetxt(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix_masked.txt', covariance_matrix_masked,
+                               delimiter=',')
+                    
+                ###########################################
+                # Plots
+                
+                # Plot the masked and the unmasked oness
+                
+                #####################################
+                # masked
+                
+                print('Plotting masked covariance matrix')
 
                 # normalize plotting colorbar
-                vmin = np.min(covariance_matrix)
-                vmax = np.max(covariance_matrix)
+                vmin = np.nanmin(covariance_matrix_masked)
+                vmax = np.nanmax(covariance_matrix_masked)
+                print('Colorbar... vmin and vmax ', vmin, vmax)
+                if vmin < 0:
+                    norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
+                    cmap = 'seismic'
+                elif vmin >= 0:
+                    norm = None
+                    cmap = 'Reds'
+                else:
+                    print('Colorbar problem... vmin and vmax ', vmin, vmax)
+
+                plt.figure(figsize=(16,16))
+                plt.imshow(covariance_matrix_masked, cmap='seismic', norm=norm)
+                plt.title(f'{obj_name} {vel_moment} covariance matrix', fontsize=16)
+                plt.xlabel('bin #', fontsize=16)
+                plt.ylabel('bin #', fontsize=16)
+                plt.xticks(fontsize=16)
+                plt.yticks(fontsize=16)
+                plt.colorbar()
+                plt.savefig(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix_masked_visual.pdf')
+                plt.savefig(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix_masked_visual.png')
+
+                ##################################
+                # show it without the diagonal for easier view of the covariance terms
+
+                covariance_without_diagonal = covariance_matrix - np.diagonal(covariance_matrix)*np.identity(len(covariance_matrix))
+
+                # normalize plotting colorbar
+                vmin = np.nanmin(covariance_without_diagonal)
+                vmax = np.nanmax(covariance_without_diagonal)
+                print('Colorbar... vmin and vmax ', vmin, vmax)
+                if vmin < 0:
+                    norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
+                    cmap = 'seismic'
+                elif vmin >= 0:
+                    norm = None
+                    cmap = 'Reds'
+                else:
+                    print('Colorbar problem... vmin and vmax ', vmin, vmax)
+
+                plt.figure(figsize=(16,16))
+                plt.imshow(covariance_without_diagonal, cmap='seismic', norm=norm)
+                plt.title(f'{obj_name} {vel_moment} covariance matrix', fontsize=16)
+                plt.xlabel('bin #', fontsize=16)
+                plt.ylabel('bin #', fontsize=16)
+                plt.xticks(fontsize=16)
+                plt.yticks(fontsize=16)
+                plt.colorbar()
+
+                plt.savefig(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix_masked_no_diag_visual.pdf')
+                plt.savefig(f'{fin_g_dir}{obj_name}_{vel_mom_name}_covariance_matrix_masked_no_diag_visual.png')
+
+                #####################################
+                # unmasked              
+                print('Plotting masked covariance matrix')
+                
+                # normalize plotting colorbar
+                vmin = np.nanmin(covariance_matrix)
+                vmax = np.nanmax(covariance_matrix)
                 print('Colorbar... vmin and vmax ', vmin, vmax)
                 if vmin < 0:
                     norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
@@ -537,8 +746,8 @@ for obj_name in obj_names:
                 covariance_without_diagonal = covariance_matrix - np.diagonal(covariance_matrix)*np.identity(len(covariance_matrix))
 
                 # normalize plotting colorbar
-                vmin = np.min(covariance_without_diagonal)
-                vmax = np.max(covariance_without_diagonal)
+                vmin = np.nanmin(covariance_without_diagonal)
+                vmax = np.nanmax(covariance_without_diagonal)
                 print('Colorbar... vmin and vmax ', vmin, vmax)
                 if vmin < 0:
                     norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
@@ -564,7 +773,7 @@ for obj_name in obj_names:
                 print()
                 print('####################################')
                 print()
-                print(f'{obj_name} {vel_moment} finished.')
+                print(f'{obj_name} {vel_mom_name} covariance finished.')
                 print()
             print('####################################')
             print('####################################')
