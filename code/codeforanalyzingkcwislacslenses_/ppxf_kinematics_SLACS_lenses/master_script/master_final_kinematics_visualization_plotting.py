@@ -30,7 +30,7 @@ obj_index = np.array(sys.argv[1:], dtype=int)
 # objects
 obj_names = ['SDSSJ0029-0055',
              'SDSSJ0037-0942',
-             'SDSSJ0330-0020',
+             #'SDSSJ0330-0020',
              'SDSSJ1112+0826',
              'SDSSJ1204+0358',
              'SDSSJ1250+0523',
@@ -289,7 +289,7 @@ print()
 vorbin_SN_targets = np.array([10, 15, 20])
 
 # include G band or no
-g_bands = ['no_g','g_band']
+#g_bands = ['no_g','g_band']
 
 
 #########################################################################
@@ -346,7 +346,7 @@ for obj_name in obj_names:
         '''
 
         # point to final kinematics directory for the vorbin sn target
-        fin_kin_dir = f'{target_dir}{obj_name}_{vorbin_SN_target}_final_kinematics/'
+        fin_kin_dir = f'{target_dir}{obj_name}_{vorbin_SN_target}_marginalized_gnog_final_kinematics/'
         #Path(syst_dir).mkdir(parents=True, exist_ok=True) 
 
         ## import voronoi binning data
@@ -356,46 +356,34 @@ for obj_name in obj_names:
         N = voronoi_binning_data.shape[0] # for saving the systematics measurements
 
         '''
-        Step 8: systematics tests
+        Mask, create 2d map, and save
         '''
-
-        # iterate over G-band and not G-band
-        for g_band in g_bands:
             
-            if (obj_abbr=='J0330') & (g_band=='g_band'):
-                print('J0330 does not get G band')
-                continue
+        # name for file saving
+        model_name = f'{obj_name}_{vorbin_SN_target}_combinedG'
 
-            print()
-            print('Working with ', g_band)
-            print()
+        ##################################################
+        # take mask
+        mask = np.genfromtxt(f'{model_name}_Vrms_bin_mask.txt')# I accidentally saved them as Vrms, but they should be right
 
-            # point to G-band and no_G directories
-            g_dir = f'{fin_kin_dir}{g_band}/'
-            #Path(g_dir).mkdir(parents=True, exist_ok=True)
-            
-            # name for file saving
-            model_name = f'{obj_name}_{vorbin_SN_target}_{g_band}'
-            
-            ##################################################
-            # take mask
-            mask = np.genfromtxt(f'{g_dir}{model_name}_Vrms_bin_mask.txt')# I accidentally saved them as Vrms, but they should be right
+        ##################################################
+        # collect the kinematics info from the final kinematics covariance script
+        # take the masked versions
+        _, _, _, _, _, _, \
+            VD_2d, dVD_2d, V_2d, dV_2d, Vrms_2d, dVrms_2d, = kinematics_map_systematics(g_dir, obj_name, model_name, vorbin_output, mask, radius_in_pixels)
+        
+        # save as 2d arrays
+        np.savetxt(f'{fin_kin_dir}{model_name}_VD_2d.txt', VD_2d, delimiter=',')
+        np.savetxt(f'{fin_kin_dir}{model_name}_dVD_2d.txt', dVD_2d, delimiter=',')
+        np.savetxt(f'{fin_kin_dir}{model_name}_V_2d.txt', V_2d, delimiter=',')
+        np.savetxt(f'{fin_kin_dir}{model_name}_dV_2d.txt', dV_2d, delimiter=',')
+        np.savetxt(f'{fin_kin_dir}{model_name}_Vrms_2d.txt', Vrms_2d, delimiter=',')
+        np.savetxt(f'{fin_kin_dir}{model_name}_dVrms_2d.txt', dVrms_2d, delimiter=',')
 
-            ##################################################
-            # collect the kinematics info from the final kinematics covariance script
-            # take the masked versions
-            _, _, _, _, _, _, \
-                VD_2d, dVD_2d, V_2d, dV_2d, Vrms_2d, dVrms_2d, = kinematics_map_systematics(g_dir, obj_name, model_name, vorbin_output, mask, radius_in_pixels)
-            np.savetxt(f'{g_dir}{model_name}_VD_2d.txt', VD_2d, delimiter=',')
-            np.savetxt(f'{g_dir}{model_name}_dVD_2d.txt', dVD_2d, delimiter=',')
-            np.savetxt(f'{g_dir}{model_name}_V_2d.txt', V_2d, delimiter=',')
-            np.savetxt(f'{g_dir}{model_name}_dV_2d.txt', dV_2d, delimiter=',')
-            np.savetxt(f'{g_dir}{model_name}_Vrms_2d.txt', Vrms_2d, delimiter=',')
-            np.savetxt(f'{g_dir}{model_name}_dVrms_2d.txt', dVrms_2d, delimiter=',')
-            
-            print()
-            print(f'{obj_name} {model_name} has completed')
-            print('###########################################################')
+        print()
+        print(f'{obj_name} {model_name} has completed')
+        print('###########################################################')
+
         
         ################################################################
         # plot and
@@ -405,381 +393,116 @@ for obj_name in obj_names:
         print('Plotting....')
         print()
         
-        # g
-        g_VD_2d = np.genfromtxt(f'{fin_kin_dir}g_band/{obj_name}_{vorbin_SN_target}_g_band_VD_2d.txt', delimiter=',')
-        g_dVD_2d = np.genfromtxt(f'{fin_kin_dir}g_band/{obj_name}_{vorbin_SN_target}_g_band_dVD_2d.txt', delimiter=',')
-        g_V_2d = np.genfromtxt(f'{fin_kin_dir}g_band/{obj_name}_{vorbin_SN_target}_g_band_V_2d.txt', delimiter=',')
-        g_dV_2d = np.genfromtxt(f'{fin_kin_dir}g_band/{obj_name}_{vorbin_SN_target}_g_band_dV_2d.txt', delimiter=',')
-        g_Vrms_2d = np.genfromtxt(f'{fin_kin_dir}g_band/{obj_name}_{vorbin_SN_target}_g_band_Vrms_2d.txt', delimiter=',')
-        g_dVrms_2d = np.genfromtxt(f'{fin_kin_dir}g_band/{obj_name}_{vorbin_SN_target}_g_band_dVrms_2d.txt', delimiter=',')
-        # nog
-        nog_VD_2d = np.genfromtxt(f'{fin_kin_dir}no_g/{obj_name}_{vorbin_SN_target}_no_g_VD_2d.txt', delimiter=',')
-        nog_dVD_2d = np.genfromtxt(f'{fin_kin_dir}no_g/{obj_name}_{vorbin_SN_target}_no_g_dVD_2d.txt', delimiter=',')
-        nog_V_2d = np.genfromtxt(f'{fin_kin_dir}no_g/{obj_name}_{vorbin_SN_target}_no_g_V_2d.txt', delimiter=',')
-        nog_dV_2d = np.genfromtxt(f'{fin_kin_dir}no_g/{obj_name}_{vorbin_SN_target}_no_g_dV_2d.txt', delimiter=',')
-        nog_Vrms_2d = np.genfromtxt(f'{fin_kin_dir}no_g/{obj_name}_{vorbin_SN_target}_no_g_Vrms_2d.txt', delimiter=',')
-        nog_dVrms_2d = np.genfromtxt(f'{fin_kin_dir}no_g/{obj_name}_{vorbin_SN_target}_no_g_dVrms_2d.txt', delimiter=',')
-        
         # get the velocity ranges so they plot with the same scaling
         # VD
-        VD_min = np.nanmin((np.concatenate((np.ravel(g_VD_2d), np.ravel(nog_VD_2d)))))
-        dVD_min = np.nanmin((np.concatenate((np.ravel(g_dVD_2d), np.ravel(nog_dVD_2d)))))
-        VD_max = np.nanmax((np.concatenate((np.ravel(g_VD_2d), np.ravel(nog_VD_2d)))))
-        dVD_max = np.nanmax((np.concatenate((np.ravel(g_dVD_2d), np.ravel(nog_dVD_2d)))))
+        VD_min = np.nanmin(VD_2d)
+        dVD_min = np.nanmin(dVD_2d)
+        VD_max = np.nanmax(VD_2d)
+        dVD_max = np.nanmax(dVD_2d)
         # V
-        V_min = np.nanmin((np.concatenate((np.ravel(g_V_2d), np.ravel(nog_V_2d)))))
-        dV_min = np.nanmin((np.concatenate((np.ravel(g_dV_2d), np.ravel(nog_dV_2d)))))
-        V_max = np.nanmax((np.concatenate((np.ravel(g_V_2d), np.ravel(nog_V_2d)))))
-        dV_max = np.nanmax((np.concatenate((np.ravel(g_dV_2d), np.ravel(nog_dV_2d)))))
+        V_min = np.nanmin(V_2d)
+        dV_min = np.nanmin(dV_2d)
+        V_max = np.nanmax(V_2d)
+        dV_max = np.nanmax(dV_2d)
         # Vrms
-        Vrms_min = np.nanmin((np.concatenate((np.ravel(g_Vrms_2d), np.ravel(nog_Vrms_2d)))))
-        dVrms_min = np.nanmin((np.concatenate((np.ravel(g_dVrms_2d), np.ravel(nog_dVrms_2d)))))
-        Vrms_max = np.nanmax((np.concatenate((np.ravel(g_Vrms_2d), np.ravel(nog_Vrms_2d)))))
-        dVrms_max = np.nanmax((np.concatenate((np.ravel(g_dVrms_2d), np.ravel(nog_dVrms_2d)))))
+        Vrms_min = np.nanmin(Vrms_2d)
+        dVrms_min = np.nanmin(Vrms_2d)
+        Vrms_max = np.nanmax(Vrms_2d)
+        dVrms_max = np.nanmax(Vrms_2d)
         
         ##################################################
         ##################################################
         # plot each (subtraction and putting them on the same scale)
-        
-        for g_band in g_bands:
-            if g_band=='g_band':
-                if (obj_abbr=='J0330') & (g_band=='g_band'):
-                    print('J0330 does not get G band')
-                    continue
-                # point to G-band and no_G directories
-                g_dir = f'{fin_kin_dir}{g_band}/'
-                model_name = f'{obj_name}_{vorbin_SN_target}_{g_band}'
-                g_band_name = 'with G-band'
-                # kinematics
-                VD_2d = g_VD_2d
-                dVD_2d = g_dVD_2d
-                V_2d = g_V_2d
-                dV_2d = g_dV_2d
-                Vrms_2d = g_Vrms_2d
-                dVrms_2d = g_dVrms_2d 
-            else:
-                # point to G-band and no_G directories
-                g_dir = f'{fin_kin_dir}{g_band}/'
-                model_name = f'{obj_name}_{vorbin_SN_target}_{g_band}'
-                g_band_name = 'without G-band'
-                # kinematics
-                VD_2d = nog_VD_2d
-                dVD_2d = nog_dVD_2d
-                V_2d = nog_V_2d
-                dV_2d = nog_dV_2d
-                Vrms_2d = nog_Vrms_2d
-                dVrms_2d = nog_dVrms_2d 
-                
-            # velocity dispersion and error
-            plt.figure()
-            plt.imshow(VD_2d,origin='lower',cmap='sauron', vmin=VD_min, vmax=VD_max)
-            cbar1 = plt.colorbar()
-            cbar1.set_label(r'$\sigma$ [km/s]')
-            plt.title(f"{obj_name} {g_band_name} velocity dispersion")
-            plt.xticks(ticks_pix, labels=ticklabels)
-            plt.yticks(ticks_pix, labels=ticklabels)
-            plt.xlabel('arcsec')
-            plt.ylabel('arcsec')
-            plt.savefig(f'{g_dir}{model_name}_VD_map.png')
-            plt.savefig(f'{g_dir}{model_name}_VD_map.pdf')
-            plt.pause(1)
-            plt.clf()
 
-            plt.figure()
-            plt.imshow(dVD_2d, origin='lower', cmap='sauron', vmin=dVD_min, vmax=dVD_max)
-            cbar2 = plt.colorbar()
-            cbar2.set_label(r'd$\sigma$ [km/s]')
-            plt.title(f"{obj_name} {g_band_name} velocity dispersion error")
-            plt.xticks(ticks_pix, labels=ticklabels)
-            plt.yticks(ticks_pix, labels=ticklabels)
-            plt.xlabel('arcsec')
-            plt.ylabel('arcsec')
-            plt.savefig(f'{g_dir}{model_name}_dVD_map.png')
-            plt.savefig(f'{g_dir}{model_name}_dVD_map.pdf')
-
-            plt.pause(1)
-            plt.clf()
-
-            # velocity and error
-            #
-            plt.figure()
-            plt.imshow(V_2d,origin='lower',cmap='sauron', vmin=V_min, vmax=V_max)
-            cbar3 = plt.colorbar()
-            cbar3.set_label(r'V [km/s]')
-            plt.title(f"{obj_name} {g_band_name} velocity")
-            plt.xticks(ticks_pix, labels=ticklabels)
-            plt.yticks(ticks_pix, labels=ticklabels)
-            plt.xlabel('arcsec')
-            plt.ylabel('arcsec')
-            plt.savefig(f'{g_dir}{model_name}_V_map.png')
-            plt.savefig(f'{g_dir}{model_name}_V_map.pdf')
-            plt.pause(1)
-            plt.clf()
-
-            plt.figure()
-            plt.imshow(dV_2d, origin='lower', cmap='sauron', vmin=dV_min, vmax=dV_max)
-            cbar2 = plt.colorbar()
-            cbar2.set_label(r'dV [km/s]')
-            plt.title(f"{obj_name} {g_band_name} velocity error")
-            plt.xticks(ticks_pix, labels=ticklabels)
-            plt.yticks(ticks_pix, labels=ticklabels)
-            plt.xlabel('arcsec')
-            plt.ylabel('arcsec')
-            plt.savefig(f'{g_dir}{model_name}_dV_map.png')
-            plt.savefig(f'{g_dir}{model_name}_dV_map.pdf')
-            plt.pause(1)
-            plt.clf()
-            
-            # rms velocity and error
-            #
-            plt.figure()
-            plt.imshow(Vrms_2d,origin='lower',cmap='sauron', vmin=Vrms_min, vmax=Vrms_max)
-            cbar3 = plt.colorbar()
-            cbar3.set_label(r'V$_{rms}$ [km/s]')
-            plt.title(f"{obj_name} {g_band_name} RMS velocity")
-            plt.xticks(ticks_pix, labels=ticklabels)
-            plt.yticks(ticks_pix, labels=ticklabels)
-            plt.xlabel('arcsec')
-            plt.ylabel('arcsec')
-            plt.savefig(f'{g_dir}{model_name}_Vrms_map.png')
-            plt.savefig(f'{g_dir}{model_name}_Vrms_map.pdf')
-            plt.pause(1)
-            plt.clf()
-
-            plt.figure()
-            plt.imshow(dVrms_2d, origin='lower', cmap='sauron', vmin=dVrms_min, vmax=dVrms_max)
-            cbar2 = plt.colorbar()
-            cbar2.set_label(r'$dV{_rms}$ [km/s]')
-            plt.title(f"{obj_name} {g_band_name} RMS velocity error")
-            plt.xticks(ticks_pix, labels=ticklabels)
-            plt.yticks(ticks_pix, labels=ticklabels)
-            plt.xlabel('arcsec')
-            plt.ylabel('arcsec')
-            plt.savefig(f'{g_dir}{model_name}_dVrms_map.png')
-            plt.savefig(f'{g_dir}{model_name}_dVrms_map.pdf')
-            plt.pause(1)
-            plt.clf()
-            
-        
-        print('###########################################')
-        print()
-        print('Looking at difference between g and no g')
-        print()
-
-        
-        # show including g - not including g
-        gnog_VD = g_VD_2d - nog_VD_2d
-        gnog_dVD = g_dVD_2d - nog_dVD_2d
-        gnog_V = g_V_2d - nog_V_2d
-        gnog_dV = g_dV_2d - nog_dV_2d
-        gnog_Vrms = g_Vrms_2d - nog_Vrms_2d
-        gnog_dVrms = g_dVrms_2d - nog_dVrms_2d
-        
-        
-        # find velocity range for plotting each as the largest and smallest
-        # VD
-        VD_min = np.nanmin(gnog_VD)#(np.concatenate((np.ravel(g_VD_2d), np.ravel(nog_VD_2d)))))
-        dVD_min = np.nanmin(gnog_dVD)#((np.concatenate((np.ravel(g_dVD_2d), np.ravel(nog_dVD_2d)))))
-        VD_max = np.nanmax(gnog_VD)#((np.concatenate((np.ravel(g_VD_2d), np.ravel(nog_VD_2d)))))
-        dVD_max = np.nanmax(gnog_dVD)#((np.concatenate((np.ravel(g_dVD_2d), np.ravel(nog_dVD_2d)))))
-        # V
-        V_min = np.nanmin(gnog_V)#((np.concatenate((np.ravel(g_V_2d), np.ravel(nog_V_2d)))))
-        dV_min = np.nanmin(gnog_dV)#((np.concatenate((np.ravel(g_dV_2d), np.ravel(nog_dV_2d)))))
-        V_max = np.nanmax(gnog_V)#((np.concatenate((np.ravel(g_V_2d), np.ravel(nog_V_2d)))))
-        dV_max = np.nanmax(gnog_dV)#((np.concatenate((np.ravel(g_dV_2d), np.ravel(nog_dV_2d)))))
-        # Vrms
-        Vrms_min = np.nanmin(gnog_Vrms)#((np.concatenate((np.ravel(g_Vrms_2d), np.ravel(nog_Vrms_2d)))))
-        dVrms_min = np.nanmin(gnog_dVrms)#((np.concatenate((np.ravel(g_dVrms_2d), np.ravel(nog_dVrms_2d)))))
-        Vrms_max = np.nanmax(gnog_Vrms)#((np.concatenate((np.ravel(g_Vrms_2d), np.ravel(nog_Vrms_2d)))))
-        dVrms_max = np.nanmax(gnog_dVrms)#((np.concatenate((np.ravel(g_dVrms_2d), np.ravel(nog_dVrms_2d)))))
-        
-        # velocity
-        # mean is a final correction to the bulk velocity
-        #mean = np.nanmean(V_2d)
-        #print(f'Mean velocity: {mean}')
-        #V_2d = V_2d-mean
-        # velocity_range
-        #vel_range = np.nanmax(np.abs(V_2d))
-
-        # velocity dispersion
-        print('VD')
-        # normalize plotting colorbar
-        vmin = VD_min
-        vmax = VD_max
-        print('Colorbar... vmin and vmax ', vmin, vmax)
-        if vmin < 0:
-            norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
-            cmap = 'seismic'
-        elif vmin >= 0:
-            norm = None
-            cmap = 'Reds'
-        else:
-            norm=None
-            cmap= 'Reds'
-            print('Colorbar problem... vmin and vmax ', vmin, vmax)
-            
+        # velocity dispersion and error
         plt.figure()
-        p=plt.imshow(gnog_VD,origin='lower', cmap=cmap, norm=norm)
-        cbar1 = plt.colorbar(p)
+        plt.imshow(VD_2d,origin='lower',cmap='sauron', vmin=VD_min, vmax=VD_max)
+        cbar1 = plt.colorbar()
         cbar1.set_label(r'$\sigma$ [km/s]')
-        plt.title(f"{obj_name} VD G difference")
+        plt.title(f"{obj_name} {g_band_name} velocity dispersion")
         plt.xticks(ticks_pix, labels=ticklabels)
         plt.yticks(ticks_pix, labels=ticklabels)
         plt.xlabel('arcsec')
         plt.ylabel('arcsec')
-        plt.savefig(f'{fin_kin_dir}{model_name}_VD_gdifference_map.png')
-        plt.savefig(f'{fin_kin_dir}{model_name}_VD_gdifference_map.pdf')
+        plt.savefig(f'{fin_kin_dir}{model_name}_VD_map.png')
+        plt.savefig(f'{fin_kin_dir}{model_name}_VD_map.pdf')
         plt.pause(1)
         plt.clf()
-        # dVD
-        # normalize plotting colorbar
-        vmin = dVD_min
-        vmax = dVD_max
-        print('Colorbar... vmin and vmax ', vmin, vmax)
-        if vmin < 0:
-            norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
-            cmap = 'seismic'
-        elif vmin >= 0:
-            norm = None
-            cmap = 'Reds'
-        else:
-            norm=None
-            cmap= 'Reds'
-            print('Colorbar problem... vmin and vmax ', vmin, vmax)
+
         plt.figure()
-        p=plt.imshow(gnog_dVD, origin='lower', cmap=cmap, norm=norm)
-        cbar2 = plt.colorbar(p)
+        plt.imshow(dVD_2d, origin='lower', cmap='sauron', vmin=dVD_min, vmax=dVD_max)
+        cbar2 = plt.colorbar()
         cbar2.set_label(r'd$\sigma$ [km/s]')
-        plt.title(f"{obj_name} VD error G difference")
+        plt.title(f"{obj_name} {g_band_name} velocity dispersion error")
         plt.xticks(ticks_pix, labels=ticklabels)
         plt.yticks(ticks_pix, labels=ticklabels)
         plt.xlabel('arcsec')
         plt.ylabel('arcsec')
-        plt.savefig(f'{fin_kin_dir}{model_name}_dVD_gdifference_map.png')
-        plt.savefig(f'{fin_kin_dir}{model_name}_dVD_gdifference_map.pdf')
+        plt.savefig(f'{fin_kin_dir}{model_name}_dVD_map.png')
+        plt.savefig(f'{fin_kin_dir}{model_name}_dVD_map.pdf')
 
         plt.pause(1)
         plt.clf()
 
-        # velocity 
-        print('V')
-        # V
-        # normalize plotting colorbar
-        vmin = V_min
-        vmax = V_max
-        print('Colorbar... vmin and vmax ', vmin, vmax)
-        if vmin < 0:
-            norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
-            cmap = 'seismic'
-        elif vmin >= 0:
-            norm = None
-            cmap = 'Reds'
-        else:
-            norm=None
-            cmap= 'Reds'
-            print('Colorbar problem... vmin and vmax ', vmin, vmax)
+        # velocity and error
+        #
         plt.figure()
-        p=plt.imshow(gnog_V,origin='lower', cmap=cmap, norm=norm)
-        cbar3 = plt.colorbar(p)
+        plt.imshow(V_2d,origin='lower',cmap='sauron', vmin=V_min, vmax=V_max)
+        cbar3 = plt.colorbar()
         cbar3.set_label(r'V [km/s]')
-        plt.title(f"{obj_name} V G difference")
+        plt.title(f"{obj_name} {g_band_name} velocity")
         plt.xticks(ticks_pix, labels=ticklabels)
         plt.yticks(ticks_pix, labels=ticklabels)
         plt.xlabel('arcsec')
         plt.ylabel('arcsec')
-        plt.savefig(f'{fin_kin_dir}{model_name}_V_gdifference_map.png')
-        plt.savefig(f'{fin_kin_dir}{model_name}_V_gdifference_map.pdf')
+        plt.savefig(f'{fin_kin_dir}{model_name}_V_map.png')
+        plt.savefig(f'{fin_kin_dir}{model_name}_V_map.pdf')
         plt.pause(1)
         plt.clf()
-        
-        # dV
-        # normalize plotting colorbar
-        vmin = dV_min
-        vmax = dV_max
-        print('Colorbar... vmin and vmax ', vmin, vmax)
-        if vmin < 0:
-            norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
-            cmap = 'seismic'
-        elif vmin >= 0:
-            norm = None
-            cmap = 'Reds'
-        else:
-            norm=None
-            cmap= 'Reds'
-            print('Colorbar problem... vmin and vmax ', vmin, vmax)
+
         plt.figure()
-        p=plt.imshow(gnog_dV,origin='lower', cmap=cmap, norm=norm)
-        cbar2 = plt.colorbar(p)
+        plt.imshow(dV_2d, origin='lower', cmap='sauron', vmin=dV_min, vmax=dV_max)
+        cbar2 = plt.colorbar()
         cbar2.set_label(r'dV [km/s]')
-        plt.title(f"{obj_name} V error G difference")
+        plt.title(f"{obj_name} {g_band_name} velocity error")
         plt.xticks(ticks_pix, labels=ticklabels)
         plt.yticks(ticks_pix, labels=ticklabels)
         plt.xlabel('arcsec')
         plt.ylabel('arcsec')
-        plt.savefig(f'{fin_kin_dir}{model_name}_dV_gdifference_map.png')
-        plt.savefig(f'{fin_kin_dir}{model_name}_dV_gdifference_map.pdf')
+        plt.savefig(f'{fin_kin_dir}{model_name}_dV_map.png')
+        plt.savefig(f'{fin_kin_dir}{model_name}_dV_map.pdf')
         plt.pause(1)
         plt.clf()
-            
+
         # rms velocity and error
-        print('Vrms')
-        # Vrms# normalize plotting colorbar
-        vmin = Vrms_min
-        vmax = Vrms_max
-        print('Colorbar... vmin and vmax ', vmin, vmax)
-        if vmin < 0:
-            norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
-            cmap = 'seismic'
-        elif vmin >= 0:
-            norm = None
-            cmap = 'Reds'
-        else:
-            norm=None
-            cmap= 'Reds'
-            print('Colorbar problem... vmin and vmax ', vmin, vmax)
+        #
         plt.figure()
-        p=plt.imshow(gnog_Vrms,origin='lower', cmap=cmap, norm=norm)
-        cbar3 = plt.colorbar(p)
-        cbar3.set_label(r'$V_{rms}$ [km/s]')
-        plt.title(f"{obj_name} RMS velocity G difference")
+        plt.imshow(Vrms_2d,origin='lower',cmap='sauron', vmin=Vrms_min, vmax=Vrms_max)
+        cbar3 = plt.colorbar()
+        cbar3.set_label(r'V$_{rms}$ [km/s]')
+        plt.title(f"{obj_name} {g_band_name} RMS velocity")
         plt.xticks(ticks_pix, labels=ticklabels)
         plt.yticks(ticks_pix, labels=ticklabels)
         plt.xlabel('arcsec')
         plt.ylabel('arcsec')
-        plt.savefig(f'{fin_kin_dir}{model_name}_Vrms_gdifference_map.png')
-        plt.savefig(f'{fin_kin_dir}{model_name}_Vrms_gdifference_map.pdf')
+        plt.savefig(f'{fin_kin_dir}{model_name}_Vrms_map.png')
+        plt.savefig(f'{fin_kin_dir}{model_name}_Vrms_map.pdf')
         plt.pause(1)
         plt.clf()
-        
-        # dVrms
-        # normalize plotting colorbar
-        vmin = dVrms_min
-        vmax = dVrms_max
-        print('Colorbar... vmin and vmax ', vmin, vmax)
-        if vmin < 0:
-            norm = MidpointNormalize(vmin=vmin, vmax=vmax, midpoint=0)
-            cmap = 'seismic'
-        elif vmin >= 0:
-            norm = None
-            cmap = 'Reds'
-        else:
-            norm=None
-            cmap= 'Reds'
-            print('Colorbar problem... vmin and vmax ', vmin, vmax)
+
         plt.figure()
-        p=plt.imshow(gnog_dVD,origin='lower', cmap=cmap, norm=norm)
-        cbar2 = plt.colorbar(p)
-        cbar2.set_label(r'd$Vrms$ [km/s]')
-        plt.title(f"{obj_name} Vrms error G difference")
+        plt.imshow(dVrms_2d, origin='lower', cmap='sauron', vmin=dVrms_min, vmax=dVrms_max)
+        cbar2 = plt.colorbar()
+        cbar2.set_label(r'$dV{_rms}$ [km/s]')
+        plt.title(f"{obj_name} {g_band_name} RMS velocity error")
         plt.xticks(ticks_pix, labels=ticklabels)
         plt.yticks(ticks_pix, labels=ticklabels)
         plt.xlabel('arcsec')
         plt.ylabel('arcsec')
-        plt.savefig(f'{fin_kin_dir}{model_name}_dVrms_gdifference_map.pdf')
+        plt.savefig(f'{fin_kin_dir}{model_name}_dVrms_map.png')
+        plt.savefig(f'{fin_kin_dir}{model_name}_dVrms_map.pdf')
         plt.pause(1)
         plt.clf()
-
-
         
     print('###########################################################')
     print()

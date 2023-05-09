@@ -107,7 +107,7 @@ apertures = ['R0','R1','R2']
 # wavelength range
 # will be determined from ppxf input table
 
-# degree of the additive Legendre polynomial in ppxf
+# degree of the additive polynomial in ppxf
 degrees = [4,5,6] # 110/25 = 4.4 round up
 
 #------------------------------------------------------------------------------

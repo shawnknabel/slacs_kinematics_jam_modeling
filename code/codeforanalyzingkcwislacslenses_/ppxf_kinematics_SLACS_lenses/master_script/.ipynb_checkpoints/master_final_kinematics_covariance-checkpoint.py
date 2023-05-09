@@ -42,8 +42,6 @@ tick = timer()
 import sys
 obj_index = np.array(sys.argv[1:], dtype=int)
 
-print(obj_index)
-
 #################################################
 # date and number of initial kinematics run e.g. 2023-02-28_2
 date_of_kin = '2023-02-28_2'

@@ -103,7 +103,7 @@ def crop_center_image (img, radius, scale, method='center'):
 
 ##############################################################################
 
-def import_center_crop (file_dir, obj_name, obj_abbr, data_source='HST', plot=True):
+def import_center_crop (data_dir, file_dir, obj_name, obj_names_index, obj_abbr, data_source='HST', plot=True):
 
     '''
     This function imports a file from the object directory, crops the image to 5 and 3 arcsec, and returns all images. 
@@ -135,10 +135,13 @@ def import_center_crop (file_dir, obj_name, obj_abbr, data_source='HST', plot=Tr
         kcwi_img = hdu[0].data
         header = hdu[0].header
         
+        # pixel scale
+        kcwi_scale = 0.1457  # arcsec/pixel r_eff_V
+        
         # get kcwi position angle N thru E
         # bring kcwi_pas.txt 
         kcwi_pas = np.genfromtxt(f'{data_dir}tables/kcwi_pas.txt')
-        kcwi_pa = kcwi_pas[obj_names==obj_name]
+        kcwi_pa = kcwi_pas[obj_names_index]
         kcwi_pa_header = header['ROTDEST'] # I still haven't determined what this angle is relative to. I *believe* it's N->E
         
         if kcwi_pa != kcwi_pa_header:
@@ -149,8 +152,6 @@ def import_center_crop (file_dir, obj_name, obj_abbr, data_source='HST', plot=Tr
             kcwi_img = rotate(kcwi_img, -kcwi_pa)
             print('Rotate image by ', kcwi_pa)
         
-        # pixel scale
-        kcwi_scale = 0.1457  # arcsec/pixel r_eff_V
         img_half_extent = kcwi_img.shape[0]/2 * kcwi_scale
         
         # crop the image to ~ 5 arcsec radius
@@ -508,7 +509,7 @@ def kinematics_map_systematics(dir, name, radius_in_pixels=21):
                  delimiter=',')
     V_covariance = np.genfromtxt(f'{dir}{name}_final_kinematics/{name}_covariance_matrix_V.txt',
                                  delimiter=',')
-    dV = np.sqrt(np.diagonal(VD_covariance)) # diagonal is sigma**2
+    dV = np.sqrt(np.diagonal(V_covariance)) # diagonal is sigma**2
     
     # Vel, sigma, dv, dsigma
     output=np.loadtxt(dir +'voronoi_2d_binning_' + mosaic_name + '_output.txt')
@@ -1334,11 +1335,11 @@ def make_gaussian(r, surf_pot, sigma_pot, qobs_pot):
 # class to collect and save all the attributes I need for jampy
 class jampy_details:
     
-    def __init__(details, surf_density, mge_sigma, q, kcwi_sigmapst, Vrms_bin, dVrms_bin, V_bin, dV_bin, xbin_phot, ybin_phot, reff):
+    def __init__(details, surf_density, mge_sigma, q, kcwi_sigmapsf, Vrms_bin, dVrms_bin, V_bin, dV_bin, xbin_phot, ybin_phot, reff):
         details.surf_density=surf_density 
         details.mge_sigma=mge_sigma
         details.q=q 
-        details.kcwi_sigmapst=kcwi_sigmapst 
+        details.kcwi_sigmapsf=kcwi_sigmapsf 
         details.Vrms_bin=Vrms_bin 
         details.dVrms_bind=Vrms_bin
         details.V_bin=V_bin 
@@ -1351,7 +1352,7 @@ class jampy_details:
 
 # define function to do all of the steps together
 
-def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, binning, magsteps, magrange,
+def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, obj_names_index, frac, levels, binning, magsteps, magrange,
                                   align_phot=False, add_rot_phot=False, add_rot_kin=False, skip_kcwi=False, debug=False):
 
     print('#####################################################################################################################')
@@ -1371,7 +1372,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     print('Getting KCWI datacube')
 
     kcwi_img, kcwi_5arc_img, kcwi_3arc_img, kcwi_header, \
-        kcwi_central_pix_x, kcwi_central_pix_y, kcwi_pa = import_center_crop(file_dir, obj_name, obj_abbr, 
+        kcwi_central_pix_x, kcwi_central_pix_y, kcwi_pa = import_center_crop(data_dir, file_dir, obj_name, obj_names_index, obj_abbr, 
                                                                               data_source='kcwi_datacube', plot=True)
 
     #######################################################################################
@@ -1381,7 +1382,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     print('Getting HST cutout')
 
     hst_full_img, hst_5arc_img, hst_3arc_img, bspl_full_img, bspl_5arc_img, bspl_3arc_img, hst_header, \
-        central_pix_x, central_pix_y, exp_time = import_center_crop(hst_dir, obj_name, obj_abbr, 
+        central_pix_x, central_pix_y, exp_time = import_center_crop(data_dir, hst_dir, obj_name, obj_names_index, obj_abbr, 
                                                           data_source='HST', plot=True)
 
 
@@ -1589,7 +1590,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     print('################################################')
     print('Converting to surface density and real units!')
     # bring in dust extinction table
-    extinctions = pd.read_csv(f'{data_dir}slacs_Iband_extinctions.csv')
+    extinctions = pd.read_csv(f'{data_dir}tables/slacs_Iband_extinctions.csv')
     extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_I'].values[0]
     # convert sigma (of gaussian components) from pixels to arcsec and surface brightness to surface density
     mge_sigma, surf_density = convert_mge_model_outputs (m, exp_time, extinction, qs, data_source='F435W')
@@ -1600,7 +1601,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     print('Calculating half-light isophote and circularized half-light radius')
     reff, reff_maj, eps_e, lum_tot = mge_half_light_isophote(surf_density, mge_sigma, qs)
     # slacs reff
-    slacs_table = np.genfromtxt(f'{data_dir}slacs_tableA1.txt', delimiter='', dtype='U10')
+    slacs_table = np.genfromtxt(f'{data_dir}tables/slacs_tableA1.txt', delimiter='', dtype='U10')
     slacs_table_name = obj_name[4:]
     slacs_reffs = slacs_table[:,7].astype(float)
     reff_slacs = slacs_reffs[slacs_table[:,0]==slacs_table_name]
@@ -1853,7 +1854,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     plt.imshow(output_V_map)
     #plt.gca().set_visible(False)
     cbar = plt.colorbar(V_plot, shrink=0.85)
-    cbar.set_label(r'V [km/s]')
+    cbar.set_label(r'V [km/s]', labelpad=-5)
 
     plt.xticks(ticks, labels=ticks_arcsec)
     plt.yticks(ticks, labels=ticks_arcsec)
@@ -1893,6 +1894,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     # add the difference
     plt.annotate(f'{delta_PA_symb} = {abs_min_delta_PA}{degree_symb}±{np.rint(dPA_kin).astype(int)}', (10,424), color='k')
     plt.annotate(f'{ellipt_symb} = {np.around(ellipticity,2)}', (10,404), color='k')
+    plt.annotate(f'{obj_name}', (10,25), color='k', fontsize=20)
     
     plt.ylim(434,0)
     plt.xlim(0,434)
@@ -1917,7 +1919,7 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, frac, levels, bin
     plt.imshow(output_VD_map)
     #plt.gca().set_visible(False)
     cbar = plt.colorbar(VD_plot, shrink=0.85)
-    cbar.set_label(r'V [km/s]')
+    cbar.set_label(r'$\sigma$ [km/s]')
 
     plt.xticks(ticks, labels=ticks_arcsec)
     plt.yticks(ticks, labels=ticks_arcsec)
