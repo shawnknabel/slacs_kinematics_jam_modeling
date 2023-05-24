@@ -285,7 +285,7 @@ def try_fractions_for_find_galaxy (img):
         plt.pause(1)
 
         
-def convert_mge_model_outputs (model, exp_time, extinction, q, data_source='F435W'):
+def convert_mge_model_outputs (model, exp_time, q, data_source='F435W'):
 
     '''
     This function takes model outputs and converts them to what is needed for jampy.
@@ -294,7 +294,6 @@ def convert_mge_model_outputs (model, exp_time, extinction, q, data_source='F435
     Inputs:
         model - output object from mge_fit_sectors
         exp_time - exposure time of image in seconds
-        extinction - dust extinction AI (I band Jonshon-Cousins)
         data_source - where the image came from, by default F435W
     
     '''
@@ -332,7 +331,7 @@ def convert_mge_model_outputs (model, exp_time, extinction, q, data_source='F435
     # those given by Eq. (9) with the coefficients in Table 10 (synthetic transformations). Add a constant of approximately 0.1 mag to each zero point 
     # to correct to infinite aperture (see Sec. 2.5 and H95).
     # SMAG= - 2,5 X log(DN s"1 ) + iFiS X SCOL + 2 psXSCOL2 ^2fç2.5 log GRf, (8)
-    #### Zeropoints https://acszeropoints.stsci.edu/ (VEGAmag)
+    #### Zeropoints https://acszeropoints.stsci.edu/ (VEGAmag) see also https://www.jstor.org/stable/10.1086/444553?seq=24
     # On 2004-09-18 (J0037 observed)
     # F435W zeropoint: 25.793
     # F814W zeropoint: 25.520
@@ -341,19 +340,29 @@ def convert_mge_model_outputs (model, exp_time, extinction, q, data_source='F435
     # for surface density translation
     if data_source=='F435W':
         zeropoint = 25.793
+        # convert to B band surface brightness
+        surf_br = zeropoint + inf_ap_correction + 5 * np.log10(scale) + 2.5 * np.log10(exp_time) - 2.5 * np.log10(peak_surf_br) - extinction
+        M_sol = 5.45 # M_sol_B = 5.45
+        # bring in dust extinction table
+        extinctions = pd.read_csv(f'{data_dir}tables/slacs_Iband_extinctions.csv')
+        extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_B'].values[0]
     elif data_source=='F814W':
         zeropoint = 25.520
+        # convert to I band surface brightness
+        surf_br = zeropoint + inf_ap_correction + 5 * np.log10(scale) + 2.5 * np.log10(exp_time) - 2.5 * np.log10(peak_surf_br) - extinction
+        M_sol = 4.08 # I band
+        # bring in dust extinction table
+        extinctions = pd.read_csv(f'{data_dir}tables/slacs_Iband_extinctions.csv')
+        extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_I'].values[0]
+    
     inf_ap_correction = 0.1
-    
-    # convert to iband surface brightness
-    iband_surf_br = zeropoint + inf_ap_correction + 5 * np.log10(scale) + 2.5 * np.log10(exp_time) - 2.5 * np.log10(peak_surf_br) - extinction
-    
+        
     # convert to surface density (L_sol_I pc−2)
-    M_sol_I = 4.08
+    
     # final conversion to surface density
-    surf_density = (64800/np.pi)**2 * 10**( 0.4 * (M_sol_I - iband_surf_br))
+    surf_density = (64800/np.pi)**2 * 10**( 0.4 * (M_sol - surf_br))
 
-    return sigma, surf_density
+    return sigma, surf_density, peak_surf_br
 
 
 def plot_contours_531 (img, find_gal, model, sigmapsf, normpsf, contour_alpha=0.5, data_source='HST', plot_img=True):
@@ -1589,11 +1598,8 @@ def plot_kinematics_mge_contours (data_dir, hst_dir, obj_name, obj_names_index, 
     ########### NEW THING FROM JAM NOTEBOOK###############################
     print('################################################')
     print('Converting to surface density and real units!')
-    # bring in dust extinction table
-    extinctions = pd.read_csv(f'{data_dir}tables/slacs_Iband_extinctions.csv')
-    extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_I'].values[0]
     # convert sigma (of gaussian components) from pixels to arcsec and surface brightness to surface density
-    mge_sigma, surf_density = convert_mge_model_outputs (m, exp_time, extinction, qs, data_source='F435W')
+    mge_sigma, surf_density = convert_mge_model_outputs (m, exp_time, qs, data_source='F435W')
     
     #######################################
     # get reff

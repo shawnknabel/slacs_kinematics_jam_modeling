@@ -127,7 +127,7 @@ def nfw_generalized_model (r, gamma, rbreak):
                 if gamma = -1, this is standard NFW profile
         rbreak - break radius, transition from inner slope to outer slope (of -3)
     Outputs:
-        rho - mass density at the given radius
+        rho - surface mass density at the given radius
     '''
     rho = (r/rbreak)**gamma * (0.5 + 0.5*r/rbreak)**(-gamma - 3)  # rho=1 at r=rbreak
     
@@ -241,7 +241,7 @@ def total_mass_mge (surf_lum, sigma_lum, qobs_lum, reff, gamma, f_dm, inc, lg_ml
     elif model == 'power_law':
         
         gamma = gamma
-        rbreak = 10*reff # much bigger than data
+        rbreak = 5*reff # much bigger than data
         
         surf_pot, sigma_pot, qobs_pot = power_law_mge(gamma, rbreak, plot)
         
@@ -703,16 +703,16 @@ def summary_plot(obj_name, date_time, model_dir, jam_prob_func, pars=None, lnpro
 
 ##############################################################################
 
-def save_fit_parameters(model_dir, obj_name, date_time, bestfit, percentile, sig_bestfit, pars, lnprob, p0, sigpar, bounds, labels, surf_potential, rms_model, flux_model, kwargs):
+def save_fit_parameters(model_dir, obj_name, date_time, bestfit, sig_bestfit, percentile, pars, lnprob, p0, sigpar, bounds, labels, surf_potential, rms_model, flux_model, kwargs):
     
     # I should save this as a pickle instead.
                               
     # save best fit parameter values
     np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters.txt', bestfit)
     # save best fit parameter values percentiles
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters_percentile.txt', sig_bestfit)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters_percentile.txt', percentile)
     # save best fit parameter values sigma error
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters_error.txt', percentile)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters_error.txt', sig_bestfit)
     # save fit parameters
     np.savetxt(f'{model_dir}{obj_name}_{date_time}_parameters_fit.txt', pars)
     # save likelihoods
