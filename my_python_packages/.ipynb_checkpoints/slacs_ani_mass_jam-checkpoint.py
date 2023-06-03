@@ -703,36 +703,36 @@ def summary_plot(obj_name, date_time, model_dir, jam_prob_func, pars=None, lnpro
 
 ##############################################################################
 
-def save_fit_parameters(model_dir, obj_name, date_time, bestfit, sig_bestfit, percentile, pars, lnprob, p0, sigpar, bounds, labels, surf_potential, rms_model, flux_model, kwargs):
+def save_fit_parameters(model_dir, model_name, obj_name, date_time, bestfit, sig_bestfit, percentile, pars, lnprob, p0, sigpar, bounds, labels, surf_potential, rms_model, flux_model, kwargs):
     
     # I should save this as a pickle instead.
                               
     # save best fit parameter values
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters.txt', bestfit)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bestfit_parameters.txt', bestfit)
     # save best fit parameter values percentiles
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters_percentile.txt', percentile)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bestfit_parameters_percentile.txt', percentile)
     # save best fit parameter values sigma error
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bestfit_parameters_error.txt', sig_bestfit)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bestfit_parameters_error.txt', sig_bestfit)
     # save fit parameters
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_parameters_fit.txt', pars)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_parameters_fit.txt', pars)
     # save likelihoods
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_likelihood.txt', lnprob) 
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_likelihood.txt', lnprob) 
     # save initial parameters
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_initial_parameters.txt',p0)           
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_initial_parameters.txt',p0)           
     # save initial error estimates
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_initial_error_estimates.txt',sigpar)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_initial_error_estimates.txt',sigpar)
     # save bounds
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_bounds.txt', bounds)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bounds.txt', bounds)
     # save labels
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_labels.txt', labels, fmt='%s')
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_labels.txt', labels, fmt='%s')
     # save surface potential
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_surf_potential.txt', surf_potential)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_surf_potential.txt', surf_potential)
     # save rms_model
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_rms_model.txt', rms_model)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_rms_model.txt', rms_model)
     # save flux_model
-    np.savetxt(f'{model_dir}{obj_name}_{date_time}_flux_model.txt', flux_model)
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_flux_model.txt', flux_model)
     # create a binary pickle file 
-    f = open(f"{model_dir}{obj_name}_{date_time}_kwargs.pkl","wb")
+    f = open(f"{model_dir}{obj_name}_{date_time}_{model_name}_kwargs.pkl","wb")
     # write the python object (dict) to pickle file
     pickle.dump(kwargs,f)
     # close file

@@ -202,6 +202,7 @@ def import_center_crop (data_dir, file_dir, obj_name, obj_names_index, obj_abbr,
         hst_img = hdu[0].data #### HST data is in counts/second
         bspl_img = hdu[8].data #### HST data is in counts/second # index 8 is the b-spline model
         header = hdu[0].header
+        bspl_header = hdu[7].header
         
         # multiply by exp_time to get counts
         exp_time = header['EXPTIME']
@@ -219,6 +220,9 @@ def import_center_crop (data_dir, file_dir, obj_name, obj_names_index, obj_abbr,
         # crop the image to 3 arcsec
         hst_3arc_img, central_pix_x_3, central_pix_y_3 = crop_center_image(hst_img, 3, hst_scale, 'center')
         bspl_3arc_img, _, _ = crop_center_image(bspl_img, 5, hst_scale, 'center')
+        
+        # get photometric axis angle from the bspline image
+        bspline_PA = bspl_header['AXISANGL']
 
         if plot == True:
             # plot the image
@@ -257,7 +261,7 @@ def import_center_crop (data_dir, file_dir, obj_name, obj_names_index, obj_abbr,
             plt.title(f'HST bspline {filter_name}')
             plt.pause(1)
 
-        return(hst_img, hst_5arc_img, hst_3arc_img, bspl_img, bspl_5arc_img, bspl_3arc_img, header, central_pix_x, central_pix_y, exp_time)
+        return(hst_img, hst_5arc_img, hst_3arc_img, bspl_img, bspl_5arc_img, bspl_3arc_img, header, central_pix_x, central_pix_y, exp_time, bspline_PA)
 
     
 ##############################################################################
