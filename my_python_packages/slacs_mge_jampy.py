@@ -1358,7 +1358,7 @@ class jampy_details:
         details.q=q 
         details.kcwi_sigmapsf=kcwi_sigmapsf 
         details.Vrms_bin=Vrms_bin 
-        details.dVrms_bind=Vrms_bin
+        details.dVrms_bind=dVrms_bin
         details.V_bin=V_bin 
         details.dV_bin=dV_bin 
         details.xbin_phot=xbin_phot 

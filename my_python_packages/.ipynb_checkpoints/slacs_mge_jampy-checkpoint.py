@@ -189,12 +189,16 @@ def import_center_crop (data_dir, file_dir, obj_name, obj_names_index, obj_abbr,
         # take the F435 file if it exists, else take the F814 (if two entries for same filter take first)
         files_F435 = glob.glob(f'{file_dir}*{obj_abbr}*435*.fits')
         files_F814 = glob.glob(f'{file_dir}*{obj_abbr}*814*.fits')
+        files_F606 = glob.glob(f'{file_dir}*{obj_abbr}*606*.fits')
         if files_F435:
             file = files_F435[0] # take the first entry of F435
             filter_name = 'F435W'
         elif files_F814:
             file = files_F814[0] # take the first entry of F814
             filter_name = 'F814W'
+        elif files_F606:
+            file = files_F606
+            filter_name = 'F606'
         else:
             print('no file')
         
@@ -1354,7 +1358,7 @@ class jampy_details:
         details.q=q 
         details.kcwi_sigmapsf=kcwi_sigmapsf 
         details.Vrms_bin=Vrms_bin 
-        details.dVrms_bind=Vrms_bin
+        details.dVrms_bind=dVrms_bin
         details.V_bin=V_bin 
         details.dV_bin=dV_bin 
         details.xbin_phot=xbin_phot 

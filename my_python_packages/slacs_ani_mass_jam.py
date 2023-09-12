@@ -703,7 +703,10 @@ def summary_plot(obj_name, date_time, model_dir, jam_prob_func, pars=None, lnpro
 
 ##############################################################################
 
-def save_fit_parameters(model_dir, model_name, obj_name, date_time, bestfit, sig_bestfit, percentile, pars, lnprob, p0, sigpar, bounds, labels, surf_potential, rms_model, flux_model, kwargs):
+def save_fit_parameters(model_dir, model_name, obj_name, date_time, 
+                        bestfit, sig_bestfit, percentile, best_chi2,
+                        pars, lnprob, p0, sigpar, bounds, labels, 
+                        surf_potential, rms_model, flux_model, kwargs):
     
     # I should save this as a pickle instead.
                               
@@ -713,6 +716,8 @@ def save_fit_parameters(model_dir, model_name, obj_name, date_time, bestfit, sig
     np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bestfit_parameters_percentile.txt', percentile)
     # save best fit parameter values sigma error
     np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bestfit_parameters_error.txt', sig_bestfit)
+    # save best fit chi2 value
+    np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_bestfit_chi2.txt', best_chi2)
     # save fit parameters
     np.savetxt(f'{model_dir}{obj_name}_{date_time}_{model_name}_parameters_fit.txt', pars)
     # save likelihoods
@@ -815,7 +820,7 @@ class jampy_details:
         details.q=q 
         details.kcwi_sigmapst=kcwi_sigmapst 
         details.Vrms_bin=Vrms_bin 
-        details.dVrms_bind=Vrms_bin
+        details.dVrms_bind=dVrms_bin
         details.V_bin=V_bin 
         details.dV_bin=dV_bin 
         details.xbin_phot=xbin_phot 
