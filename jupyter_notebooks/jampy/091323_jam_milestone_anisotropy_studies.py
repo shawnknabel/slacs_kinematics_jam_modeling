@@ -1345,8 +1345,8 @@ lenspriors = ['lensprior','nolensprior']
 rs_mst = 0.3 # scale radius for mass sheet
 
 # set nstep
-nstep= 100
-nwalkers= 32
+nstep= 5#100
+nwalkers= 16#32
 
 print('Thank you for choosing MiseryBot 9.3.2, where you will hate everything and probably quit after a short while.')
 print('...')
