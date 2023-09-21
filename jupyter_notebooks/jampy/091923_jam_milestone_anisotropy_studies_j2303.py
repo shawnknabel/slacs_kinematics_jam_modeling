@@ -946,14 +946,14 @@ def get_priors (model, anisotropy, qobs, p0=None, bounds=None, sigpar=None, prio
     if model=='power_law':
         if anisotropy=='const':
             # need to input the qbounds from the MGE fit
-            q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
+            #q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
             qbound = np.min(qobs) # upper bound for axis ratio
             #p0[1] = q0
             bounds[1][1] = qbound
             labels = [r'$\gamma$', r"$q_{\rm min}$", r"$\sigma_t/\sigma_R$", r"$\theta_E$", '$\lambda_{int}$']
         elif anisotropy=='OM':
             # need to input the qbounds from the MGE fit
-            q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
+            #q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
             qbound = np.min(qobs) # upper bound for axis ratio
             #p0[1] = q0
             bounds[1][1] = qbound     
@@ -961,14 +961,14 @@ def get_priors (model, anisotropy, qobs, p0=None, bounds=None, sigpar=None, prio
     elif model=='nfw':
         if anisotropy=='const':
             # need to input the qbounds from the MGE fit
-            q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
+            #q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
             qbound = np.min(qobs) # upper bound for axis ratio
             #p0[1] = q0
             bounds[1][1] = qbound     
             labels = [r"$f_{\rm DM}$", r"$q_{\rm min}$", r"$\sigma_t/\sigma_R$", r"$\lg(M_\ast/L)$", '$\lambda_{int}$']
         elif anisotropy=='OM':
             # need to input the qbounds from the MGE fit
-            q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
+            #q0 = 1/2*np.median(qobs)        # Axial ratio of the flattest MGE Gaussian, make it about half the value of the median axial ratio
             qbound = np.min(qobs) # upper bound for axis ratio
             #p0[1] = q0
             bounds[1][1] = qbound                 
@@ -1116,7 +1116,7 @@ def space_jam (obj_name, SN, model, anisotropy, align, sampler, sampler_args, rs
     # anisotropy upper bounds: cylindrical vs spherical... 1 vs 2
     if (align == 'sph') & (anisotropy == 'const'):
         bounds[1][2] = 2.0    # anisotropy of spherical can be up to 2.0
-    if (align == 'sph') & (anisotropy == 'const'):
+    if (align == 'sph') & (anisotropy == 'const'): # 09/20/23 - Another error... This should say cyl.
         bounds[1][2] = 1.0 # 08/09/23 - Chicago f2f this was a mistake ->>> 2.0    # anisotropy of cylindrical CANNOT be up to 2.0
     # check if qobs is uniform, if so can use priors based on fast/slow
     if np.nanmin(qobs) == np.nanmax(qobs):
