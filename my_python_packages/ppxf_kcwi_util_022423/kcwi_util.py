@@ -1,12 +1,17 @@
 import numpy as np
 import glob
 import matplotlib.pyplot as plt
-import ppxf.ppxf_util as util
 from astropy.io import fits
 from matplotlib import colors
-from ppxf.templates_util import Xshooter, miles, Munari05_subset, indo_US
+#import sys
+#sys.path.append("/home/shawnknabel/Documents/slacs_kinematics/my_python_packages")
+from ppxf_kcwi_util_022423.templates_util import Xshooter, miles, Munari05_subset, indo_US # 11/17/23 - Shawn changed this from ppxf.templates_util, because ppxf updated and no longer uses the same templates_util.py, ppxf_kcwi_util_022423 saves it in a place I keep and point the path to
 from pathlib import Path
+from os import path
 from ppxf.ppxf import ppxf
+import ppxf.ppxf_util as util
+import ppxf.sps_util as sps_util
+from urllib import request
 from scipy import ndimage
 from time import perf_counter as clock
 from scipy import interpolate
@@ -132,7 +137,9 @@ def ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift(libary_dir,
                                                     spectrum_aperture,
                                                       wave_min, wave_max,
                                                     z,
-                                              noise, FWHM, FWHM_tem,
+                                                      noise, 
+                                                      FWHM,
+                                                      FWHM_tem,
                                                       templates_name,
                                                       velscale_ratio,
                                                       background_source_spectrum=None,
@@ -449,6 +456,252 @@ def ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift(libary_dir,
            background_source
 
 
+def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
+                                                              degree,
+                                                            spectrum_aperture,
+                                                              wave_min, wave_max,
+                                                                z,
+                                                              noise, 
+                                                              FWHM,
+                                                              FWHM_tem,
+                                                              templates_name,
+                                                              velscale_ratio,
+                                                              background_source_spectrum=None,
+                                                            z_background_source=None,
+                                                           global_template_lens=None, plot=False, 
+                                                              spectrum_perpixel=None,
+                                                             wavelength_goobers=False):
+
+    '''
+    This function returns the information of the ppxf fitting given the
+    data spectrum (either single pixel or voronoi binning spectrum) and
+    the background_source spectrum (I use background_source spectrum in the "sky" keyword in ppxf).
+    The noise can be either single value (not accurate) or poisson noise (
+    the accurate noise input).
+    '''
+
+    # Read a galaxy spectrum and define the wavelength range
+    file = spectrum_aperture
+    hdu = fits.open(file)
+    if spectrum_perpixel is not None:
+        gal_lin = spectrum_perpixel
+    else:
+        gal_lin = hdu[0].data
+    h1 = hdu[0].header
+    lamRange1 = h1['CRVAL1'] + np.array([0., h1['CDELT1']*(h1['NAXIS1'] - 1)])
+    print('CRVAL1 is', h1['CRVAL1'])
+    print('CDELT1 is', h1['CDELT1'])
+    print('NAXIS1 is', h1['NAXIS1'], gal_lin.shape[0])
+    FWHM_gal = FWHM
+
+    z = z # Initial estimate of the galaxy redshift
+    lamRange1 = lamRange1/(1+z) # Compute approximate restframe wavelength range
+    FWHM_gal = FWHM_gal/(1+z)   # Adjust resolution in Angstrom
+    galaxy, logLam1, velscale = util.log_rebin(lamRange1, gal_lin)
+    lam = np.exp(logLam1)
+    # 11/19/23 - Truncating galaxy spectrum to wave_min and wave_max because it won't let it run while the galaxy spectrum extends to lower wavelengths than the templates
+    # Even though I am masking out those wavelengths anyway
+    print('Truncating galaxy spectrum to wave min and wave max')
+    galaxy = galaxy[lam>wave_min*10]
+    lam = lam[lam>wave_min*10]
+    galaxy = galaxy[lam<wave_max*10]
+    lam = lam[lam<wave_max*10]
+    lamRange1 = [wave_min*10, wave_max*10]
+    logLam1 = np.log(lam)
+    #print("velscale of the data is", velscale)
+    print('lamRange1 is', lamRange1)
+    # de redshift
+    
+    # take lam_range temp
+    lam_range_temp = [lamRange1[0]/1.02, lamRange1[1]*1.02]
+    
+    # create a noise
+    if isinstance(noise,np.ndarray):
+        noise = noise
+    else:
+        noise = np.full_like(galaxy, noise) # Assume constant noise per
+        # pixel here
+
+    if background_source_spectrum is not None:
+        z_bs = z_background_source
+
+        # CF's method...
+        # Read a background_source spectrum and define the wavelength range
+        file_q = background_source_spectrum
+        hdu_q = fits.open(file_q) # open the fits file (if it's a fits file)
+        h1_q = hdu_q[0].header # take header
+        lamRange1_q = h1_q['CRVAL1'] + np.array( # wavelength range
+            [0., h1_q['CDELT1'] * (h1_q['NAXIS1'] - 1)])
+        background_source_lin = hdu_q[0].data # lin??? just the data?
+
+        lamRange1_q = lamRange1_q/(1+z_bs) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
+
+        # My method 7/13/22 - using Kinney 1996 galaxy templates given to me by Tommaso for my LinKS project (in dir KECK_KCWI.../kinney_1996_galaxy_templates/)
+        # Read a background_source spectrum and define the wavelength range
+        #background_template = np.loadtxt(background_source_spectrum, unpack=True)
+        #lamRange1_q = np.array([background_template[0,0], background_template[0,-1]]) # wavelength range
+        #background_source_lin = background_template[1,:] # spectrum
+
+        # Compute the approximate wavelength redshifted by z_bs - z
+        #z_ls = z_bs - z # redshift between lens and source
+        #lamRange1_q = lamRange1_q*(1+z_ls) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
+
+        background_source, logLam1_q, velscale_q = util.log_rebin(lamRange1_q, background_source_lin)
+        background_source = background_source/np.median(background_source)  # Normalize spectrum to avoid numerical
+
+    else:
+        background_source = 1 # this is only for returning the value and does not have
+        # any meaning
+        print('no sky spectrum (i.e., no background_source)')
+
+
+    # 11/17/23 split between Chih-Fan's method and the new ppxf sps_utils.py stuff
+    if library_dir is not None: # I will only give it a library dir if I have it, which means I'm using Chih-Fan's code
+        # Read the list of filenames from Xshooter library
+        if templates_name == 'xshooter':
+            xshooter = glob.glob(library_dir + '/*uvb.fits')
+            #FWHM_tem = 0.43  # Xshooter spectra have a constant resolution FWHM of
+            # 1/9200*3950 = 0.43
+            ssp, lamRange2, h2 = Xshooter(xshooter[0]) # I'm using a consistent lamda range for the templates across the different libraries
+            print('h2 =', h2)
+            print('lamRange2 *uvb.fits', lamRange2)
+        elif templates_name == None:
+            pass
+        else:
+            print('either xshooter or miles or Munari05_subset')
+
+        velscale_ratio = velscale_ratio  # adopts 2x higher spectral sampling for templates
+        # than for galaxy
+        sspNew, logLam2, velscale_temp = util.log_rebin(lamRange2, ssp,
+                                                        velscale=velscale / velscale_ratio)
+        print('lamRange2',lamRange2)
+        print('logLam2', logLam2)
+        
+        if wavelength_goobers == True:
+            wavelength_goobers = np.exp(logLam2) # I'm saving this to have the proper wavelength range for replotting later
+            print(f'Wavelength goobers! {wavelength_goobers}')
+            np.savetxt(f'{library_dir}/templates_vs{velscale_ratio}_wavelength_array.txt', wavelength_goobers, delimiter=',')
+            print('velscale of the templates is ', velscale_temp)
+
+
+        # create the templates
+        if global_template_lens is not None:
+            templates = global_template_lens
+        else:
+            if templates_name == 'xshooter':
+                # checking the templates existing or not
+                check_templates = Path(library_dir+'/templates_templates_test.fits'
+                                      )
+                if check_templates.is_file():
+                    templates = fits.getdata(library_dir+'/templates_templates_test.fits')
+                    print('get templates from '+
+                          library_dir+'/templates_templates_test.fits')
+                    #print(j,file)
+                else:
+                    print('Gotta make the templates')
+                    templates = np.empty((sspNew.size, len(xshooter)))
+                    print('FWHM_gal=', FWHM_gal)
+                    print('FWHM_tem=', FWHM_tem)
+
+                    if FWHM_gal > FWHM_tem:
+                        FWHM_dif = np.sqrt(FWHM_gal ** 2 - FWHM_tem ** 2)
+                        sigma = FWHM_dif / 2.355 / h2  # Sigma difference in pixels
+                        for j, file in enumerate(xshooter):
+                            print(j, file)
+                            ssp, lamRange2, h2 = Xshooter(file)
+                            ssp = ndimage.gaussian_filter1d(ssp, sigma)
+                            sspNew, logLam2, velscale_temp = util.log_rebin(lamRange2, ssp,
+                                                                            velscale=velscale / velscale_ratio)
+                            templates[:, j] = sspNew / np.median(
+                                sspNew)  # Normalizes templates
+                        fits.writeto(library_dir+'/templates_templates_test.fits', templates)
+                    elif FWHM_gal < FWHM_tem:
+                        print("sigma<0, so we do not do any convolution")
+                        for j, file in enumerate(xshooter):
+                            print(j, file)
+                            ssp, lamRange2, h2 = Xshooter(file)
+                            sspNew, logLam2, velscale_temp = util.log_rebin(lamRange2, ssp,
+                                                                            velscale=velscale / velscale_ratio)
+                            templates[:, j] = sspNew / np.median(
+                                sspNew)  # Normalizes templates
+                    else:
+                        print("sigma=0, so we do not do any convolution")
+                        for j, file in enumerate(xshooter):
+                            print(j, file)
+                            ssp, lamRange2, h2 = Xshooter(file)
+                            sspNew, logLam2, velscale_temp = util.log_rebin(lamRange2, ssp,
+                                                                            velscale=velscale / velscale_ratio)
+                            templates[:, j] = sspNew / np.median(
+                                sspNew)  # Normalizes templates
+
+            else:
+                print('need to provide global templates or provide template library')
+        # get the template range of lambda
+        lam_temp = np.exp(logLam2)
+        
+    # else use Michele's new ppxf sps stuff
+    else:
+        ppxf_dir = path.dirname(path.realpath(util.__file__))
+        basename = f"spectra_{templates_name}_9.0.npz"
+        filename = path.join(ppxf_dir, 'sps_models', basename)
+        if not path.isfile(filename):
+            url = "https://github.com/micappe/ppxf_data/blob/9e22598d357b6c02c5355b312073e1708eb3ded3/spectra_emiles_9.0.npz" #"https://github.com/micappe/ppxf_data/main/" + basename
+            request.urlretrieve(url, filename)
+        sps = sps_util.sps_lib(filename, velscale, FWHM_gal, wave_range=lam_range_temp)
+        templates = sps.templates
+        lam_temp = sps.lam_temp
+    
+    c = 299792.458
+    #dv = (np.mean(logLam2[:velscale_ratio]) - logLam1[0])*c  # km/s # this is unnecessary when I give it lam_temp
+
+    # after de-redshift, the initial redshift is zero.
+    goodPixels = util.determine_goodpixels(logLam1, lam_range_temp, 0)
+    print(goodPixels)
+
+    ind_min = find_nearest(np.exp(logLam1) / 10, wave_min)
+    ind_max = find_nearest(np.exp(logLam1) / 10, wave_max)
+    
+    mask=goodPixels[goodPixels<ind_max]
+    mask = mask[mask>ind_min]
+    boolen = ~((2956 < mask) & (mask < 2983))  # mask the Mg II
+    mask = mask[boolen]
+    boolen = ~((2983 < mask) & (mask < 3001))  # mask the Mg II
+    mask = mask[boolen]
+    
+    print('lam', lam.shape)
+    print('lam_temp', lam_temp.shape)
+    print(lam_temp)
+    print('templates', templates.shape)
+    print()
+    # Here the actual fit starts. The best fit is plotted on the screen.
+    # Gas emission lines are excluded from the pPXF fit using the GOODPIXELS keyword.
+    #
+    vel = c*np.log(1 + 0)   # eq.(8) of Cappellari (2017)
+    start = [vel, 250.]  # (km/s), starting guess for [V, sigma]
+    t = clock()
+    if background_source_spectrum is not None:
+        pp = ppxf(templates, galaxy, noise, velscale, start, plot=plot,
+                  moments=2, goodpixels=mask,
+                  degree=degree, #vsyst=dv, 
+                  velscale_ratio=velscale_ratio,
+                  sky=background_source, lam=lam, lam_temp=lam_temp) # 11/17/23 added lam_temp
+        plt.xlim(wave_min, wave_max)
+    else:
+        pp = ppxf(templates, galaxy, noise, velscale, start, plot=plot,
+                  moments=2, goodpixels=mask,
+                  degree=degree, #vsyst=dv, 
+                  velscale_ratio=velscale_ratio,
+                  lam=lam, lam_temp=lam_temp)
+        plt.xlim(wave_min, wave_max)
+    print("Formal errors:")
+    print("     dV    dsigma   dh3      dh4")
+    print("".join("%8.2g" % f for f in pp.error*np.sqrt(pp.chi2)))
+
+    print('Elapsed time in pPXF: %.2f s' % (clock() - t))
+    return templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy, \
+           background_source
+
+
 
 def visualization(hdu):
     '''
@@ -632,12 +885,17 @@ def remove_background_source_from_galaxy_deredshift(libary_dir, degree, spectrum
     return gal_lin_nosky, noise, sky_lin
 
 
+#import pyregion
+#def getMaskInFitsFromDS9reg(input,nx):
+#    r = pyregion.open(input)
+#    mask = r.get_mask(shape=(nx, nx))
+#    return mask
+# 11/17/23 - Shawn, taken from kcwi_util2.py, changed from above
 import pyregion
-def getMaskInFitsFromDS9reg(input,nx):
+def getMaskInFitsFromDS9reg(input,nx,hdu):
     r = pyregion.open(input)
-    mask = r.get_mask(shape=(nx, nx))
+    mask = r.get_mask(shape=(nx, nx),hdu=hdu)
     return mask
-
 
 
 
