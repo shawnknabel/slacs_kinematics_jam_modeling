@@ -490,6 +490,7 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
     h1 = hdu[0].header
     lamRange1 = h1['CRVAL1'] + np.array([0., h1['CDELT1']*(h1['NAXIS1'] - 1)])
     print('CRVAL1 is', h1['CRVAL1'])
+    print('lamRange1 is', lamRange1)
     print('CDELT1 is', h1['CDELT1'])
     print('NAXIS1 is', h1['NAXIS1'], gal_lin.shape[0])
     FWHM_gal = FWHM
@@ -520,40 +521,6 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
         noise = noise
     else:
         noise = np.full_like(galaxy, noise) # Assume constant noise per
-        # pixel here
-
-    if background_source_spectrum is not None:
-        z_bs = z_background_source
-
-        # CF's method...
-        # Read a background_source spectrum and define the wavelength range
-        file_q = background_source_spectrum
-        hdu_q = fits.open(file_q) # open the fits file (if it's a fits file)
-        h1_q = hdu_q[0].header # take header
-        lamRange1_q = h1_q['CRVAL1'] + np.array( # wavelength range
-            [0., h1_q['CDELT1'] * (h1_q['NAXIS1'] - 1)])
-        background_source_lin = hdu_q[0].data # lin??? just the data?
-
-        lamRange1_q = lamRange1_q/(1+z_bs) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
-
-        # My method 7/13/22 - using Kinney 1996 galaxy templates given to me by Tommaso for my LinKS project (in dir KECK_KCWI.../kinney_1996_galaxy_templates/)
-        # Read a background_source spectrum and define the wavelength range
-        #background_template = np.loadtxt(background_source_spectrum, unpack=True)
-        #lamRange1_q = np.array([background_template[0,0], background_template[0,-1]]) # wavelength range
-        #background_source_lin = background_template[1,:] # spectrum
-
-        # Compute the approximate wavelength redshifted by z_bs - z
-        #z_ls = z_bs - z # redshift between lens and source
-        #lamRange1_q = lamRange1_q*(1+z_ls) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
-
-        background_source, logLam1_q, velscale_q = util.log_rebin(lamRange1_q, background_source_lin)
-        background_source = background_source/np.median(background_source)  # Normalize spectrum to avoid numerical
-
-    else:
-        background_source = 1 # this is only for returning the value and does not have
-        # any meaning
-        print('no sky spectrum (i.e., no background_source)')
-
 
     # 11/17/23 split between Chih-Fan's method and the new ppxf sps_utils.py stuff
     if library_dir is not None: # I will only give it a library dir if I have it, which means I'm using Chih-Fan's code
@@ -583,19 +550,19 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
             np.savetxt(f'{library_dir}/templates_vs{velscale_ratio}_wavelength_array.txt', wavelength_goobers, delimiter=',')
             print('velscale of the templates is ', velscale_temp)
 
-
         # create the templates
         if global_template_lens is not None:
             templates = global_template_lens
         else:
             if templates_name == 'xshooter':
                 # checking the templates existing or not
-                check_templates = Path(library_dir+'/templates_templates_test.fits'
+                check_templates = Path(library_dir+'/templates_stellar_library_test.fits'
                                       )
                 if check_templates.is_file():
-                    templates = fits.getdata(library_dir+'/templates_templates_test.fits')
+                    templates = fits.getdata(library_dir+'/templates_stellar_library_test.fits')
                     print('get templates from '+
-                          library_dir+'/templates_templates_test.fits')
+                          library_dir+'/templates_stellar_library_test.fits')
+                    logLam2 = fits.getdata(library_dir+'/logLam2_stellar_library_test.fits')
                     #print(j,file)
                 else:
                     print('Gotta make the templates')
@@ -614,7 +581,8 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
                                                                             velscale=velscale / velscale_ratio)
                             templates[:, j] = sspNew / np.median(
                                 sspNew)  # Normalizes templates
-                        fits.writeto(library_dir+'/templates_templates_test.fits', templates)
+                        fits.writeto(library_dir+'/templates_stellar_library_test.fits', templates)
+                        fits.writeto(library_dir+'/logLam2_stellar_library_test.fits', logLam2)
                     elif FWHM_gal < FWHM_tem:
                         print("sigma<0, so we do not do any convolution")
                         for j, file in enumerate(xshooter):
@@ -637,7 +605,13 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
             else:
                 print('need to provide global templates or provide template library')
         # get the template range of lambda
+        # give the correct template range
         lam_temp = np.exp(logLam2)
+        goodlam = (lam_temp >= lam_range_temp[0]) & (lam_temp <= lam_range_temp[1])
+        lam_temp = lam_temp[goodlam]
+        logLam2 = logLam2[goodlam]
+
+        templates = templates[goodlam]
         
     # else use Michele's new ppxf sps stuff
     else:
@@ -647,12 +621,14 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
         if not path.isfile(filename):
             url = "https://github.com/micappe/ppxf_data/blob/9e22598d357b6c02c5355b312073e1708eb3ded3/spectra_emiles_9.0.npz" #"https://github.com/micappe/ppxf_data/main/" + basename
             request.urlretrieve(url, filename)
-        sps = sps_util.sps_lib(filename, velscale, FWHM_gal, wave_range=lam_range_temp)
+        sps = sps_util.sps_lib(filename, velscale/velscale_ratio, FWHM_gal, wave_range=lam_range_temp)
         templates = sps.templates
         lam_temp = sps.lam_temp
+        lamRange2 = np.array([np.min(lam_temp), np.max(lam_temp)])
+        logLam2 = sps.ln_lam_temp
     
     c = 299792.458
-    #dv = (np.mean(logLam2[:velscale_ratio]) - logLam1[0])*c  # km/s # this is unnecessary when I give it lam_temp
+    dv = (np.mean(logLam2[:velscale_ratio]) - logLam1[0])*c  # km/s # this is unnecessary when I give it lam_temp
 
     # after de-redshift, the initial redshift is zero.
     goodPixels = util.determine_goodpixels(logLam1, lam_range_temp, 0)
@@ -668,7 +644,8 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
     boolen = ~((2983 < mask) & (mask < 3001))  # mask the Mg II
     mask = mask[boolen]
     
-    print('lam', lam.shape)
+    print('lam', lam.shape) 
+    print(lam)
     print('lam_temp', lam_temp.shape)
     print(lam_temp)
     print('templates', templates.shape)
@@ -682,7 +659,7 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
     if background_source_spectrum is not None:
         pp = ppxf(templates, galaxy, noise, velscale, start, plot=plot,
                   moments=2, goodpixels=mask,
-                  degree=degree, #vsyst=dv, 
+                  degree=degree, vsyst=dv, 
                   velscale_ratio=velscale_ratio,
                   sky=background_source, lam=lam, lam_temp=lam_temp) # 11/17/23 added lam_temp
         plt.xlim(wave_min, wave_max)
@@ -698,8 +675,7 @@ def ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir,
     print("".join("%8.2g" % f for f in pp.error*np.sqrt(pp.chi2)))
 
     print('Elapsed time in pPXF: %.2f s' % (clock() - t))
-    return templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy, \
-           background_source
+    return templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy
 
 
 

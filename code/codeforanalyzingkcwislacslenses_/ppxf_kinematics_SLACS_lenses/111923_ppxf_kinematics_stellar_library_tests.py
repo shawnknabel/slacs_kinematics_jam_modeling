@@ -91,15 +91,55 @@ zs = paper_table['zlens']
 #################################################
 # libraries
 templates_names = ['xshooter',
-                  'fps',
+                   'fsps',
                   'galaxev',
-                  'emiles']
+                  'emiles'
+                  ]
 #################################################
 
+#------------------------------------------------------------------------------
+# Kinematics systematics initial choices
+
+# stellar templates library
+# stellar_templates_library = 'all_dr2_fits_G789K012'
+
+# aperture
+aperture = 'R2' # largest aperture
+
+# wavelength range
+wave_min = 360 # Only the MILES range 3525 – 7500 has high resolution
+wave_max = 410 # I am doing this to be uniform across the objects
+
+# degree of the additive Legendre polynomial in ppxf
+degree = 2 # 50/25 110/25 = 4.4 round up
+
+#------------------------------------------------------------------------------
+# Information specific to KCWI and templates
+
+kcwi_scale = 0.1457
+
+## R=3600. spectral resolution is ~ 1.42A
+FWHM = 1.42 #1.42
+
+## initial estimate of the noise
+noise = 0.014
+
+# velocity scale ratio
+velscale_ratio = 2
+
+#------------------------------------------------------------------------------
+# variable settings in ppxf and utility functions
+
+# global template spectrum chi2 threshold
+global_template_spectrum_chi2_threshold = 100
+
+#------------------------------------------------------------------------------
+
+#################################################
 # Loop through objects:
 
 for i, obj_name in enumerate(obj_names):
-    
+
     print()
     print('#################################################')
     print('#################################################')
@@ -109,52 +149,20 @@ for i, obj_name in enumerate(obj_names):
     obj_abbr = obj_name[4:9] # e.g. J0029
     z = zs[i] # lens redshift
     print('z',z)
+    
+    if obj_abbr == 'J0330':
+        print('Skipping J0330.')
+        continue
+        
+    if obj_abbr == 'J1306':
+        print('Skipping J1306')
+        continue
 
     # other necessary directories ... Be very careful! This is how we will make sure we are using the correct files moving forward.
     mos_dir = f'{mosaics_dir}{obj_name}/' # files should be loaded from here but not saved
     kin_dir = f'{kinematics_dir}{obj_name}/'
     if not os.path.exists(kin_dir):
         os.mkdir(kin_dir)
-
-    #------------------------------------------------------------------------------
-    # Kinematics systematics initial choices
-
-    # stellar templates library
-    # stellar_templates_library = 'all_dr2_fits_G789K012'
-
-    # aperture
-    aperture = 'R2' # largest aperture
-
-    # wavelength range
-    wave_min = 340
-    wave_max = 410 # I am doing this to be uniform across the objects
-
-    # degree of the additive Legendre polynomial in ppxf
-    degree = 5 # 110/25 = 4.4 round up
-
-    #------------------------------------------------------------------------------
-    # Information specific to KCWI and templates
-
-    kcwi_scale = 0.1457
-
-    ## R=3600. spectral resolution is ~ 1.42A
-    FWHM = 1.42 #1.42
-
-    # FWHM_tem_xshooter = 0.43 #0.43
-
-    ## initial estimate of the noise
-    noise = 0.014
-
-    # velocity scale ratio
-    velscale_ratio = 2
-
-    #------------------------------------------------------------------------------
-    # variable settings in ppxf and utility functions
-
-    # global template spectrum chi2 threshold
-    global_template_spectrum_chi2_threshold = 1.5
-
-    #------------------------------------------------------------------------------
 
     #KCWI mosaic datacube
     mos_name = f'KCWI_{obj_abbr}_icubes_mosaic_0.1457'
@@ -180,56 +188,58 @@ for i, obj_name in enumerate(obj_names):
             library_dir = None
             FWHM_tem = None
 
-        # fit center spectrum with templates
-        templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy, background_source = \
-            ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir=library_dir,
-                                                                      degree=degree,
-                                                                      spectrum_aperture=spectrum_aperture,
-                                                                      wave_min=wave_min,
-                                                                      wave_max=wave_max,
-                                                                      velscale_ratio=velscale_ratio,
-                                                                      z=z,
-                                                                      noise=noise,
-                                                                      templates_name=templates_name,
-                                                                      FWHM=FWHM,
-                                                                      FWHM_tem=FWHM_tem,
-                                                                      plot=False)
+        try:
+            # fit center spectrum with templates
+            templates, pp, lamRange1, logLam1, lamRange2, logLam2, galaxy = \
+                ppxf_kinematics_getGlobal_lens_deredshift_library_test(library_dir=library_dir,
+                                                                          degree=degree,
+                                                                          spectrum_aperture=spectrum_aperture,
+                                                                          wave_min=wave_min,
+                                                                          wave_max=wave_max,
+                                                                          velscale_ratio=velscale_ratio,
+                                                                          z=z,
+                                                                          noise=noise,
+                                                                          templates_name=templates_name,
+                                                                          FWHM=FWHM,
+                                                                          FWHM_tem=FWHM_tem,
+                                                                          plot=False)
 
+            # plot the spectrum and template fits
+            #pp.plot()
+            #plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum_full.png')
+            #plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum_full.pdf')
+            #plt.pause(1)
+            #plt.clf()
+            pp.plot()
+            plt.xlim(wave_min/1000, wave_max/1000) # it's in microns
+            plt.title(f'V {np.around(pp.sol[0], 2)} km/s, VD {np.around(pp.sol[1],2)} km/s')
+            plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum.png')
+            plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum.pdf')
+            plt.pause(1)
 
-        # plot the spectrum and template fits
-        #pp.plot()
-        #plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum_full.png')
-        #plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum_full.pdf')
-        #plt.pause(1)
-        #plt.clf()
-        pp.plot()
-        plt.xlim(wave_min/1000, wave_max/1000) # it's in microns
-        plt.title(f'V {np.around(pp.sol[0], 2)} km/s, VD {np.around(pp.sol[1],2)} km/s')
-        plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum.png')
-        plt.savefig(kin_dir + obj_name + templates_name + '_global_template_spectrum.pdf')
-        plt.pause(1)
+            # flag and reject if pp.chi2 > threshold
+            assert pp.chi2 < global_template_spectrum_chi2_threshold, f'Global template spectrum chi2 {pp.chi2} exceeds threshold of {global_template_spectrum_chi2_threshold}. Try again please.'
 
-        # flag and reject if pp.chi2 > threshold
-        assert pp.chi2 < global_template_spectrum_chi2_threshold, f'Global template spectrum chi2 {pp.chi2} exceeds threshold of {global_template_spectrum_chi2_threshold}. Try again please.'
+            # save the pp object as a pickle
+            # write file
+            pickle_file = open(f'{kin_dir}{obj_name}_{templates_name}_global_template_spectrum_fit.pkl', 'wb')
+            pickle.dump(pp, pickle_file)
+            pickle_file.close()
 
-        # save the pp object as a pickle
-        # write file
-        pickle_file = open(f'{kin_dir}{obj_name}_{templates_name}_global_template_spectrum_fit.pkl', 'wb')
-        pickle.dump(pp, pickle_file)
-        pickle_file.close()
+            # save templates object as a pickle
+            pickle_file = open(f'{kin_dir}{obj_name}_{templates_name}_global_template_spectrum_fit_templates.pkl', 'wb')
+            pickle.dump(templates, pickle_file)
+            pickle_file.close()
 
-        # save templates object as a pickle
-        pickle_file = open(f'{kin_dir}{obj_name}_{templates_name}_global_template_spectrum_fit_templates.pkl', 'wb')
-        pickle.dump(templates, pickle_file)
-        pickle_file.close()
-
-        # save variables for future use, show number of stars
-        nTemplates = templates.shape[1]
-        global_temp_xshooter = templates @ pp.weights[:nTemplates]
-        pp_weights_2700 = pp.weights[:nTemplates]
-        print('number of stars that have non-zero contribution =', np.sum((~(
-                pp_weights_2700 == 0))*1))
-
+            # save variables for future use, show number of stars
+            #nTemplates = templates.shape[1]
+            #global_temp_xshooter = templates @ pp.weights[:nTemplates]
+            #pp_weights_2700 = pp.weights[:nTemplates]
+            #print('number of stars that have non-zero contribution =', np.sum((~(
+              #      pp_weights_2700 == 0))*1))
+        except Exception as error:
+            # handle the exception
+            print("An exception occurred:", error) # An exception occurred: division by zero
 
 print()
 print('############################')

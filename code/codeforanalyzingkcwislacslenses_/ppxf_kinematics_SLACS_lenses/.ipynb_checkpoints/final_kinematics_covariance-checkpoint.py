@@ -327,7 +327,6 @@ for obj_name in obj_names:
             rms_velocities = np.zeros(len(Vrms))
             Vrms_sigmas = np.zeros(len(Vrms))
 
-
             for vel_moment in ['VD','V','Vrms']: ### ignore the velocities for now
             #for vel_moment in ['V','Vrms']: ### ignore the velocities for now
 
