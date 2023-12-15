@@ -5,7 +5,7 @@ from astropy.io import fits
 from matplotlib import colors
 #import sys
 #sys.path.append("/home/shawnknabel/Documents/slacs_kinematics/my_python_packages")
-from ppxf_kcwi_util_022423.templates_util import Xshooter, miles, Munari05_subset, indo_US # 11/17/23 - Shawn changed this from ppxf.templates_util, because ppxf updated and no longer uses the same templates_util.py, ppxf_kcwi_util_022423 saves it in a place I keep and point the path to
+from templates_util import Xshooter, miles, Munari05_subset, indo_US # 11/17/23 - Shawn changed this from ppxf.templates_util, because ppxf updated and no longer uses the same templates_util.py, ppxf_kcwi_util_022423 saves it in a place I keep and point the path to
 from pathlib import Path
 from os import path
 from ppxf.ppxf import ppxf
@@ -200,16 +200,6 @@ def ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift(libary_dir,
 
         lamRange1_q = lamRange1_q/(1+z_bs) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
 
-        # My method 7/13/22 - using Kinney 1996 galaxy templates given to me by Tommaso for my LinKS project (in dir KECK_KCWI.../kinney_1996_galaxy_templates/)
-        # Read a background_source spectrum and define the wavelength range
-        #background_template = np.loadtxt(background_source_spectrum, unpack=True)
-        #lamRange1_q = np.array([background_template[0,0], background_template[0,-1]]) # wavelength range
-        #background_source_lin = background_template[1,:] # spectrum
-
-        # Compute the approximate wavelength redshifted by z_bs - z
-        #z_ls = z_bs - z # redshift between lens and source
-        #lamRange1_q = lamRange1_q*(1+z_ls) # Compute approximate restframe wavelength # shouldn't the background source template already be at restframe wavelength?
-
         background_source, logLam1_q, velscale_q = util.log_rebin(lamRange1_q, background_source_lin)
         background_source = background_source/np.median(background_source)  # Normalize spectrum to avoid numerical
 
@@ -218,8 +208,6 @@ def ppxf_kinematics_RXJ1131_getGlobal_lens_deredshift(libary_dir,
         background_source = 1 # this is only for returning the value and does not have
         # any meaning
         print('no sky spectrum (i.e., no background_source)')
-
-
 
     # Read the list of filenames from Xshooter library
     if templates_name == 'xshooter':

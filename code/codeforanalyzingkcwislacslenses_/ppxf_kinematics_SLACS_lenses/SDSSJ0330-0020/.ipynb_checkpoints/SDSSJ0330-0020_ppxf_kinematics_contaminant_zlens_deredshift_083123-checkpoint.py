@@ -302,7 +302,7 @@ Step 4.5: fitting the sersic to the S/N ratio figure to overcome the bad subtrac
 region = mos_dir + 'background_source.reg'
 
 # mask the region where it shows the background source arc emission
-mask = ~getMaskInFitsFromDS9reg(region, SN_per_AA.shape[0], hdu[0])*1cd # uses nobs data
+mask = ~getMaskInFitsFromDS9reg(region, SN_per_AA.shape[0], hdu[0])*1 # uses nobs data
 
 # initial guess about sersic profile parameters
 amp0 = 0.005 # 
