@@ -1,9 +1,0 @@
-#####################################################
-#####################################################
-
-Beginning final kinematics script for object SDSSJ0029-0055.
-
-Traceback (most recent call last):
-  File "final_kinematics_covariance.py", line 226, in <module>
-    V = V - glob_temp_vel_grid
-ValueError: operands could not be broadcast together with shapes (193,81) (15633,81) 

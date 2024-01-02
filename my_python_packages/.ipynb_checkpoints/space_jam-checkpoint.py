@@ -12,7 +12,7 @@ import numpy as np
 np.set_printoptions(threshold=10000)
 import matplotlib.pyplot as plt
 plt.rcParams["figure.figsize"] = (8, 6)
-#plt.switch_backend('agg')
+plt.switch_backend('agg')
 import pandas as pd
 import warnings
 warnings.filterwarnings( "ignore", module = "matplotlib\..*" )
@@ -45,13 +45,13 @@ import astropy.units as u
 import astropy.constants as constants
 
 # mge fit
-import mgefit
-from mgefit.find_galaxy import find_galaxy
-from mgefit.mge_fit_1d import mge_fit_1d
-from mgefit.sectors_photometry import sectors_photometry
-from mgefit.mge_fit_sectors import mge_fit_sectors
-from mgefit.mge_print_contours import mge_print_contours
-from mgefit.mge_fit_sectors_regularized import mge_fit_sectors_regularized
+#import mgefit
+#from mgefit.find_galaxy import find_galaxy
+#from mgefit.mge_fit_1d import mge_fit_1d
+#from mgefit.sectors_photometry import sectors_photometry
+#from mgefit.mge_fit_sectors import mge_fit_sectors
+#from mgefit.mge_print_contours import mge_print_contours
+#from mgefit.mge_fit_sectors_regularized import mge_fit_sectors_regularized
 
 # jam
 from jampy.jam_axi_proj import jam_axi_proj
@@ -75,6 +75,14 @@ import emcee
 import corner
 #from IPython.display import display, Math
 
+# import my packages
+# my functions
+import sys
+sys.path.append("/home/shawnknabel/Documents/slacs_kinematics/my_python_packages")
+from total_mass_mge import total_mass_mge
+
+# value of c^2 / 4 pi G
+c2_4piG = (constants.c **2 / constants.G / 4 / np.pi).to('solMass/pc')
 
 class space_jam:
     
@@ -214,9 +222,9 @@ class space_jam:
         Path(jam_dir).mkdir(parents=True, exist_ok=True)
         # J0330 has no G-band
         if self.obj_abbr=='J0330':
-            target_kin_dir = f'{obj_kin_dir}target_sn_{SN}/{self.obj_name}_{self.SN}_final_kinematics/no_g/'
+            target_kin_dir = f'{obj_kin_dir}target_sn_{self.SN}/{self.obj_name}_{self.SN}_final_kinematics/no_g/'
         else:
-            target_kin_dir = f'{obj_kin_dir}target_sn_{SN}/{self.obj_name}_{self.SN}_marginalized_gnog_final_kinematics/'
+            target_kin_dir = f'{obj_kin_dir}target_sn_{self.SN}/{self.obj_name}_{self.SN}_marginalized_gnog_final_kinematics/'
 
         # make the model directory
 
@@ -330,14 +338,10 @@ class space_jam:
 
             # anisotropy priors and labels
             if (self.align == 'sph') & (self.anisotropy == 'const'):
-                bound_ani_ratio_hi = 2.0
-                # bounds[1][2] = 2.0    # anisotropy of spherical can be up to 2.0
-                # lower bound by R of the lower bound of q_min
-                #bounds[0][2] = np.sqrt(0.3 + 0.7 * bounds[0][1])
+                bound_ani_ratio_hi = 2.0 # anisotropy of spherical can be up to 2.0
                 label2 = r"$\sigma_{\theta}/\sigma_r$"
             elif (self.align == 'cyl') & (self.anisotropy == 'const'):
-                bound_ani_ratio_hi = 1.0
-                #bounds[1][2] = 1.0 # anisotropy of cylindrical CANNOT be up to 2.0
+                bound_ani_ratio_hi = 1.0 # anisotropy of cylindrical CANNOT be up to 2.0
                 label2 = r"$\sigma_z/\sigma_R$"
             elif self.anisotropy == 'OM':
                 label2 = r"$a_{ani}$"
@@ -374,11 +378,11 @@ class space_jam:
 
             # anisotropy priors and labels
             if (self.align == 'sph') & (self.anisotropy == 'const'):
-                #self.bounds[1][1] = 2.0    # anisotropy of spherical can be up to 2.0
+                bound_ani_ratio_hi = 2.0 # anisotropy of spherical can be up to 2.0
                 label2 = r"$\sigma_{\theta}/\sigma_r$"
             elif self.anisotropy == 'OM':
                 label2 = r"$a_{ani}$"
-            self.shape_anis_bounds = bounds[1]#np([0., 1.0])
+            self.shape_anis_bounds = np.array([0.0, bound_ani_ratio_hi])
             # set up empty array and add the ratios here so they don't have to be calculated again
             self.anisotropy_ratio_samples = np.array([], dtype='f')
 
@@ -440,7 +444,7 @@ class space_jam:
             for i in range(len(pars)):
                 if self.prior_type[i]=='uniform':
                     lnprior[i]=0.
-                elif prior_type[i]=='gaussian':
+                elif self.prior_type[i]=='gaussian':
                     lnprior[i]=np.log(1.0/(np.sqrt(2*np.pi)*sigma[i]))-0.5*(pars[i]-mu[i])**2/sigma[i]**2
 
         return np.sum(lnprior)
@@ -467,7 +471,10 @@ class space_jam:
                 self.lambda_int_samples = np.append(self.lambda_int_samples, 'nan')
                 self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, 'nan')
                 self.chi2s = np.append(self.chi2s, np.inf)
-            return -np.inf
+                return -np.inf
+            else:
+                print('bestfit is excluded by the priors')
+                return 0, 0, 0
 
         else:
             # axisymmetric model takes jam_axi_proj
@@ -524,7 +531,6 @@ class space_jam:
                     qobs_pot = total_mass.qobs_pot
                     lambda_int = total_mass.lambda_int
 
-                    
                     # reject if negative mass calculated
                     if lambda_int==0:
                         lnprob = -np.inf
@@ -533,7 +539,10 @@ class space_jam:
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                             self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                             self.chi2s = np.append(self.chi2s, np.inf)
-                        return lnprob
+                            return lnprob
+                        else:
+                            print('bestfit is results in negative mass')
+                            return 0, 0, 0
                     else:
                         # run JAM
                         # ignore central black hole
@@ -541,7 +550,7 @@ class space_jam:
                         # make the JAM model
                         jam = jam_axi_proj(self.surf_lum, self.sigma_lum, self.qobs_lum, surf_pot, sigma_pot, qobs_pot,
                                            inc, mbh, self.distance, self.xbin, self.ybin, 
-                                            align=align, beta=beta, logistic=logistic,
+                                            align=self.align, beta=beta, logistic=logistic,
                                            data=self.Vrms, errors=self.dVrms, goodbins=self.goodbins,
                                            pixsize=self.pixsize, sigmapsf=self.sigmapsf, normpsf=self.normpsf, 
                                            plot=plot,  quiet=1, ml=1, nodots=True)
@@ -679,9 +688,9 @@ class space_jam:
         self.lnprob = self.sampler.get_log_prob(flat=True)
         self.bestfit = self.pars[np.nanargmax(self.lnprob)]  # Best fitting parameters
         print('n accepted unique parameters', len(np.unique(self.pars[:,0])))
-        print('Saving to ', self.model_dir)
         self.index_accepted_samples()
         self.save_space_jam()
+        print("Job's finished!")
     
     ###################
     # function to plot summary
@@ -692,10 +701,10 @@ class space_jam:
         Plot the final corner plot with the best fitting JAM model.
         """
         
-        print('number of chi2s', self.chi2s.shape)
-        
         # jam the best fit
         jam, surf_potential, lambda_int = self.jam_lnprob(self.bestfit, plot=True, test_prior=False, bestfit=True)
+        if jam==0:
+            return 'Cannot plot this bestfit'
         rms_model = jam.model
         flux_model = jam.flux
 

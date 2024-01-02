@@ -25,9 +25,11 @@ from mgefit.mge_fit_1d import mge_fit_1d
 from mgefit.mge_print_contours import mge_print_contours
 
 # my functions
-import sys
-sys.path.append("/home/shawnknabel/Documents/slacs_kinematics/my_python_packages")
+#import sys
+#sys.path.append("/home/shawnknabel/Documents/slacs_kinematics/my_python_packages")
 
+# value of c^2 / 4 pi G
+c2_4piG = (constants.c **2 / constants.G / 4 / np.pi).to('solMass/pc')
 
 class total_mass_mge:
     
@@ -148,8 +150,6 @@ class total_mass_mge:
         self.lambda_int = lambda_int
         self.a_mst = a_mst
         
-        #### Check possible input errors
-        
         # value of c^2 / 4 pi G
         c2_4piG = (constants.c **2 / constants.G / 4 / np.pi).to('solMass/pc')        
         # profile set up
@@ -231,7 +231,7 @@ class total_mass_mge:
         DLS = cosmo.angular_diameter_distance_z1z2(self.zlens, self.zsource).to('pc')
         # calculate critical surface density
         sigma_crit = c2_4piG * DS / DL / DLS
-        self.surf_mass_density = self.kappa_int / sigma_crit.value
+        self.surf_mass_density = self.kappa_int * sigma_crit.value
         
     
     
