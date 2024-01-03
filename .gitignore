@@ -1,5 +1,6 @@
 # git ignore file - listed files and filetypes will not be added to commits
 
+*.pkl
 *.fits
 *nohup*
 *nh_*
