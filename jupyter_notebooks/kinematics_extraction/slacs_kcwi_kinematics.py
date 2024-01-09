@@ -102,7 +102,7 @@ class slacs_kcwi_kinematics:
         wave_min = 3400
         wave_max = 4300 # CF set to 428
         # degree of the additive Legendre polynomial in ppxf
-        degree = 5 # 110/25 = 4.4 round up
+        degree = 4 # 90/25 = 3.6 round up
         #------------------------------------------------------------------------------
         # Information specific to KCWI and templates
         kcwi_scale = 0.1457
@@ -621,6 +621,9 @@ class slacs_kcwi_kinematics:
 
         #estimate the noise from the blank sky
         noise_from_blank = self.cropped_datacube[3000:4000, 4-3:4+2,4-3:4+2]
+        # blank space may be chopped by mask, take the opposite corner
+        if noise_from_blank.std() == 0:
+            noise_from_blank = self.cropped_datacube[3000:4000, -4-3:-4+2,-4-3:-4+2]
         std = np.std(noise_from_blank)
         s = np.random.normal(0, std, self.cropped_datacube.flatten().shape[0])
         noise_cube = s.reshape(self.cropped_datacube.shape)
@@ -792,7 +795,7 @@ class slacs_kcwi_kinematics:
                 model = pp.bestfit
                 log_axis = wavelengths
                 lin_axis = np.linspace(self.wave_min, self.wave_max, data.size)
-                sky_lin = de_log_rebin(log_axis, background, lin_axis)
+                back_lin = de_log_rebin(log_axis, background, lin_axis)
                 model_lin = de_log_rebin(log_axis, model, lin_axis)
                 data_lin = de_log_rebin(log_axis, data, lin_axis)
                 noise_lin = data_lin - model_lin
@@ -814,7 +817,7 @@ class slacs_kcwi_kinematics:
                 plt.xlim(self.wave_min, self.wave_max)
                 plt.xlabel('wavelength (A)')
                 plt.ylabel('relative flux')
-                plt.title(f'Velocity dispersion - {int(pp.sol[1])} km/s')
+                plt.title(f'Bin {i} - Velocity dispersion - {int(pp.sol[1])} km/s')
                 plt.show()
                 plt.pause(1)
             self.bin_kinematics = np.vstack((self.bin_kinematics, np.hstack( (pp.sol[:2],
