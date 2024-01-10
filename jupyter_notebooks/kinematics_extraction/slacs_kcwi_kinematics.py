@@ -391,7 +391,7 @@ class slacs_kcwi_kinematics:
         
 ###########################################################
 
-    def run_slacs_kcwi_kinematics(self, plot_bin_fits=False):
+    def run_slacs_kcwi_kinematics(self, fit_poisson_noise=False, plot_bin_fits=False):
         '''
         Convenience function runs all the steps in a row for ease.
         plot_bin_fits- if True, will plot each ppxf fit for the bins, default is False (to save time)
@@ -418,7 +418,7 @@ class slacs_kcwi_kinematics:
         # bin the selected spaxels to the target S/N
         self.voronoi_binning()
         # fit each bin spectrum with global_template
-        self.ppxf_bin_spectra(plot_bin_fits=plot_bin_fits)
+        self.ppxf_bin_spectra(fit_poisson_noise, plot_bin_fits)
         # create the 2d kinematic maps from ppxf fits
         self.make_kinematic_maps()
         # plot those maps
@@ -620,10 +620,10 @@ class slacs_kcwi_kinematics:
     def create_SN_map(self):
 
         #estimate the noise from the blank sky
-        noise_from_blank = self.cropped_datacube[3000:4000, 4-3:4+2,4-3:4+2]
+        noise_from_blank = self.cropped_datacube[self.wave_min:self.wave_max, 4-3:4+2,4-3:4+2]
         # blank space may be chopped by mask, take the opposite corner
         if noise_from_blank.std() == 0:
-            noise_from_blank = self.cropped_datacube[3000:4000, -4-3:-4+2,-4-3:-4+2]
+            noise_from_blank = self.cropped_datacube[self.wave_min:self.wave_max, -4-3:-4+2,-4-3:-4+2]
         std = np.std(noise_from_blank)
         s = np.random.normal(0, std, self.cropped_datacube.flatten().shape[0])
         noise_cube = s.reshape(self.cropped_datacube.shape)
@@ -645,10 +645,10 @@ class slacs_kcwi_kinematics:
         flux_per_AA = 2 * flux_per_half_AA
 
         # show flux/AA
-        plt.imshow(flux_per_AA, origin="lower")
+        plt.clf()
+        p = plt.imshow(flux_per_AA, origin="lower")
         plt.title('flux per AA')
-        plt.colorbar()
-        plt.legend()
+        plt.colorbar(p)
         plt.show()
 
         # then, I estimate the noise/AA.
@@ -657,8 +657,8 @@ class slacs_kcwi_kinematics:
         # some weired pattern so we find average in the black region around 36, 36
         #sigma_mean = np.mean(sigma [36-6:36+5, 36-6:36+5])
         #sigma = np.ones(sigma.shape)*sigma_mean
-        plt.imshow(sigma,origin='lower')
-        plt.show()
+        #plt.imshow(sigma,origin='lower')
+        #plt.show()
 
         # then, estimate the poisson noise
         sigma_poisson = poisson_noise(self.exp_time, flux_per_AA, sigma, per_second=True)
@@ -733,7 +733,7 @@ class slacs_kcwi_kinematics:
         #    plt.text(i, j, label, ha='center', va='center')
         plt.show()
         
-    def ppxf_bin_spectra(self, plot_bin_fits=False):
+    def ppxf_bin_spectra(self, fit_poisson_noise=False, plot_bin_fits=False):
         self.bin_kinematics = np.zeros(shape=(0,5))
         for i in range(self.nbins):
             bin_spectrum = self.voronoi_binning_data[i]
@@ -783,11 +783,37 @@ class slacs_kcwi_kinematics:
                       quiet=self.quiet,
                         moments=2, 
                       goodpixels=mask,
-                        degree=5,
+                        degree=self.degree,
                         velscale_ratio=self.velscale_ratio,
                         lam=wavelengths,
                         lam_temp=self.global_template_wave,
                         )
+            if fit_poisson_noise==True:
+                data = pp.galaxy
+                model = pp.bestfit
+                log_axis = wavelengths
+                lin_axis = np.linspace(self.wave_min, self.wave_max, data.size)
+                model_lin = de_log_rebin(log_axis, model, lin_axis)
+                data_lin = de_log_rebin(log_axis, data, lin_axis)
+                noise_lin = data_lin - model_lin
+                noise_poisson = poisson_noise(self.exp_time, model_lin,
+                                      np.std(noise_lin[self.wave_min:self.wave_max]),
+                                      per_second=True)
+                pp = ppxf(self.global_template, 
+                          galaxy, 
+                          noise_poisson, 
+                          velscale, 
+                          start, 
+                          sky=background_source, 
+                          plot=False,#plot_bin_fits, 
+                          quiet=self.quiet,
+                            moments=2, 
+                          goodpixels=mask,
+                            degree=self.degree,
+                            velscale_ratio=self.velscale_ratio,
+                            lam=wavelengths,
+                            lam_temp=self.global_template_wave,
+                            )
             if plot_bin_fits==True:
                 #plot the fit
                 background = background_source * pp.weights[-1]
