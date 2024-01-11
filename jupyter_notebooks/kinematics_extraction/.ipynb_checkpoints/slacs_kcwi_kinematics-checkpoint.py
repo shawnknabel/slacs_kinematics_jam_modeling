@@ -2,13 +2,11 @@
 ##########################################################
 ##########################################################
 
-01/04/2023 - Shawn Knabel (shawnknabel@gmail.com)
+01/04/2023 - Shawn Knabel (shawnknabel@gmail.com) - Chih-Fan Chen
 
 This python script creates a class called slacs_kcwi_kinematics.
 Its purpose is to take a mosaic'ed datacube of a SLACS lens galaxy and create kinematic maps.
 Several pieces must be done beforehand and input.
-
-I will eventually make this a universal package to be used from kinematics through the dynamical Jeans modeling.
 
 ##########################################################
 ##########################################################
@@ -17,6 +15,7 @@ I will eventually make this a universal package to be used from kinematics throu
 from astropy.io import fits
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import colors
 import pathlib # to create directory
 
 from ppxf.ppxf import ppxf
@@ -34,13 +33,6 @@ import pyregion
 # my functions
 import sys
 sys.path.append("/home/shawnknabel/Documents/slacs_kinematics/my_python_packages/ppxf_kcwi_util_022423")
-#register_sauron_colormap()
-from templates_util import Xshooter
-from kcwi_util import register_sauron_colormap
-from kcwi_util import poisson_noise
-from kcwi_util import find_nearest
-from kcwi_util import SN_CaHK
-register_sauron_colormap()
 
 import ppxf.ppxf_util as ppxf_util
 from os import path
@@ -51,6 +43,86 @@ c = 299792.458 # km/s
 
 ##############
 # Utility functions
+
+def register_sauron_colormap():
+    """
+    Regitsr the 'sauron' and 'sauron_r' colormaps in Matplotlib
+
+    """
+    cdict = {'red':[(0.000,   0.01,   0.01),
+                 (0.170,   0.0,    0.0),
+                 (0.336,   0.4,    0.4),
+                 (0.414,   0.5,    0.5),
+                 (0.463,   0.3,    0.3),
+                 (0.502,   0.0,    0.0),
+                 (0.541,   0.7,    0.7),
+                 (0.590,   1.0,    1.0),
+                 (0.668,   1.0,    1.0),
+                 (0.834,   1.0,    1.0),
+                 (1.000,   0.9,    0.9)],
+        'green':[(0.000,   0.01,   0.01),
+                 (0.170,   0.0,    0.0),
+                 (0.336,   0.85,   0.85),
+                 (0.414,   1.0,    1.0),
+                 (0.463,   1.0,    1.0),
+                 (0.502,   0.9,    0.9),
+                 (0.541,   1.0,    1.0),
+                 (0.590,   1.0,    1.0),
+                 (0.668,   0.85,   0.85),
+                 (0.834,   0.0,    0.0),
+                 (1.000,   0.9,    0.9)],
+         'blue':[(0.000,   0.01,   0.01),
+                 (0.170,   1.0,    1.0),
+                 (0.336,   1.0,    1.0),
+                 (0.414,   1.0,    1.0),
+                 (0.463,   0.7,    0.7),
+                 (0.502,   0.0,    0.0),
+                 (0.541,   0.0,    0.0),
+                 (0.590,   0.0,    0.0),
+                 (0.668,   0.0,    0.0),
+                 (0.834,   0.0,    0.0),
+                 (1.000,   0.9,    0.9)]
+         }
+
+    rdict = {'red':[(0.000,   0.9,    0.9),
+                 (0.170,   1.0,    1.0),
+                 (0.336,   1.0,    1.0),
+                 (0.414,   1.0,    1.0),
+                 (0.463,   0.7,    0.7),
+                 (0.502,   0.0,    0.0),
+                 (0.541,   0.3,    0.3),
+                 (0.590,   0.5,    0.5),
+                 (0.668,   0.4,    0.4),
+                 (0.834,   0.0,    0.0),
+                 (1.000,   0.01,   0.01)],
+        'green':[(0.000,   0.9,    0.9),
+                 (0.170,   0.0,    0.0),
+                 (0.336,   0.85,   0.85),
+                 (0.414,   1.0,    1.0),
+                 (0.463,   1.0,    1.0),
+                 (0.502,   0.9,    0.9),
+                 (0.541,   1.0,    1.0),
+                 (0.590,   1.0,    1.0),
+                 (0.668,   0.85,   0.85),
+                 (0.834,   0.0,    0.0),
+                 (1.000,   0.01,   0.01)],
+         'blue':[(0.000,   0.9,    0.9),
+                 (0.170,   0.0,    0.0),
+                 (0.336,   0.0,    0.0),
+                 (0.414,   0.0,    0.0),
+                 (0.463,   0.0,    0.0),
+                 (0.502,   0.0,    0.0),
+                 (0.541,   0.7,    0.7),
+                 (0.590,   1.0,    1.0),
+                 (0.668,   1.0,    1.0),
+                 (0.834,   1.0,    1.0),
+                 (1.000,   0.01,   0.01)]
+         }
+
+    sauron = colors.LinearSegmentedColormap('sauron', cdict)
+    sauron_r = colors.LinearSegmentedColormap('sauron_r', rdict)
+    plt.register_cmap(cmap=sauron)
+    plt.register_cmap(cmap=sauron_r)
 
 def de_log_rebin(delog_axi, value, lin_axi):
     '''
@@ -64,16 +136,81 @@ def de_log_rebin(delog_axi, value, lin_axi):
     return sky_lin
 
 def getMaskInFitsFromDS9reg(input,shape,hdu):
+    '''
+    Returns 2D pixel mask from .reg file created in DS9.
+    '''
     r = pyregion.open(input)
     mask = r.get_mask(shape=shape,hdu=hdu)
     return mask
 
+def poisson_noise(T_exp, gal_lin, std_bk_noise, per_second=False):
+    '''
+    This means that the pixel uncertainty of pixel i (sigma_i) is obtained
+    from the science image intensity pixel i (d_i) by:
+    sigma_i^2 = scale * (d_i)^power + const
+    The first term represents noise from the astrophysical source, and the
+    second term is background noise (including read noise etc.).
+    When power=1 and scale=1 with d_i in counts, the astrophysical source noise
+    (=1*d_i^1=d_i) is Poisson. Suyu 2012 and Suyu et al. 2013a have somels
+
+    description of this.
+
+    To construct the weight map using the esource_noise_model:
+    -- set power=1
+    -- obtain const by estimating the variance of the background (i.e., const = sigma_bkgd^2 from an empty part of of the science image).
+    -- the scale is 1 if d_i is in counts, but otherwise it needs to account for exposure time if d_i is in counts per second.
+
+    Since the unit of the KCWI data is flux/AA (see fits header),
+    I need to compute scale with appropriate multiplications/divisions of
+    the exposure time (T_exp).  In this case, scale should be 1/texp so that
+    the units are in counts/sec for sigma_i^2 (since d_i needs to be
+    multiplied by texp to get to counts for Poisson noise estimation,
+    but then divided by texp^2 to get to counts/sec).
+
+    :param T_exp: the total exposure time of the dataset
+    :param gal_lin: input data
+    :param bk_noise: standard deviation of the background noise
+    :param per_second: set True if it is in the unit of counts/second
+    :return: poisson noise
+    '''
+
+    const = std_bk_noise**2
+    if per_second:
+        scale= 1/T_exp
+        sigma2 = scale * (gal_lin) + const
+    else:
+        scale = 1.
+        sigma2 = scale * (gal_lin) + const
+
+    if (sigma2<0).any():
+        sigma2[sigma2 < 0] = const
+
+    if np.isnan(sigma2).any():
+        sigma2[np.isnan(sigma2)] = const
+
+    poisson_noise = np.sqrt(sigma2)
+
+    return poisson_noise
+
+def find_nearest(array, value):
+    '''
+    :param array: wavelength array
+    :param value: wavelength that we want to get the index
+    :return: the index of the wavelength
+    '''
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
+
 ##############
+# start
+register_sauron_colormap()
+
 
 class slacs_kcwi_kinematics:
     
     '''
-    space_jam Purpose:
+    slacs_kcwi_kinematics Purpose:
     -------------------
     For a SLACS galaxy with reduced and mosaic'ed IFU datacube, take some inputs to create a stellar kinematic map.
     
@@ -252,8 +389,11 @@ class slacs_kcwi_kinematics:
     radius_in_pixels: int
         Radius in pixels taken for cropping the datacube to a smaller square. We tend to use 21 pixels, which is just over 3 arcseconds. This is about the range at which we are able to get S/N per pixel > 1, generally (pixels)
         
-    SN: int
+    bin_target_SN: float
         Target signal-to-noise ratio for Voronoi binning. The spaxels (spatial pixels, used interchangeably with pixels here) will be binned so that they are close to this target S/N before fitting kinematics to each bin. We tend to use 15
+        
+    pixel_min_SN: float
+        Minimum SN for a pixel to be included in fitting, during self.select_region, tend to use 1
         
     plot: boolean
         Plot the steps throughout, True or False
@@ -333,8 +473,7 @@ class slacs_kcwi_kinematics:
         Array of velocity dispersion VD, velocity V, error dVD, error dV, chi2 for each of the spatial Voronoi bins. Errors are determined in a bit of a funky way and will be replaced by sampling at some point. For now, errors are the "formal errors" from ppxf multiplied by the sqrt(chi2) for the fit.
         
     .VD_2d, .V_2d, .dVD_2d, .dV_2d: array_like(cropped_datacube)
-        Arrays of same shape as cropped_datacube (2*radius_in_pixels+1, square), with kinematic information assigned to each of the pixels individually (through voronoi_binning_output). The 2D kinematic map that is ready to be plotted. Unfit spaxels are Nan.
-        s
+        Arrays of same shape as cropped_datacube (2*radius_in_pixels+1, square), with kinematic information assigned to each of the pixels individually (through voronoi_binning_output). The 2D kinematic map that is ready to be plotted. Spaxels that are not fit are Nan.
     '''
 
     
@@ -360,7 +499,8 @@ class slacs_kcwi_kinematics:
                  noise,
                  velscale_ratio,
                  radius_in_pixels,
-                 SN,
+                 bin_target_SN,
+                 pixel_min_SN,
                  plot,
                  quiet):
         
@@ -385,7 +525,8 @@ class slacs_kcwi_kinematics:
         self.noise=noise
         self.velscale_ratio=velscale_ratio
         self.radius_in_pixels=radius_in_pixels
-        self.SN=SN
+        self.bin_target_SN=bin_target_SN
+        self.pixel_min_SN=pixel_min_SN
         self.plot=plot
         self.quiet=plot    
         
@@ -434,7 +575,7 @@ class slacs_kcwi_kinematics:
         data_hdu = fits.open(self.kcwi_datacube_file)
         datacube=data_hdu[0].data
         data_hdu.close()
-        # norm for plotting sake
+        # norm for plotting
         norm = simple_norm(np.nansum(datacube, axis=0), 'sqrt')
         # plot
         plt.imshow(np.nansum(datacube, axis=0), origin="lower", norm=norm)
@@ -487,19 +628,21 @@ class slacs_kcwi_kinematics:
         # bring in the templates from ppxf/sps_models/
         basename = f"spectra_{self.sps_name}_9.0.npz"
         filename = path.join(ppxf_dir, 'sps_models', basename)
-        # created template library will be sampled at data resolution times the velscale_ratio in the given wavelength range
+        # template library will be sampled at data resolution times the velscale_ratio in the given wavelength range
         sps = sps_util.sps_lib(filename, 
-                               self.central_velscale/self.velscale_ratio, 
-                               self.rest_FWHM, 
-                               wave_range=self.wave_range_templates)
+                               self.central_velscale/self.velscale_ratio, # resolution
+                               self.rest_FWHM, # data FWHM in restframe
+                               wave_range=self.wave_range_templates) # range for templates
         templates= sps.templates
-        self.templates = templates.reshape(templates.shape[0], -1)
+        # keep templates and wavelength range of templates
+        self.templates = templates.reshape(templates.shape[0], -1) 
         self.templates_wave = sps.lam_temp
 
     def set_up_mask(self):
         '''
-        Function prepares a mask for ppxf that determines the correct wavelength range and masks some gas lines.
+        Function prepares a mask of wavelengths for ppxf that determines the correct wavelength range and masks some gas lines.
         '''
+        # take the pixels in the range
         # after de-redshift, the initial redshift is zero.
         goodPixels = ppxf_util.determine_goodpixels(self.rest_wave_log, self.wave_range_templates, 0)
         # find the indices of the restframe wavelengths that are closest to the min and max we want
@@ -511,13 +654,14 @@ class slacs_kcwi_kinematics:
         boolen = ~((2956 < mask) & (mask < 2983))  # mask the Mg II
         mask = mask[boolen]
         boolen = ~((2983 < mask) & (mask < 3001))  # mask the Mg II
+        # return the mask
         self.mask = mask[boolen]
     
     def ppxf_central_spectrum(self):
         '''
         Function fits the central_spectrum with the stellar template spectra, a polynomial of specified degree, and the background source as the "sky" component.
         '''
-        # some setup
+        # some setup, starting guesses
         vel = c*np.log(1 + 0)   # eq.(8) of Cappellari (2017)
         start = [vel, 250.]  # (km/s), starting guess for [V, sigma]
         #bounds = [[-500, 500],[50, 450]] # not necessary
@@ -564,7 +708,7 @@ class slacs_kcwi_kinematics:
         plt.plot(lin_axis, model_lin, 'r-', label='model ('
                                                      'lens+background)')
         plt.plot(lin_axis, data_lin - back_lin, 'm-',
-                 label='remove background source from data', alpha=0.5)
+                 label='remove background source from data', alpha=0.5) # if there is a background source to remove
         plt.plot(lin_axis, back_lin + np.full_like(back_lin, 0.9e-5), 'c-',label='background source', alpha=0.7)
         plt.plot(lin_axis, noise_lin + np.full_like(back_lin, 0.9e-5), 'g-',
                  label='noise (data - best model)', alpha=0.7)
@@ -594,48 +738,72 @@ class slacs_kcwi_kinematics:
         '''
         Function crops the datacube to a size determined by radius_in_pixels.
         '''
+        # resulting datacube will have square spatial dim 2*r+1 pixels
         r = self.radius_in_pixels
+        # open the datacube fits file and retrieve the data
         data_hdu = fits.open(self.kcwi_datacube_file)
         datacube=data_hdu[0].data
         data_hdu.close()
+        # if there is a background source mask from DS9, background_source_mask_file should be the path to that file
         if self.background_source_mask_file is not None:
+            # load the mask file
             self.background_source_mask = ~getMaskInFitsFromDS9reg(self.background_source_mask_file, datacube.shape[1:], data_hdu[0])*1
+            # norm for plotting
             norm = simple_norm(np.nansum(datacube, axis=0), 'sqrt')
+            # plot and check the mask
             plt.imshow(np.nansum(datacube, axis=0)*self.background_source_mask, origin="lower", norm=norm)
             plt.title('Masked KCWI data')
             plt.colorbar(label='flux')
             plt.pause(1)
         else:
+            # if there is no background source, it will not mask anything
             self.background_source_mask = np.ones(datacube.shape[1:])
-        self.background_source_mask = self.background_source_mask[self.lens_center_y - r-1:self.lens_center_y + r, 
-                                         self.lens_center_x - r -1:self.lens_center_x + r]
+        # crop the mask
+        self.background_source_mask = self.background_source_mask[
+                                                                 self.lens_center_y - r-1:self.lens_center_y + r, 
+                                                                 self.lens_center_x - r -1:self.lens_center_x + r]
+        # crop the datacube and apply the mask
         self.cropped_datacube = datacube[:, 
                                          self.lens_center_y - r-1:self.lens_center_y + r, 
                                          self.lens_center_x - r -1:self.lens_center_x + r] * self.background_source_mask
+        # norm for plotting
         norm = simple_norm(np.nansum(self.cropped_datacube, axis=0), 'sqrt')
+        # plot to check the crop is successful
         plt.imshow(np.nansum(self.cropped_datacube, axis=0)*self.background_source_mask, origin="lower", norm=norm)
         plt.title('Cropped KCWI data')
         plt.colorbar(label='flux')
+        plt.pause(1)
 
     def create_SN_map(self):
-
-        #estimate the noise from the blank sky
+        '''
+        Function creates the S/N map for use in Voronoi binning.
+        '''
+        # estimate the noise from a blank section of sky
         noise_from_blank = self.cropped_datacube[self.wave_min:self.wave_max, 4-3:4+2,4-3:4+2]
         # blank space may be chopped by mask, take the opposite corner
         if noise_from_blank.std() == 0:
             noise_from_blank = self.cropped_datacube[self.wave_min:self.wave_max, -4-3:-4+2,-4-3:-4+2]
+        # take the std of the blank patch of sky
         std = np.std(noise_from_blank)
+        # sample the normal distribution of the noise
         s = np.random.normal(0, std, self.cropped_datacube.flatten().shape[0])
+        # create a noise cube from it
         noise_cube = s.reshape(self.cropped_datacube.shape)
 
-        ## in the following, I use the noise spectrum and datacube with no quasar
-        # light produced in the previous steps to estimate the S/N per AA. Since KCWI
+        ## use the noise spectrum and datacube
+        # produced in the previous steps to estimate the S/N per AA. Since KCWI
         #  is  0.5AA/pixel, I convert the value to S/N per AA. Note that I use only the
-        # region of CaH&K to estimate the S/N ratio (i.e. 4800AA - 5100AA).
+        # region of CaH&K to estimate the S/N ratio (i.e. 3900AA - 4000AA).
         lin_axis = np.linspace(self.rest_wave_range[0], self.rest_wave_range[1], self.cropped_datacube.shape[0])
         # find indices for SN
-        ind_min_SN = find_nearest(lin_axis*(1+self.zlens), 4800)
-        ind_max_SN = find_nearest(lin_axis*(1+self.zlens), 5100)
+        ind_min_SN = find_nearest(lin_axis, 3900)
+        ind_max_SN = find_nearest(lin_axis, 4000)
+        
+        # show wavelengths used to calculate SN, just to be sure
+        plt.plot(self.rest_wave, self.central_spectrum, c='r')
+        plt.axvspan(3900, 4000, facecolor='black', alpha=0.5)
+        plt.title('S/N wavelengths')
+        plt.pause(1)
 
         # first, I need to estimate the flux/AA
         flux_per_half_AA = np.nanmedian(self.cropped_datacube[ind_min_SN:ind_max_SN, :, :],
@@ -654,11 +822,6 @@ class slacs_kcwi_kinematics:
         # then, I estimate the noise/AA.
         sigma_per_half_pixel = np.std(noise_cube[ind_min_SN:ind_max_SN,:,:], axis=0)
         sigma = np.sqrt(2) * sigma_per_half_pixel
-        # some weired pattern so we find average in the black region around 36, 36
-        #sigma_mean = np.mean(sigma [36-6:36+5, 36-6:36+5])
-        #sigma = np.ones(sigma.shape)*sigma_mean
-        #plt.imshow(sigma,origin='lower')
-        #plt.show()
 
         # then, estimate the poisson noise
         sigma_poisson = poisson_noise(self.exp_time, flux_per_AA, sigma, per_second=True)
@@ -676,9 +839,11 @@ class slacs_kcwi_kinematics:
 
     def select_region(self):
         
+        # center the SN map on highest value
         SN_y_center, SN_x_center = np.unravel_index(self.SN_per_AA.argmax(), self.SN_per_AA.shape)
-        max_radius = 50
-        target_SN = 1.
+        #max_radius = 50 # unnecessary
+        # take pixels greater than 1 (should be able to set it when initializing the class)
+        #target_SN = 1.
 
         xx = np.arange(self.radius_in_pixels * 2 + 1)
         yy = np.arange(self.radius_in_pixels * 2 + 1)
@@ -686,7 +851,7 @@ class slacs_kcwi_kinematics:
         
         dist = np.sqrt((xx - SN_x_center) ** 2 + (yy - SN_y_center) ** 2)
 
-        SN_mask = (self.SN_per_AA > target_SN) & (dist < max_radius)
+        SN_mask = (self.SN_per_AA > self.pixel_min_SN)# & (dist < max_radius)
 
         xx_1D = xx[SN_mask]
         yy_1D = yy[SN_mask]
@@ -704,7 +869,7 @@ class slacs_kcwi_kinematics:
         
         x, y, signal, noise = self.voronoi_binning_input
         binNum, xNode, yNode, xBar, yBar, sn, nPixels, scale = voronoi_2d_binning(
-                x, y, signal, noise, self.SN, plot=1, quiet=1)
+                x, y, signal, noise, self.bin_target_SN, plot=1, quiet=1)
         
         plt.tight_layout()
         #plt.savefig(target_dir + obj_name + '_voronoi_binning.png')
@@ -727,11 +892,32 @@ class slacs_kcwi_kinematics:
 
         self.nbins = self.voronoi_binning_data.shape[0]
         print("Number of bins =", self.nbins)
-        plt.imshow(check, origin="lower", cmap='sauron')
-        plt.colorbar()
+        
+        bin_y_means = np.zeros(self.nbins)
+        bin_x_means = np.zeros(self.nbins)
+
+        for i in range(self.nbins):
+            # get bins and x, y for each pixel
+            bin_pixels = self.voronoi_binning_output[self.voronoi_binning_output[:,2]==i]
+            bin_x = bin_pixels[:,0]
+            bin_y = bin_pixels[:,1]
+            # calculate mean x and y
+            mean_x = np.mean(bin_x)
+            mean_y = np.mean(bin_y)
+            # update array
+            bin_x_means[i] = mean_x
+            bin_y_means[i] = mean_y
+        
+        # save bin centers in pixel coordinates
+        self.bin_centers = np.column_stack((bin_x_means, bin_y_means))
+        
+        p=plt.imshow(check, origin="lower", cmap='sauron')
+        plt.scatter(self.bin_centers[:,0], self.bin_centers[:,1], c='k', marker='.', s=2)
+        plt.colorbar(p)
         #for (j, i), label in np.ndenumerate(check):
         #    plt.text(i, j, label, ha='center', va='center')
         plt.show()
+        
         
     def ppxf_bin_spectra(self, fit_poisson_noise=False, plot_bin_fits=False):
         self.bin_kinematics = np.zeros(shape=(0,5))
