@@ -504,33 +504,33 @@ class slacs_kcwi_kinematics:
                  plot,
                  quiet):
         
-        self.mos_dir=mos_dir
-        self.kin_dir=kin_dir
-        self.obj_name=obj_name
-        self.kcwi_datacube_file=kcwi_datacube_file
-        self.central_spectrum_file=central_spectrum_file
-        self.background_spectrum_file=background_spectrum_file
-        self.background_source_mask_file=background_source_mask_file
-        self.zlens=zlens
-        self.exp_time=exp_time
-        self.lens_center_x=lens_center_x
-        self.lens_center_y=lens_center_y
-        self.aperture=aperture
-        self.wave_min=wave_min
-        self.wave_max=wave_max
-        self.degree=degree
-        self.sps_name=sps_name
-        self.pixel_scale=pixel_scale
-        self.FWHM=FWHM
-        self.noise=noise
-        self.velscale_ratio=velscale_ratio
-        self.radius_in_pixels=radius_in_pixels
-        self.bin_target_SN=bin_target_SN
-        self.pixel_min_SN=pixel_min_SN
-        self.plot=plot
-        self.quiet=plot    
+        self.mos_dir = mos_dir
+        self.kin_dir = kin_dir
+        self.obj_name = obj_name
+        self.kcwi_datacube_file = kcwi_datacube_file
+        self.central_spectrum_file = central_spectrum_file
+        self.background_spectrum_file = background_spectrum_file
+        self.background_source_mask_file = background_source_mask_file
+        self.zlens = zlens
+        self.exp_time = exp_time
+        self.lens_center_x = lens_center_x
+        self.lens_center_y = lens_center_y
+        self.aperture = aperture
+        self.wave_min = wave_min
+        self.wave_max = wave_max
+        self.degree = degree
+        self.sps_name = sps_name
+        self.pixel_scale = pixel_scale
+        self.FWHM = FWHM
+        self.noise = noise
+        self.velscale_ratio = velscale_ratio
+        self.radius_in_pixels = radius_in_pixels
+        self.bin_target_SN = bin_target_SN
+        self.pixel_min_SN = pixel_min_SN
+        self.plot = plot
+        self.quiet = plot  
         
-###########################################################
+########################################################################################################
 
     def run_slacs_kcwi_kinematics(self, fit_poisson_noise=False, plot_bin_fits=False):
         '''
@@ -538,106 +538,154 @@ class slacs_kcwi_kinematics:
         plot_bin_fits- if True, will plot each ppxf fit for the bins, default is False (to save time)
         '''
         print(f'pPXF will now consume your soul and use it to measure the kinematics of {self.obj_name}.')
+        
         # Visualize the summed datacube
         self.datacube_visualization()
+        
         # rebin the central spectrum in log wavelengths and prepare for fitting
         self.log_rebin_central_spectrum()
+        
         # same with background spectrum
         self.log_rebin_background_spectrum()
+        
         # prepare the templates from the sps model
         self.get_templates()
+        
         # set up the wavelengths that will be fit, masks a couple gas lines
         self.set_up_mask()
+        
         # fit the central spectrum to create the global_template
         self.ppxf_central_spectrum()
+        
         # crop the datacube to a smaller size
         self.crop_datacube()
+        
         # create a S/N map to get the Voronoi binning going
         self.create_SN_map()
+        
         # select the spaxels S/N > 1 that will be binned
         self.select_region()
+        
         # bin the selected spaxels to the target S/N
         self.voronoi_binning()
+        
         # fit each bin spectrum with global_template
         self.ppxf_bin_spectra(fit_poisson_noise, plot_bin_fits)
+        
         # create the 2d kinematic maps from ppxf fits
         self.make_kinematic_maps()
+        
         # plot those maps
         self.plot_kinematic_maps()
+        
         print("Job's finished!")
+        
+        
+#########################################
         
     def datacube_visualization(self):
         '''
         Function shows the mosaic'ed datacube summed over the wavelength axis. This is mostly just to get oriented to where things are in the image.
         '''
-        # visualize the entire mosaic data
+        
         # open the fits file and get the data
         data_hdu = fits.open(self.kcwi_datacube_file)
         datacube=data_hdu[0].data
         data_hdu.close()
+        
         # norm for plotting
         norm = simple_norm(np.nansum(datacube, axis=0), 'sqrt')
+        
         # plot
         plt.imshow(np.nansum(datacube, axis=0), origin="lower", norm=norm)
         plt.title('KCWI data')
         plt.colorbar(label='flux')
         plt.pause(1)
+    
+    
+#########################################
 
     def log_rebin_central_spectrum(self):
         '''
         Function to deredshift and rebin the central foreground galaxy spectrum to log space and prepare the restframe wavelengths for proper fitting with the stellar template spectra later.
         '''
+        
         # open the fits file and get the data
         hdu = fits.open(self.central_spectrum_file)
+        
         # galaxy spectrum with linear wavelength spacing
         gal_lin = hdu[0].data
         h1 = hdu[0].header
+        
         # wavelength range from fits header
         lamRange1 = h1['CRVAL1'] + np.array([0., h1['CDELT1']*(h1['NAXIS1'] - 1)])
         
         # Compute approximate restframe wavelength range
         self.rest_wave_range = lamRange1/(1+self.zlens)
+        
         # Adjust resolution in Angstrom
         self.rest_FWHM = self.FWHM/(1+self.zlens)  
+        
         # rebin to log wavelengths and calculate velocity scale (resolution)
-        self.central_spectrum, self.rest_wave_log, self.central_velscale = ppxf_util.log_rebin(self.rest_wave_range, gal_lin)
+        self.central_spectrum, self.rest_wave_log, self.central_velscale = \
+                                            ppxf_util.log_rebin(self.rest_wave_range, gal_lin)
+        
         # keep the rebinned wavelengths in Angstroms
         self.rest_wave = np.exp(self.rest_wave_log)
         
+        
+#########################################
+    
     def log_rebin_background_spectrum(self):
         '''
         Function to deredshift (to the foreground deflector galaxy redshift zlens) and rebin the background source galaxy spectrum to log space and prepare the restframe wavelengths for proper fitting with the "sky" keyword in ppxf.
         '''
+        
         if self.background_spectrum_file is not None:
+            
             # open the fits file and get the data
             hdu = fits.open(self.background_spectrum_file)
             background_source_lin = hdu[0].data 
+            
             # rebin to log wavelengths
             background_source, _, _ = ppxf_util.log_rebin(self.rest_wave_range, background_source_lin)
+            
             # Normalize spectrum to avoid numerical issues
             self.background_spectrum = background_source/np.median(background_source)  
+            
         else:
+            # return an array of zeros
             self.background_spectrum = np.zeros_like(self.central_spectrum)
+            
+      
+#########################################
             
     def get_templates(self):
         '''
         Function prepares the stellar template spectra from the sps model identified by sps_name.
         '''
+        
         # take wavelength range of templates to be slightly larger than that of the galaxy restframe
         self.wave_range_templates = self.rest_wave_range[0]/1.2, self.rest_wave_range[1]*1.2
+        
         # bring in the templates from ppxf/sps_models/
         basename = f"spectra_{self.sps_name}_9.0.npz"
         filename = path.join(ppxf_dir, 'sps_models', basename)
+        
         # template library will be sampled at data resolution times the velscale_ratio in the given wavelength range
         sps = sps_util.sps_lib(filename, 
                                self.central_velscale/self.velscale_ratio, # resolution
                                self.rest_FWHM, # data FWHM in restframe
                                wave_range=self.wave_range_templates) # range for templates
         templates= sps.templates
+        
         # keep templates and wavelength range of templates
         self.templates = templates.reshape(templates.shape[0], -1) 
         self.templates_wave = sps.lam_temp
 
+
+#########################################
+        
     def set_up_mask(self):
         '''
         Function prepares a mask of wavelengths for ppxf that determines the correct wavelength range and masks some gas lines.
@@ -657,17 +705,23 @@ class slacs_kcwi_kinematics:
         # return the mask
         self.mask = mask[boolen]
     
+
+#########################################
+    
     def ppxf_central_spectrum(self):
         '''
         Function fits the central_spectrum with the stellar template spectra, a polynomial of specified degree, and the background source as the "sky" component.
         '''
+        
         # some setup, starting guesses
         vel = c*np.log(1 + 0)   # eq.(8) of Cappellari (2017)
         start = [vel, 250.]  # (km/s), starting guess for [V, sigma]
         #bounds = [[-500, 500],[50, 450]] # not necessary
         t = clock()
+        
         # create a noise array # Assume constant noise per AA
         noise_array = np.full_like(self.central_spectrum, self.noise) 
+        
         # fit with ppxf
         pp = ppxf(self.templates, # templates for fitting
                   self.central_spectrum,  # spectrum to be fit
@@ -691,27 +745,34 @@ class slacs_kcwi_kinematics:
         background = self.background_spectrum * pp.weights[-1]
         # data
         data = pp.galaxy
+        
         # linearize the wavelengths for plotting
         log_axis = self.rest_wave
         lin_axis = np.linspace(self.rest_wave_range[0], self.rest_wave_range[1], data.size)
+        
         # rebin in linear space
-        back_lin = de_log_rebin(log_axis, background, lin_axis)
-        model_lin = de_log_rebin(log_axis, model, lin_axis)
-        data_lin = de_log_rebin(log_axis, data, lin_axis)
-        noise_lin = data_lin - model_lin
+        back_lin = de_log_rebin(log_axis, background, lin_axis) # background source fit
+        model_lin = de_log_rebin(log_axis, model, lin_axis) # ppxf model
+        data_lin = de_log_rebin(log_axis, data, lin_axis) # data
+        noise_lin = data_lin - model_lin # noise
+        
         # find the indices of the restframe wavelengths that are closest to the min and max we want for plot limits
         plot_ind_min = find_nearest(lin_axis, self.wave_min)
         plot_ind_max = find_nearest(lin_axis, self.wave_max)
+        
         # make the figure
         plt.figure(figsize=(8,6))
+        
+        # plot the spectra, noise, etc
         plt.plot(lin_axis, data_lin, 'k-', label='data')
-        plt.plot(lin_axis, model_lin, 'r-', label='model ('
-                                                     'lens+background)')
+        plt.plot(lin_axis, model_lin, 'r-', label='model (lens+background)')
         plt.plot(lin_axis, data_lin - back_lin, 'm-',
                  label='remove background source from data', alpha=0.5) # if there is a background source to remove
         plt.plot(lin_axis, back_lin + np.full_like(back_lin, 0.9e-5), 'c-',label='background source', alpha=0.7)
         plt.plot(lin_axis, noise_lin + np.full_like(back_lin, 0.9e-5), 'g-',
                  label='noise (data - best model)', alpha=0.7)
+        
+        # set labels, axes, etc
         plt.legend(loc='best')
         plt.ylim(np.nanmin(noise_lin[plot_ind_min:plot_ind_max])/1.1, np.nanmax(data_lin[plot_ind_min:plot_ind_max])*1.1)
         plt.xlim(self.wave_min, self.wave_max)
@@ -720,12 +781,13 @@ class slacs_kcwi_kinematics:
         plt.title(f'Velocity dispersion - {int(pp.sol[1])} km/s')
         plt.show()
         plt.pause(1)
-        # show results
+        
+        # show results of fit
         print("Formal errors:")
         print("     dV    dsigma   dh3      dh4")
         print("".join("%8.2g" % f for f in pp.error*np.sqrt(pp.chi2)))
-
         print('Elapsed time in pPXF: %.2f s' % (clock() - t))
+        
         # take the fit as attributes for future
         self.central_spectrum_ppxf = pp
         # number of templates
@@ -734,20 +796,28 @@ class slacs_kcwi_kinematics:
         self.global_template = pp.templates @ pp.weights[:self.nTemplates]
         self.global_template_wave = pp.lam_temp
         
+        
+#########################################
+        
     def crop_datacube(self):
         '''
         Function crops the datacube to a size determined by radius_in_pixels.
         '''
+        
         # resulting datacube will have square spatial dim 2*r+1 pixels
         r = self.radius_in_pixels
+        
         # open the datacube fits file and retrieve the data
         data_hdu = fits.open(self.kcwi_datacube_file)
         datacube=data_hdu[0].data
         data_hdu.close()
+        
         # if there is a background source mask from DS9, background_source_mask_file should be the path to that file
         if self.background_source_mask_file is not None:
+            
             # load the mask file
             self.background_source_mask = ~getMaskInFitsFromDS9reg(self.background_source_mask_file, datacube.shape[1:], data_hdu[0])*1
+            
             # norm for plotting
             norm = simple_norm(np.nansum(datacube, axis=0), 'sqrt')
             # plot and check the mask
@@ -755,9 +825,12 @@ class slacs_kcwi_kinematics:
             plt.title('Masked KCWI data')
             plt.colorbar(label='flux')
             plt.pause(1)
+            
         else:
             # if there is no background source, it will not mask anything
             self.background_source_mask = np.ones(datacube.shape[1:])
+        
+        # perform the crop
         # crop the mask
         self.background_source_mask = self.background_source_mask[
                                                                  self.lens_center_y - r-1:self.lens_center_y + r, 
@@ -765,7 +838,9 @@ class slacs_kcwi_kinematics:
         # crop the datacube and apply the mask
         self.cropped_datacube = datacube[:, 
                                          self.lens_center_y - r-1:self.lens_center_y + r, 
-                                         self.lens_center_x - r -1:self.lens_center_x + r] * self.background_source_mask
+                                         self.lens_center_x - r -1:self.lens_center_x + r] \
+                                                            * self.background_source_mask
+        
         # norm for plotting
         norm = simple_norm(np.nansum(self.cropped_datacube, axis=0), 'sqrt')
         # plot to check the crop is successful
@@ -774,19 +849,26 @@ class slacs_kcwi_kinematics:
         plt.colorbar(label='flux')
         plt.pause(1)
 
+        
+#########################################
+        
     def create_SN_map(self):
         '''
         Function creates the S/N map for use in Voronoi binning.
         '''
         # estimate the noise from a blank section of sky
         noise_from_blank = self.cropped_datacube[self.wave_min:self.wave_max, 4-3:4+2,4-3:4+2]
+        
         # blank space may be chopped by mask, take the opposite corner
         if noise_from_blank.std() == 0:
             noise_from_blank = self.cropped_datacube[self.wave_min:self.wave_max, -4-3:-4+2,-4-3:-4+2]
+            
         # take the std of the blank patch of sky
         std = np.std(noise_from_blank)
+        
         # sample the normal distribution of the noise
         s = np.random.normal(0, std, self.cropped_datacube.flatten().shape[0])
+        
         # create a noise cube from it
         noise_cube = s.reshape(self.cropped_datacube.shape)
 
@@ -837,154 +919,215 @@ class slacs_kcwi_kinematics:
         plt.colorbar()
         plt.show()
 
+        
+#########################################
+
     def select_region(self):
+        '''
+        Function to select the pixels that will be used for Voronoi binning by minimum pixel SN.
+        '''
         
         # center the SN map on highest value
         SN_y_center, SN_x_center = np.unravel_index(self.SN_per_AA.argmax(), self.SN_per_AA.shape)
-        #max_radius = 50 # unnecessary
-        # take pixels greater than 1 (should be able to set it when initializing the class)
-        #target_SN = 1.
-
+        max_radius = 50 # in case the datacube has bright pixels unrelated to the deflector galaxy
+        
+        # make grid the same size as cropped datacube
         xx = np.arange(self.radius_in_pixels * 2 + 1)
         yy = np.arange(self.radius_in_pixels * 2 + 1)
         xx, yy = np.meshgrid(xx, yy)
         
+        # calculate distance from center
         dist = np.sqrt((xx - SN_x_center) ** 2 + (yy - SN_y_center) ** 2)
-
-        SN_mask = (self.SN_per_AA > self.pixel_min_SN)# & (dist < max_radius)
-
+        
+        # create mask of SN pixels > than the minimum we set
+        SN_mask = (self.SN_per_AA > self.pixel_min_SN) & (dist < max_radius)
+        
+        # mask the x-y grid and SN map
         xx_1D = xx[SN_mask]
         yy_1D = yy[SN_mask]
         SN_1D = self.SN_per_AA[SN_mask]
+        
+        # stack the masked x-y grid and SN for input to Voronoi binning
+        # the fourth term here is just an array of 1s because vorbin takes the signal and noise separately
         self.voronoi_binning_input = np.vstack((xx_1D, yy_1D, SN_1D, np.ones(SN_1D.shape[0])))
-
+        
+        # plot the region that will be binned
         plt.imshow(SN_mask, origin="lower", cmap='gray')
         plt.imshow(self.SN_per_AA, origin="lower", alpha=0.9)  #
-        plt.title('region selected for voronoi binning (S/N > %s)' % target_SN)
+        plt.title('region selected for voronoi binning (S/N > %s)' % self.pixel_min_SN)
         plt.axis('off')
         plt.colorbar()
         plt.show()
         
-    def voronoi_binning(self):
         
+#########################################        
+    
+    def voronoi_binning(self):
+        '''
+        Function takes the pixels and S/N selectd from the "select_region" function and bins using Voronoi binning technique.
+        '''
+        
+        # take the voronoi binning input as x-y grid, S/N (and noise =1 )
         x, y, signal, noise = self.voronoi_binning_input
-        binNum, xNode, yNode, xBar, yBar, sn, nPixels, scale = voronoi_2d_binning(
+        
+        # voronoi binning assigns bin numbers 
+        binNum, xNode, yNode, bin_cen_x, bin_cen_y, sn, nPixels, scale = voronoi_2d_binning(
                 x, y, signal, noise, self.bin_target_SN, plot=1, quiet=1)
         
+        # plot the binning
         plt.tight_layout()
-        #plt.savefig(target_dir + obj_name + '_voronoi_binning.png')
-        #plt.savefig(target_dir + obj_name + '_voronoi_binning.pdf') 
         plt.pause(1)
         plt.clf()
         
+        # save luminosity-weighted center of each bin
+        self.bin_centers = np.column_stack((bin_cen_x, bin_cen_y))
+        
+        # stack x-y pixel grid with the assigned bin number
         self.voronoi_binning_output = np.column_stack([x, y,binNum])
-        ## get voronoi_binning_data based on the map
-        self.voronoi_binning_data = np.zeros((int(np.max(self.voronoi_binning_output.T[2]))+1,self.cropped_datacube.shape[0])) #construct the binning
-        #  data
+        
+        # for each bin, sum the spectra of all pixels belonging to that bin
+        self.voronoi_binning_data = \
+                    np.zeros(
+                                (
+                                    int(np.max(self.voronoi_binning_output.T[2]))+1,
+                                    self.cropped_datacube.shape[0]
+                                )
+                            )
+        
+        #  "check" allows plotting the pixels with their bin number
         check = np.zeros(self.cropped_datacube[0, :, :].shape)
+        
+        # loop through all the pixels and sum spectra in bins
         for i in range(self.voronoi_binning_output.shape[0]):
-            #print(i)
+            
+            # take x, y, and binNum for pixel
             wx = int(self.voronoi_binning_output[i][0])
             wy = int(self.voronoi_binning_output[i][1])
             num = int(self.voronoi_binning_output[i][2])
+            
+            # add this pixel spectrum to the appropriate bin spectrum
             self.voronoi_binning_data[num]=self.voronoi_binning_data[num]+self.cropped_datacube[:,wy,wx]
+            
+            # update the "check" array for plotting
             check[wy, wx] = num+1
-
+        
+        # save number of bins
         self.nbins = self.voronoi_binning_data.shape[0]
         print("Number of bins =", self.nbins)
         
-        bin_y_means = np.zeros(self.nbins)
-        bin_x_means = np.zeros(self.nbins)
-
-        for i in range(self.nbins):
-            # get bins and x, y for each pixel
-            bin_pixels = self.voronoi_binning_output[self.voronoi_binning_output[:,2]==i]
-            bin_x = bin_pixels[:,0]
-            bin_y = bin_pixels[:,1]
-            # calculate mean x and y
-            mean_x = np.mean(bin_x)
-            mean_y = np.mean(bin_y)
-            # update array
-            bin_x_means[i] = mean_x
-            bin_y_means[i] = mean_y
-        
-        # save bin centers in pixel coordinates
-        self.bin_centers = np.column_stack((bin_x_means, bin_y_means))
-        
+        # plot to check the binning with luminosity weighted centers
         p=plt.imshow(check, origin="lower", cmap='sauron')
         plt.scatter(self.bin_centers[:,0], self.bin_centers[:,1], c='k', marker='.', s=2)
         plt.colorbar(p)
-        #for (j, i), label in np.ndenumerate(check):
-        #    plt.text(i, j, label, ha='center', va='center')
-        plt.show()
+        plt.pause(1)
         
         
-    def ppxf_bin_spectra(self, fit_poisson_noise=False, plot_bin_fits=False):
-        self.bin_kinematics = np.zeros(shape=(0,5))
-        for i in range(self.nbins):
-            bin_spectrum = self.voronoi_binning_data[i]
+#########################################
 
+    def ppxf_bin_spectra(self, fit_poisson_noise=False, plot_bin_fits=False):
+        '''
+        Function to loop through bin spectra constructed with "voronoi_binning" function. Fit each spectrum with ppxf using "global_template" constructed during the "ppxf_central_spectrum" function.
+        
+        Optional keywords:
+        
+        fit_poisson_noise - not working in this code yet, but if True a better noise contribution after assuming a uniform noise across all wavelengths
+        
+        plot_bin_fits - if True, each bin fit will be plotted with bin number and velocity dispersion measurement. Takes quite a bit more time, but is recommended.
+        '''
+        
+        # bin_kinematics will be an array of five entries (mean velocity, velocity dispersion, errors on both, and chi2 value)
+        self.bin_kinematics = np.zeros(shape=(0,5))
+        
+        # loop through nbins
+        for i in range(self.nbins):
+            
+            # take the bin spectrum (data)
+            bin_spectrum = self.voronoi_binning_data[i]
+            
+            # rebin the spectrum with restframe wavelengths in log space, "galaxy" is now the data to be fit
             galaxy, log_wavelengths, velscale = ppxf_util.log_rebin(self.rest_wave_range, bin_spectrum)
+            
+            # take the wavelengths of the data
             wavelengths = np.exp(log_wavelengths)
             
-            
-            galaxy = galaxy[wavelengths>self.wave_min] 
+            # cut the data, background source, and wavelengths to the wave_min and wave_max we specified
+            galaxy = galaxy[wavelengths>self.wave_min]
             background_source = self.background_spectrum.copy()
             background_source = background_source[wavelengths>self.wave_min]
             wavelengths = wavelengths[wavelengths>self.wave_min]
             galaxy = galaxy[wavelengths<self.wave_max]
             background_source = background_source[wavelengths<self.wave_max]
             wavelengths = wavelengths[wavelengths<self.wave_max]
+            
+            # take the log of the now-cut wavelength array
             log_wavelengths = np.log(wavelengths)
-
+            
+            # take the wavelength range of the global template
             lam_range_global_temp = np.array([self.global_template_wave.min(), self.global_template_wave.max()])
-            # after de-redshift, the initial redshift is zero.
+            
+            # keep only the good pixels, after de-redshift, the initial redshift is zero.
             goodPixels = ppxf_util.determine_goodpixels(log_wavelengths, lam_range_global_temp, 0)
             
+            # find the indices of wave_min and wave_max in wavelengths array
             ind_min = find_nearest(wavelengths, self.wave_min)
             ind_max = find_nearest(wavelengths, self.wave_max)
+            
+            # mask the appropriate wavelengths and gas emission lines
             mask=goodPixels[goodPixels<ind_max]
             mask = mask[mask>ind_min]
             boolen = ~((2956 < mask) & (mask < 2983))  # mask the Mg II
             mask = mask[boolen]
             boolen = ~((2983 < mask) & (mask < 3001))  # mask the Mg II
             mask = mask[boolen]
-            # Here the actual fit starts. The best fit is plotted on the screen.
-            # Gas emission lines are excluded from the pPXF fit using the GOODPIXELS keyword.
-            #
+            
+            # setup with initial guesses
             vel = c*np.log(1 + 0)   # eq.(8) of Cappellari (2017)
             start = [vel, 250.]  # (km/s), starting guess for [V, sigma]
-            bounds = [[-500, 500],[50, 450]]
+            #bounds = [[-500, 500],[50, 450]] # not necessary
             t = clock()
-
-            noise = np.full_like(galaxy, 0.0047)
-
-            pp = ppxf(self.global_template, 
-                      galaxy, 
-                      noise, 
-                      velscale, 
-                      start, 
-                      sky=background_source, 
-                      plot=False,#plot_bin_fits, 
-                      quiet=self.quiet,
-                        moments=2, 
-                      goodpixels=mask,
-                        degree=self.degree,
-                        velscale_ratio=self.velscale_ratio,
-                        lam=wavelengths,
-                        lam_temp=self.global_template_wave,
+            
+            # set the initial noise as uniform across wavelengths from input noise estimate
+            noise = np.full_like(galaxy, self.noise)
+            
+            # fit the bin spectrum with the global template using ppxf
+            pp = ppxf(self.global_template, # global template created in "ppxf_central_spectrum" function
+                      galaxy, # bin spectrum (data)
+                      noise, # noise estimate
+                      velscale, # velocity scale of data (resolution)
+                      start, # initial guess
+                      sky=background_source, # background source spectrum 
+                      plot=False, # we plot later 
+                      quiet=self.quiet, # suppress the outputs
+                        moments=2, # fit only mean velocity and velocity dispersion
+                      goodpixels=mask, # mask of wavelengths 
+                        degree=self.degree, # degree of additive polynomial for fitting
+                        velscale_ratio=self.velscale_ratio, # resolution ratio of data vs template
+                        lam=wavelengths, # wavelengths in restframe of data
+                        lam_temp=self.global_template_wave, # wavelenghts in restframe of the global template
                         )
+            
+            # Do another fit using the noise from the previous fit to make a better estimate of the Poisson noise
+            # I have a bug here
             if fit_poisson_noise==True:
+                
+                # take the outputs of the previous fit
                 data = pp.galaxy
                 model = pp.bestfit
                 log_axis = wavelengths
+                
+                # make linear axis of wavelengths and rebin data and model to linear axis
                 lin_axis = np.linspace(self.wave_min, self.wave_max, data.size)
-                model_lin = de_log_rebin(log_axis, model, lin_axis)
                 data_lin = de_log_rebin(log_axis, data, lin_axis)
+                model_lin = de_log_rebin(log_axis, model, lin_axis)
+                # get the noise as the residual between data and model
                 noise_lin = data_lin - model_lin
+                
+                # estimate poisson noise
                 noise_poisson = poisson_noise(self.exp_time, model_lin,
                                       np.std(noise_lin[self.wave_min:self.wave_max]),
                                       per_second=True)
+                
+                # fit again with the better noise estimate
                 pp = ppxf(self.global_template, 
                           galaxy, 
                           noise_poisson, 
@@ -1000,22 +1143,32 @@ class slacs_kcwi_kinematics:
                             lam=wavelengths,
                             lam_temp=self.global_template_wave,
                             )
+            
+            # for viewing each bin spectrum fit
             if plot_bin_fits==True:
-                #plot the fit
+                
+                # take the background source, data, model
                 background = background_source * pp.weights[-1]
-                data = pp.galaxy#spectrum_perpixel
+                data = pp.galaxy
                 model = pp.bestfit
                 log_axis = wavelengths
+                
+                # rebin on linear axis
                 lin_axis = np.linspace(self.wave_min, self.wave_max, data.size)
                 back_lin = de_log_rebin(log_axis, background, lin_axis)
                 model_lin = de_log_rebin(log_axis, model, lin_axis)
                 data_lin = de_log_rebin(log_axis, data, lin_axis)
+                # take noise as residual
                 noise_lin = data_lin - model_lin
+                
                 # find the indices of the restframe wavelengths that are closest to the min and max we want for plot limits
                 plot_ind_min = find_nearest(lin_axis, self.wave_min)
                 plot_ind_max = find_nearest(lin_axis, self.wave_max)
+                
                 # make the figure
                 plt.figure(figsize=(8,6))
+                
+                # plot data, model, background-subtracted data, and residual
                 plt.plot(lin_axis, data_lin, 'k-', label='data')
                 plt.plot(lin_axis, model_lin, 'r-', label='model ('
                                                              'lens+background)')
@@ -1024,6 +1177,8 @@ class slacs_kcwi_kinematics:
                 plt.plot(lin_axis, back_lin + np.full_like(back_lin, 0.9e-5), 'c-',label='background source', alpha=0.7)
                 plt.plot(lin_axis, noise_lin + np.full_like(back_lin, 0.9e-5), 'g-',
                          label='noise (data - best model)', alpha=0.7)
+                
+                # set up axis, etc.
                 plt.legend(loc='best')
                 plt.ylim(np.nanmin(noise_lin[plot_ind_min:plot_ind_max])/1.1, np.nanmax(data_lin[plot_ind_min:plot_ind_max])*1.1)
                 plt.xlim(self.wave_min, self.wave_max)
@@ -1032,60 +1187,92 @@ class slacs_kcwi_kinematics:
                 plt.title(f'Bin {i} - Velocity dispersion - {int(pp.sol[1])} km/s')
                 plt.show()
                 plt.pause(1)
-            self.bin_kinematics = np.vstack((self.bin_kinematics, np.hstack( (pp.sol[:2],
-                                                           (pp.error*np.sqrt(pp.chi2))[:2],
-                                                                      pp.chi2) 
-                                                                      )
-                                         )
-                                        )
+                
+            # save the kinematics and initial error estimates, as well as chi2 (V, VD, dV, dVD, chi2)
+            # pp.error is formal error from ppxf; if fit is reliable, can be corrected with chi2 as shown below
+            # ideally, we want to be able to instead sample the velocity space for more reliable error estimate
+            self.bin_kinematics = np.vstack(
+                                            (
+                                                self.bin_kinematics, 
+                                                 np.hstack( 
+                                                             (
+                                                                 pp.sol[:2],
+                                                                 (pp.error*np.sqrt(pp.chi2))[:2],
+                                                                 pp.chi2) 
+                                                              )
+                                             )
+                                            )
+
             
+#########################################
+
     def make_kinematic_maps(self):
+        '''
+        Function to make 2D maps of kinematic components and errors of all bins measured in "ppxf_bin_spectra" function.
+        '''
         
+        # make arrays of kinematic components and error of size number of pixels
         VD_array    =np.zeros(self.voronoi_binning_output.shape[0])
         dVD_array   =np.zeros(self.voronoi_binning_output.shape[0])
         V_array     =np.zeros(self.voronoi_binning_output.shape[0])
         dV_array    =np.zeros(self.voronoi_binning_output.shape[0])
 
-
+        # loop through each pixel and assign the kinematics values from the bin measurements
         for i in range(self.voronoi_binning_output.shape[0]):
+            
+            # num is bin number
             num=int(self.voronoi_binning_output.T[2][i])
+            # take bin kinematics
             vd = self.bin_kinematics[num][1]
             dvd = self.bin_kinematics[num][3]
             v = self.bin_kinematics[num][0]
             dv = self.bin_kinematics[num][2]
-
+            # update the array with the pixel's assigned kinematics
             VD_array[i]=vd
             dVD_array[i]=dvd
             V_array[i]=v
             dV_array[i]=dv
-
-        final=np.vstack((self.voronoi_binning_output.T, VD_array, dVD_array, V_array, dV_array))
-
+        
+        # stack the pixel kinematics with the pixel bin information
+        self.pixel_details=np.vstack((self.voronoi_binning_output.T, VD_array, dVD_array, V_array, dV_array))
+        
+        # dimension of the square cropped datacube
         dim = self.radius_in_pixels*2+1
-
+        
+        # create the 2D kinematic maps by looping through each pixel and taking teh values from "self.pixel_details", pixels with no kinematics are 'nan'
+        # velocity dispersion
         self.VD_2d=np.zeros((dim, dim))
         self.VD_2d[:]=np.nan
-        for i in range(final.shape[1]):
-            self.VD_2d[int(final[1][i])][int(final[0][i])]=final[3][i]
-
+        for i in range(self.pixel_details.shape[1]):
+            self.VD_2d[int(self.pixel_details[1][i])][int(self.pixel_details[0][i])]=self.pixel_details[3][i]
+            
+        # error in velocity dispersion
         self.dVD_2d=np.zeros((dim, dim))
         self.dVD_2d[:]=np.nan
-        for i in range(final.shape[1]):
-            self.dVD_2d[int(final[1][i])][int(final[0][i])]=final[4][i]
-
-
+        for i in range(self.pixel_details.shape[1]):
+            self.dVD_2d[int(self.pixel_details[1][i])][int(self.pixel_details[0][i])]=self.pixel_details[4][i]
+        
+        # velocity
         self.V_2d=np.zeros((dim, dim))
         self.V_2d[:]=np.nan
-        for i in range(final.shape[1]):
-            self.V_2d[int(final[1][i])][int(final[0][i])]=final[5][i]
-
+        for i in range(self.pixel_details.shape[1]):
+            self.V_2d[int(self.pixel_details[1][i])][int(self.pixel_details[0][i])]=self.pixel_details[5][i]
+        
+        # error in velocity
         self.dV_2d=np.zeros((dim, dim))
         self.dV_2d[:]=np.nan
-        for i in range(final.shape[1]):
-            self.dV_2d[int(final[1][i])][int(final[0][i])]=final[6][i]
+        for i in range(self.pixel_details.shape[1]):
+            self.dV_2d[int(self.pixel_details[1][i])][int(self.pixel_details[0][i])]=self.pixel_details[6][i]
+
+            
+#########################################
 
     def plot_kinematic_maps(self):
-        # plot each
+        '''
+        Function to plot the kinematic maps made in "make_kinematic_maps"
+        '''
+
+        # velocity dispersion
         plt.figure()
         plt.imshow(self.VD_2d,origin='lower',cmap='sauron')
         cbar1 = plt.colorbar()
@@ -1093,7 +1280,8 @@ class slacs_kcwi_kinematics:
         #plt.savefig(target_dir + obj_name + '_VD.png')
         plt.pause(1)
         plt.clf()
-
+        
+        # error in velocity dispersion
         plt.figure()
         plt.imshow(self.dVD_2d, origin='lower', cmap='sauron',vmin=0, vmax=40)
         cbar2 = plt.colorbar()
@@ -1101,19 +1289,20 @@ class slacs_kcwi_kinematics:
         #plt.savefig(target_dir + obj_name + '_dVD.png')
         plt.pause(1)
         plt.clf()
-
-        # mean is bulk velocity, maybe?
-        mean = np.nanmedian(self.V_2d)
-        #
+        
+        # mean velocity
+        # subtract the "bulk" velocity, small offset in galaxy velocity from redshift error
+        bulk = np.nanmedian(self.V_2d)
         plt.figure()
-        plt.imshow(self.V_2d-mean,origin='lower',cmap='sauron',vmin=-100, vmax=100)
+        plt.imshow(self.V_2d-bulk,origin='lower',cmap='sauron',vmin=-100, vmax=100)
         cbar3 = plt.colorbar()
         cbar3.set_label(r'Vel [km/s]')
         plt.title("Velocity map")
         #plt.savefig(target_dir + obj_name + '_V.png')
         plt.pause(1)
         plt.clf()
-
+        
+        # error in velocity
         plt.figure()
         plt.imshow(self.dV_2d,origin='lower',cmap='sauron')
         cbar4 = plt.colorbar()
