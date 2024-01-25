@@ -1107,7 +1107,6 @@ class slacs_kcwi_kinematics:
                         )
             
             # Do another fit using the noise from the previous fit to make a better estimate of the Poisson noise
-            # I have a bug here
             if fit_poisson_noise==True:
                 
                 # take the outputs of the previous fit
@@ -1123,9 +1122,11 @@ class slacs_kcwi_kinematics:
                 noise_lin = data_lin - model_lin
                 
                 # estimate poisson noise
-                noise_poisson = poisson_noise(self.exp_time, model_lin,
-                                      np.std(noise_lin[self.wave_min:self.wave_max]),
-                                      per_second=True)
+                noise_poisson = poisson_noise(self.exp_time, 
+                                                   model_lin,
+                                                   np.nanstd(noise_lin[ind_min:ind_max]),
+                                                   per_second=True
+                                                  )
                 
                 # fit again with the better noise estimate
                 pp = ppxf(self.global_template, 
@@ -1134,14 +1135,14 @@ class slacs_kcwi_kinematics:
                           velscale, 
                           start, 
                           sky=background_source, 
-                          plot=False,#plot_bin_fits, 
+                          plot=True,#plot_bin_fits, 
                           quiet=self.quiet,
-                            moments=2, 
+                          moments=2, 
                           goodpixels=mask,
-                            degree=self.degree,
-                            velscale_ratio=self.velscale_ratio,
-                            lam=wavelengths,
-                            lam_temp=self.global_template_wave,
+                          degree=self.degree,
+                          velscale_ratio=self.velscale_ratio,
+                          lam=wavelengths,
+                          lam_temp=self.global_template_wave,
                             )
             
             # for viewing each bin spectrum fit
@@ -1311,3 +1312,37 @@ class slacs_kcwi_kinematics:
         plt.pause(1)
         plt.clf()
         
+        
+##########################################
+
+    def print_function_order(self):
+        print('''
+# convenience function will do all the below automatically
+#j0029_kinematics.run_slacs_kcwi_kinematics()
+# Visualize the summed datacube
+j0029_kinematics.datacube_visualization()
+# rebin the central spectrum in log wavelengths and prepare for fitting
+j0029_kinematics.log_rebin_central_spectrum()
+# same with background spectrum
+j0029_kinematics.log_rebin_background_spectrum()
+# prepare the templates from the sps model
+j0029_kinematics.get_templates()
+# set up the wavelengths that will be fit, masks a couple gas lines
+j0029_kinematics.set_up_mask()
+# fit the central spectrum to create the global_template
+j0029_kinematics.ppxf_central_spectrum()
+# crop the datacube to a smaller size
+j0029_kinematics.crop_datacube()
+# create a S/N map to get the Voronoi binning going
+j0029_kinematics.create_SN_map()
+# select the spaxels S/N > 1 that will be binned
+j0029_kinematics.select_region()
+# bin the selected spaxels to the target S/N
+j0029_kinematics.voronoi_binning()
+# fit each bin spectrum with global_template
+j0029_kinematics.ppxf_bin_spectra(plot_bin_fits=plot_bin_fits)
+# create the 2d kinematic maps from ppxf fits
+j0029_kinematics.make_kinematic_maps()
+# plot those maps
+j0029_kinematics.plot_kinematic_maps()
+                ''')
