@@ -695,12 +695,12 @@ class space_jam:
     ###################
     # function to plot summary
     def summary_plot(self, save=False):
-    
+
         """
         Print the best fitting solution with uncertainties.
         Plot the final corner plot with the best fitting JAM model.
         """
-        
+
         # jam the best fit
         jam, surf_potential, lambda_int = self.jam_lnprob(self.bestfit, plot=True, test_prior=False, bestfit=True)
         if jam==0:
@@ -716,8 +716,8 @@ class space_jam:
         plot_truths[-1] = 0
         plot_truths[-2] = 0
         # substitute the plot parameters with the ratios and lambda_ints
-        plot_pars[:,2] = self.anisotropy_ratio_samples[self.index_accepted]
-        plot_pars[:,-2] = self.lambda_int_samples[self.index_accepted]
+        plot_pars[:,2] = self.anisotropy_ratio_accepted
+        plot_pars[:,-2] = self.lambda_int_accepted
         # bounds should change
         plot_bounds[0][2] = self.shape_anis_bounds[0]
         plot_bounds[1][2] = self.shape_anis_bounds[1]
@@ -728,7 +728,7 @@ class space_jam:
         perc = np.percentile(plot_pars, [15.86, 84.14], axis=0)  # 68% interval
         sig_bestfit = np.squeeze(np.diff(perc, axis=0)/2)   # half of interval (1sigma)
         chi2_bestfit = self.chi2s[self.index_accepted][np.nanargmax(self.lnprob)]
-    
+
         # For plotting, only show the finite probability points
         finite = np.isfinite(self.lnprob)
 
@@ -736,7 +736,7 @@ class space_jam:
         plt.rcParams.update({'font.size': 14})
         plt.clf()
         corner_plot(plot_pars[finite], self.lnprob[finite], labels=self.labels, extents=plot_bounds, truths=plot_truths, truth_color='k', fignum=1)
-        
+
         dx = 0.24
         yfac = 0.87
         fig = plt.gcf()
@@ -782,27 +782,54 @@ class space_jam:
         if save==True:
             plt.savefig(f'{self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.png', bbox_inches='tight')
             plt.savefig(f'{self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.pdf', bbox_inches='tight')
-        
+
         plt.show()
         plt.pause(1)
-                                  
+
     #################
     # function to identify where samples were updated (accepted) vs rejected, so I can index the "anisotropy_ratio_samples" etc. properly                              
     def index_accepted_samples(self):
-        self.index_accepted = np.zeros_like(self.chi2s, dtype=bool)
-                                  
+
+        # create an array of the indices that are to be accepted for each of the steps
+        self.index_accepted = np.zeros(self.pars.shape[0], dtype=int)
+
+        # every step includes the initial state
         every_step = np.concatenate((self.initial_state, self.sampler.flatchain))
         nwalkers = self.sampler_args[1]
-                                  
+
+        # loop through each of hte walkers individually
         for i in range(nwalkers):
+            # this walker will be every "nwalkers" of the parameters
             this_walker = every_step[i::nwalkers]
-            accepted_state = this_walker[0]
-            for j in range(len(this_walker)-1):
-                if np.all(this_walker[j] != accepted_state):
-                    self.index_accepted[(j+1)*nwalkers+i] = 1
-                    accepted_state = this_walker[j]
+            # start with the initial state, it will be replaced by the first one that was accepted
+            last_accepted_state = this_walker[0]
+            # start with the index of the initial state
+            last_accepted_index = i
+            # loop through the steps of this walker
+            for j, index in enumerate(this_walker):
+                # skip the initialization
+                if j==0:
+                    continue
+                # if the walker is not equal to the last accepted state, then a new sample was accepted
+                # the param_index is the index of the parameter in the shape nwalkers*nsteps
+                param_index = (j-1)*nwalkers+i
+                # the replace_index is the index of the "lambda_int" samples, shape (nwalkers+1)*nsteps to include the initial state
+                replace_index = j*nwalkers+i
+                if np.all(this_walker[j] != last_accepted_state):
+                    # report this index to the array
+                    self.index_accepted[param_index] = replace_index
+                    last_accepted_state = this_walker[j]
+                    last_accepted_index = replace_index
                 else:
-                    self.index_accepted[j*nwalkers+i] = 1
+                    self.index_accepted[(j-1)*nwalkers+i] = last_accepted_index
+
+        # save the accepted lambda_int and anisotropy
+        self.anisotropy_ratio_accepted = np.zeros(self.pars.shape[0], dtype=float)
+        self.lambda_int_accepted = np.zeros(self.pars.shape[0], dtype=float)
+        # loop through the steps
+        for i in range(self.pars.shape[0]):
+            self.anisotropy_ratio_accepted[i] = self.anisotropy_ratio_samples[self.index_accepted[i]]
+            self.lambda_int_accepted[i] = self.lambda_int_samples[self.index_accepted[i]]
 
 
     ###############################################################################
