@@ -255,10 +255,10 @@ class space_jam:
         self.sigma_lum = tommy_pickles.mge_sigma
         self.qobs_lum = tommy_pickles.q
         #kcwi_sigmapsf = tommy_pickles.kcwi_sigmapst # mistake in name  
-        try:
-            self.sigmapsf = tommy_pickles.kcwi_sigmapsf
-        except:
-            self.sigmapsf = tommy_pickles.kcwi_sigmapst
+        #try:
+        #    self.sigmapsf = tommy_pickles.kcwi_sigmapsf
+        #except:
+        #    self.sigmapsf = tommy_pickles.kcwi_sigmapst
         self.Vrms = tommy_pickles.Vrms_bin
         try:
             self.dVrms = tommy_pickles.dVrms_bin 
@@ -270,13 +270,21 @@ class space_jam:
         self.ybin = tommy_pickles.ybin_phot
         self.reff = tommy_pickles.reff
         
+        # get the revised KCWI sigmapsf
+        # data directory
+        data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
+        tables_dir = f'{data_dir}tables/'
+        sigmapsf_table = pd.read_csv(f'{tables_dir}kcwi_sigmapsf_estimates.csv')
+        self.kcwi_sigmapsf = sigmapsf_table[sigmapsf_table['obj_name']==self.obj_name]['kcwi_sigmapsf'][0]
+        print('KCWI sigmapsf', self.kcwi_sigmapsf)
+        
         # additional kwargs needed for jam
         self.goodbins = np.isfinite(self.xbin)
         # These parameters are passed to JAM
         self.distance = self.cosmo.angular_diameter_distance(self.zlens).value
         self.normpsf = 1.
         self.pixsize = 0.1457#kcwi_scale,      
-        self.break_factor = 200
+        self.break_factor = 20 #200
         
         #### Here is where we can change the velocity maps to test systematic variations
         if constant_err==True:
@@ -525,7 +533,7 @@ class space_jam:
                                                self.zlens, self.zsource, self.cosmo,
                                                  gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=None, 
                                                  ngauss=30, inner_slope=2, outer_slope=3, 
-                                                 quiet=1, plot=False, skip_mge=False)
+                                                 quiet=1, plot=plot, skip_mge=False)
                     surf_pot = total_mass.surf_pot
                     sigma_pot = total_mass.sigma_pot
                     qobs_pot = total_mass.qobs_pot
@@ -552,7 +560,7 @@ class space_jam:
                                            inc, mbh, self.distance, self.xbin, self.ybin, 
                                             align=self.align, beta=beta, logistic=logistic,
                                            data=self.Vrms, errors=self.dVrms, goodbins=self.goodbins,
-                                           pixsize=self.pixsize, sigmapsf=self.sigmapsf, normpsf=self.normpsf, 
+                                           pixsize=self.pixsize, sigmapsf=self.kcwi_sigmapsf, normpsf=self.normpsf, 
                                            plot=plot,  quiet=1, ml=1, nodots=True)
 
                         resid = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
@@ -703,13 +711,14 @@ class space_jam:
 
         # jam the best fit
         jam, surf_potential, lambda_int = self.jam_lnprob(self.bestfit, plot=True, test_prior=False, bestfit=True)
+        plt.pause(1)
         if jam==0:
             return 'Cannot plot this bestfit'
         rms_model = jam.model
         flux_model = jam.flux
 
         plot_pars = self.pars.copy()
-        plot_bounds = self.bounds.copy()
+        plot_bounds = np.array(bounds).copy()#self.bounds.copy()
         plot_truths = self.p0.copy()
         #truths should only be for gamma, theta_E and q_intr
         plot_truths[2] = 0
@@ -725,6 +734,8 @@ class space_jam:
         plot_bounds[1][-2] = 1.2
 
         # calculate uncertainties in posterior
+        plot_bestfit = plot_pars[np.nanargmax(self.lnprob)]
+        print('bestfit', plot_bestfit)
         perc = np.percentile(plot_pars, [15.86, 84.14], axis=0)  # 68% interval
         sig_bestfit = np.squeeze(np.diff(perc, axis=0)/2)   # half of interval (1sigma)
         chi2_bestfit = self.chi2s[self.index_accepted][np.nanargmax(self.lnprob)]
@@ -746,7 +757,7 @@ class space_jam:
         i = 0                          
         # annotate the model results
         plt.annotate(f'chi2 = {np.around(chi2_bestfit, 2)}', (0.30, 0.97-(1+len(self.labels))*0.03), xycoords='figure fraction', fontsize=16)
-        for label, best, sig in zip(self.labels, self.bestfit, sig_bestfit):
+        for label, best, sig in zip(self.labels, plot_bestfit, sig_bestfit):
             string = f"{label} = {best:#.4g} ± {sig:#.2g}"
             plt.annotate(string, (0.30, 0.94-i*0.03), xycoords='figure fraction', fontsize=16) 
             i = i+1

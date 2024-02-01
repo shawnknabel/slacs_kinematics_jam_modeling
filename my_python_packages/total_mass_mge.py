@@ -159,6 +159,7 @@ class total_mass_mge:
         
         # fit the initial mass model
         if model=='power_law':
+            
             self.power_law()
         
         # transform by mass sheet
@@ -171,18 +172,21 @@ class total_mass_mge:
             # get 1d mge profile
             m = mge_fit_1d(self.r, self.surf_mass_density, ngauss=ngauss, inner_slope=inner_slope, outer_slope=outer_slope, quiet=quiet, plot=plot) # this creates a circular gaussian with sigma=sigma_x (i.e. along the major axis)
             surf_pot_tot, sigma_pot = m.sol           # total counts of gaussians Msol/(pc*2/arcsec**2)
-            # Normalize by dividing by (2 * np.pi * sigma_pot**2 * q)
-            self.surf_pot = surf_pot_tot / (2 * np.pi * sigma_pot**2 * self.qobs_eff) # peak surface density
+            # Normalize by dividing by sqrt(2 * np.pi * sigma_pot**2 * q)
+            self.surf_pot = surf_pot_tot / np.sqrt(2 * np.pi * sigma_pot**2 * self.qobs_eff) # peak surface density
             self.sigma_pot = sigma_pot
             self.qobs_pot = np.ones_like(self.surf_pot)*self.qobs_eff   # Multiply by q to convert to elliptical Gaussians where sigma is along the major axis...    
 
+    def power_law_check(r, gamma, ):
+        return (3 - gamma) / 2 * (theta_E/r)**(gamma-1)
+            
     def power_law (self):
         
         """
         Return convergence profile of pure power law profile from parameters
         """
         
-        # fit to power law mass density (convergence) profile
+        # fit to power law surface mass density (convergence) profile
         self.kappa_power_law = (3 - self.gamma) / 2 * (self.theta_E/self.r)**(self.gamma-1)
         
     def mass_sheet_transform (self):
