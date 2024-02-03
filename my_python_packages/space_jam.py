@@ -147,7 +147,10 @@ class space_jam:
         
     zsource: float
         Redshift of background source
-        
+    
+    sigmapsf: float
+        Standard deviation of the Gaussian PSF fit to the kinematics data
+    
     cosmo: astropy.cosmology instance
         Assumed cosmology for distance measurement.
         
@@ -165,12 +168,32 @@ class space_jam:
     '''
     
     def __init__(self, 
-                     kin_dir, jam_dir,
-                     obj_name, SN, mass_model, anisotropy, geometry, align, 
-                    zlens, zsource, cosmo, fast_slow,
-                   p0, bounds, sigpar, prior_type, lensprior, 
-                   sampler_args, date_time, run_id, plot=False, overwrite=False, 
-                   test_prior=False, constant_err=False, kinmap_test=None):
+                 kin_dir, 
+                 jam_dir,
+                 obj_name, 
+                 SN, 
+                 mass_model, 
+                 anisotropy, 
+                 geometry, 
+                 align, 
+                 zlens, 
+                 zsource, 
+                 sigmapsf,
+                 cosmo, 
+                 fast_slow,
+                 p0, 
+                 bounds, 
+                 sigpar, 
+                 prior_type, 
+                 lensprior, 
+                 sampler_args, 
+                 date_time, 
+                 run_id, 
+                 plot=False, 
+                 overwrite=False, 
+                 test_prior=False, 
+                 constant_err=False, 
+                 kinmap_test=None):
     
         self.obj_name = obj_name
         self.obj_abbr = obj_name[4:9]
@@ -191,6 +214,7 @@ class space_jam:
         self.prior_type = prior_type
         self.zlens = zlens
         self.zsource = zsource
+        self.sigmapsf = sigmapsf
         self.cosmo = cosmo
         self.fast_slow = fast_slow
         
@@ -270,16 +294,8 @@ class space_jam:
         self.ybin = tommy_pickles.ybin_phot
         self.reff = tommy_pickles.reff
         
-        # get the revised KCWI sigmapsf
-        # data directory
-        data_dir = '/data/raw_data/KECK_KCWI_SLACS_kinematics_shawn/'
-        tables_dir = f'{data_dir}tables/'
-        sigmapsf_table = pd.read_csv(f'{tables_dir}kcwi_sigmapsf_estimates.csv')
-        self.kcwi_sigmapsf = sigmapsf_table[sigmapsf_table['obj_name']==self.obj_name]['kcwi_sigmapsf'][0]
-        print('KCWI sigmapsf', self.kcwi_sigmapsf)
-        
         # additional kwargs needed for jam
-        self.goodbins = np.isfinite(self.xbin)
+        self.goodbins = np.isfinite(self.Vrms/self.dVrms)
         # These parameters are passed to JAM
         self.distance = self.cosmo.angular_diameter_distance(self.zlens).value
         self.normpsf = 1.
@@ -420,10 +436,10 @@ class space_jam:
         qobs_min = np.min(self.qobs_lum)
         inc_min = np.arccos(qobs_min)
         q_intr_eff_bound_lo = np.sqrt( (self.qobs_eff**2 - qobs_min**2)/(1 - qobs_min**2))
-        print('qobs_min ', qobs_min)
-        print('q_intr lower bound from qobs_min ', q_intr_eff_bound_lo)
+        #print('qobs_min ', qobs_min)
+        #print('q_intr lower bound from qobs_min ', q_intr_eff_bound_lo)
         inc_bound_lo = np.sqrt( np.rad2deg(np.arcsin( (1 - qobs_min**2) / (1 - q_intr_eff_bound_lo**2))) ) # check what this minimum inclination is
-        print('minimum inclination from qobs_min ', inc_bound_lo)
+        #print('minimum inclination from qobs_min ', inc_bound_lo)
 
 
         return q_intr_eff_bound_lo, q_intr_eff_bound_hi
@@ -560,12 +576,21 @@ class space_jam:
                                            inc, mbh, self.distance, self.xbin, self.ybin, 
                                             align=self.align, beta=beta, logistic=logistic,
                                            data=self.Vrms, errors=self.dVrms, goodbins=self.goodbins,
-                                           pixsize=self.pixsize, sigmapsf=self.kcwi_sigmapsf, normpsf=self.normpsf, 
+                                           pixsize=self.pixsize, sigmapsf=self.sigmapsf, normpsf=self.normpsf, 
                                            plot=plot,  quiet=1, ml=1, nodots=True)
 
                         resid = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
                         chi2 = resid @ resid
                         lnprob = -0.5*chi2 + lnprior
+                        if np.isnan(lnprob):
+                            print('Vrms', self.Vrms)
+                            print('dVrms', self.dVrms)
+                            print('goodbins', self.goodbins)
+                            print('nan value, setting lnprob to -inf')
+                            print('resid', resid)
+                            print('model', jam.model[self.goodbins])
+                            print('chi2', chi2)
+                            print('lnprior', lnprior)
                         # Update the arrays of ratios and lambda_ints
                         if bestfit == False:
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
@@ -718,7 +743,7 @@ class space_jam:
         flux_model = jam.flux
 
         plot_pars = self.pars.copy()
-        plot_bounds = np.array(bounds).copy()#self.bounds.copy()
+        plot_bounds = np.array(self.bounds).copy()#self.bounds.copy()
         plot_truths = self.p0.copy()
         #truths should only be for gamma, theta_E and q_intr
         plot_truths[2] = 0
