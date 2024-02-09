@@ -682,8 +682,53 @@ class slacs_kcwi_kinematics:
         # keep templates and wavelength range of templates
         self.templates = templates.reshape(templates.shape[0], -1) 
         self.templates_wave = sps.lam_temp
-
-
+        
+        # make sure the template wavelengths extend beyond the galaxy restframe wavelengths in both directions
+        # if it's not broad enough to handle the wave_min and wave_max we actually are fitting, raise exception
+        if (self.templates_wave.min() > self.wave_min) or (self.templates_wave.max() < self.wave_max):
+            print('Templates do not cover the indicated wavelength range of fitting.')
+        else:
+            if (self.templates_wave.min() > self.rest_wave.min()):
+                print('Templates do not cover galaxy wavelength range. Adding zeros.')
+                print('Check this fit to be sure the 0s are not in the fit range.')
+                # take the interval between template wavelengths
+                temp_wave_interval = self.templates_wave[1] - self.templates_wave[0]
+                # add enough to cover the min of self.rest_wave
+                add_wavelengths = np.arange(self.rest_wave.min()-temp_wave_interval, 
+                                            self.templates_wave[0], temp_wave_interval
+                                           )
+                # add those wavelengths to the front of the templates wavelength array
+                self.templates_wave = np.concatenate((add_wavelengths, self.templates_wave))
+                # add the same number of 0 values to the flux of the templates so the size is the same
+                self.templates = np.concatenate(
+                                                (
+                                                    np.zeros((add_wavelengths.size, self.templates.shape[1])),
+                                                    self.templates
+                                                )
+                                                )
+                                                
+    
+            if (self.templates_wave.max() < self.rest_wave.max()):
+                print('Templates do not cover galaxy wavelength range. Adding zeros.')
+                print('Check this fit to be sure the 0s are not in the fit range.')
+                # take the interval between template wavelengths
+                temp_wave_interval = self.templates_wave[1] - self.templates_wave[0]
+                # add enough to cover the max of self.rest_wave
+                add_wavelengths = np.arange(self.templates_wave[-1],
+                                            self.rest_wave.min()+temp_wave_interval, 
+                                            temp_wave_interval
+                                           )
+                # add the wavelengths to end of the template wavelengths array
+                self.templates_wave = np.contanenate((add_wavelengths, self.templates_wave))
+                # add the same number of 0 values to the flux of the templates so the size is the same
+                self.templates = np.concatenate(
+                                                (
+                                                    self.templates, 
+                                                    np.zeros((add_wavelengths.size, self.templates.shape[1]))
+                                                )
+                                                )
+            
+        
 #########################################
         
     def set_up_mask(self):
