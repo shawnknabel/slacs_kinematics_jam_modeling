@@ -460,7 +460,7 @@ for i in range(len(obj_names)):
     mass_model='power_law'
     anisotropy='const'
     geometry='axi'
-    align='cyl'
+    align='sph'
     
     # object attributes
     zlens= zlenses[slacs_ix_table['Name']==obj_name]
