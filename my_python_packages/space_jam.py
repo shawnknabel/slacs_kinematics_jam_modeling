@@ -44,6 +44,9 @@ cosmo = FlatLambdaCDM(H0=70, Om0=0.3, Tcmb0=2.725)
 import astropy.units as u
 import astropy.constants as constants
 
+# ppxf/capfit
+from ppxf.capfit import capfit
+
 # mge fit
 #import mgefit
 #from mgefit.find_galaxy import find_galaxy
@@ -163,7 +166,12 @@ class space_jam:
     bounds: array-like (N, 2)
         Upper and lower bounds for parameter search space. Will be updated during the run according to certain model parameters (e.g. the possible intrinsic shapes)
         
-    
+    fix_pars: array-like (N,)
+        If 1, parameter will be fixed to starting parameter
+        
+    lambda_int: float
+        Explicit mass sheet parameter; if specified, will overwrite k_mst
+        
     
     '''
     
@@ -185,10 +193,13 @@ class space_jam:
                  bounds, 
                  sigpar, 
                  prior_type, 
-                 lensprior, 
+                 lensprior,
+                 fix_pars,
+                 lambda_int,
+                 minimization,
                  sampler_args, 
                  date_time, 
-                 run_id, 
+                 run_id,
                  plot=False, 
                  overwrite=False, 
                  test_prior=False, 
@@ -199,6 +210,7 @@ class space_jam:
         self.obj_abbr = obj_name[4:9]
         self.run_id = run_id
         self.model_name = f'{obj_name}_{date_time}_v{run_id}'
+        self.minimization = minimization
         self.sampler_args = sampler_args
         self.date_time = date_time
         self.run_id = run_id
@@ -212,6 +224,8 @@ class space_jam:
         self.sigpar = sigpar
         self.bounds = bounds
         self.prior_type = prior_type
+        self.fix_pars = fix_pars
+        self.lambda_int = lambda_int
         self.zlens = zlens
         self.zsource = zsource
         self.sigmapsf = sigmapsf
@@ -297,7 +311,10 @@ class space_jam:
         # additional kwargs needed for jam
         self.goodbins = np.isfinite(self.Vrms/self.dVrms)
         # These parameters are passed to JAM
-        self.distance = self.cosmo.angular_diameter_distance(self.zlens).value
+        try:
+            self.distance = self.cosmo.angular_diameter_distance(self.zlens).value
+        except:
+            self.distance = self.cosmo.angular_diameter_distance(self.zlens).to_numpy()[0]
         self.normpsf = 1.
         self.pixsize = 0.1457#kcwi_scale,      
         self.break_factor = 20 #200
@@ -477,7 +494,7 @@ class space_jam:
     ###############################################################################
     # set up new anisotropy functions and probability functions to be fit
 
-    def jam_lnprob (self, pars, plot=False, test_prior=False, bestfit=False):
+    def jam_lnprob (self, pars, lambda_int=None, plot=False, test_prior=False, bestfit=False):
 
         """
         Return the probability of the model, given the data, assuming priors
@@ -547,7 +564,7 @@ class space_jam:
                     total_mass = total_mass_mge(self.surf_lum, self.sigma_lum, self.qobs_lum, 
                                                  self.mass_model, self.qobs_eff, self.reff, self.break_factor, 
                                                self.zlens, self.zsource, self.cosmo,
-                                                 gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=None, 
+                                                 gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=self.lambda_int, 
                                                  ngauss=30, inner_slope=2, outer_slope=3, 
                                                  quiet=1, plot=plot, skip_mge=False)
                     surf_pot = total_mass.surf_pot
@@ -559,11 +576,14 @@ class space_jam:
                     if lambda_int==0:
                         lnprob = -np.inf
                         # pdate the arrays of ratios and lambda_ints
-                        if bestfit == False:
+                        if (bestfit == False) & (self.minimization=='MCMC'):
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                             self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                             self.chi2s = np.append(self.chi2s, np.inf)
                             return lnprob
+                        elif self.minimization=='lsq':
+                            residual = np.full_like(self.Vrms[self.goodbins], np.inf)
+                            return residual
                         else:
                             print('bestfit is results in negative mass')
                             return 0, 0, 0
@@ -579,8 +599,8 @@ class space_jam:
                                            pixsize=self.pixsize, sigmapsf=self.sigmapsf, normpsf=self.normpsf, 
                                            plot=plot,  quiet=1, ml=1, nodots=True)
 
-                        resid = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
-                        chi2 = resid @ resid
+                        residual = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
+                        chi2 = residual @ residual
                         lnprob = -0.5*chi2 + lnprior
                         if np.isnan(lnprob):
                             print('Vrms', self.Vrms)
@@ -592,11 +612,13 @@ class space_jam:
                             print('chi2', chi2)
                             print('lnprior', lnprior)
                         # Update the arrays of ratios and lambda_ints
-                        if bestfit == False:
+                        if (bestfit == False) & (self.minimization=='MCMC'):
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                             self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                             self.chi2s = np.append(self.chi2s, chi2)
                             return lnprob
+                        elif (bestfit == False) & (self.minimization=='lsq'):
+                            return residual
                         else:
                             surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
                             return jam, surf_potential, lambda_int
@@ -604,11 +626,13 @@ class space_jam:
                     # if the anisotropy constraint is violated
                     lnprob = -np.inf # reject this one
                     # Update the arrays of ratios and lambda_ints
-                    if bestfit == False:
+                    if (bestfit == False) & (self.minimization=='MCMC'):
                         self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                         self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                         self.chi2s = np.append(self.chi2s, np.inf)
                         return lnprob
+                    elif (bestfit == False) & (self.minimization=='lsq'):
+                        return residual
                     else:
                         surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
                         return jam, surf_potential, lambda_int
@@ -645,7 +669,7 @@ class space_jam:
                 total_mass = total_mass_mge(self.surf_lum, self.sigma_lum, self.qobs_lum, 
                                              self.mass_model, self.qobs_eff, self.reff, self.break_factor, 
                                            self.zlens, self.zsource, self.cosmo,
-                                             gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=None, 
+                                             gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=self.lambda_int, 
                                              ngauss=30, inner_slope=2, outer_slope=3, 
                                              quiet=1, plot=False, skip_mge=False)
                 surf_pot = total_mass.surf_pot
@@ -661,31 +685,31 @@ class space_jam:
                         self.chi2s = np.append(self.chi2s, np.inf)
                     return lnprob
                 # get radius of bin centers
-                #rad_bin = np.sqrt(xbin**2 + ybin**2)
+                rad_bin = np.sqrt(xbin**2 + ybin**2)
                 # ignore central black hole
                 mbh=0.
                 # There is no "goodbins" keyword for jam_sph_proj, so I need to adjust the data as such
-                #rms = rms[goodbins]
-                #erms = erms[goodbins]
-                #rad_bin = rad_bin[goodbins]
+                rms = rms[goodbins]
+                erms = erms[goodbins]
+                rad_bin = rad_bin[goodbins]
 
                 # Now run the jam model
-                #jam = jam_sph_proj(surf_lum, sigma_lum, surf_pot, sigma_pot, 
-                #                   mbh, distance, rad_bin, #xbin, ybin, align=align, 
-                #                    beta=beta, logistic=logistic, rani=r_a,
-                #                   data=rms, errors=erms, #goodbins=goodbins, # there is no goodbins
-                #                   pixsize=pixsize, sigmapsf=sigmapsf, normpsf=normpsf, 
-                #                   plot=plot, quiet=1, ml=1)#, nodots=True) # there is no nodots
-                ####### 10/02/23 - for now, we will run jam_axi_proj, which is the same as jam_sph_proj in the spherical limit that q=1
-                inc=90
-                jam = jam_axi_proj(surf_lum, sigma_lum, qobs_lum, surf_pot, sigma_pot, qobs_pot,
-                                   inc, mbh, distance, xbin, ybin, 
-                                    align=align, beta=beta, logistic=logistic,
-                                   data=rms, errors=erms, goodbins=goodbins,
+                jam = jam_sph_proj(surf_lum, sigma_lum, surf_pot, sigma_pot, 
+                                   mbh, distance, rad_bin, #xbin, ybin, align=align, 
+                                    beta=beta, logistic=logistic, rani=r_a,
+                                   data=rms, errors=erms, #goodbins=goodbins, # there is no goodbins
                                    pixsize=pixsize, sigmapsf=sigmapsf, normpsf=normpsf, 
-                                   plot=plot,  quiet=1, ml=1, nodots=True)
-                resid = (self.Vrms[goodbins] - jam.model[goodbins])/self.dVrms[goodbins]
-                chi2 = resid @ resid
+                                   plot=plot, quiet=1, ml=1)#, nodots=True) # there is no nodots
+                ####### 10/02/23 - for now, we will run jam_axi_proj, which is the same as jam_sph_proj in the spherical limit that q=1
+                #inc=90
+                #jam = jam_axi_proj(surf_lum, sigma_lum, qobs_lum, surf_pot, sigma_pot, qobs_pot,
+                 #                  inc, mbh, distance, xbin, ybin, 
+                 #                   align=align, beta=beta, logistic=logistic,
+                 #                  data=rms, errors=erms, goodbins=goodbins,
+                 #                  pixsize=pixsize, sigmapsf=sigmapsf, normpsf=normpsf, 
+                 #                  plot=plot,  quiet=1, ml=1, nodots=True)
+                residual = (self.Vrms[goodbins] - jam.model[goodbins])/self.dVrms[goodbins]
+                chi2 = residual @ residual
                 lnprob = -0.5*chi2 + lnprior
                 # Update the arrays of ratios and lambda_ints
                 if bestfit == False:
@@ -707,6 +731,8 @@ class space_jam:
     ###################
     # function to run mcmc
     def run_mcmc(self):
+        # set to MCMC
+        self.minimization = 'MCMC'
         # set up chi2s to be saved for later use
         self.chi2s = np.array([], dtype=float)
         # Do the fit
@@ -724,7 +750,63 @@ class space_jam:
         self.index_accepted_samples()
         self.save_space_jam()
         print("Job's finished!")
-    
+        
+    ###################
+    # least-squares fit for ease of testing
+    def fit_lsq(self):
+        
+        '''
+        Least-squares fit for testing and quick result.
+        '''
+        
+        # set to lsq
+        self.minimization='lsq'
+        
+        # set up chi2s to be saved for later use
+        self.chi2s = np.array([], dtype=float)
+        
+        sol = capfit(self.jam_lnprob, self.p0, bounds=self.bounds, verbose=2, fixed=self.fix_pars)
+        if sol.success==True:
+            print()
+            print('Success!')
+            print()
+        else:
+            print()
+            print('Fit failed to meet convergence criteria.')
+            print()
+
+        # bestfit paramters
+        #q = sol.x[0]
+        #inc = np.degrees(np.arctan2(np.sqrt(1 - qmin**2), np.sqrt(qmin**2 - q**2)))
+        #anis_ratio = sol.x[1]
+        #gamma_fit = sol.x[2]
+        print('Best fit,', sol.x)#anis_ratio, gamma_fit)
+
+        # covariance matrix of free parameters
+        cov = sol.cov
+        # qerr doesn't matter but is the first index
+        #anis_ratio_err = np.sqrt(sol.cov.diagonal()[1])
+        #gamma_err = np.sqrt(sol.cov.diagonal()[2])
+
+        # plot the best fit
+        #kwargs['plot'] = 1
+        #kwargs['return_mge'] = True
+        #surf_pot, sigma_pot, qobs_pot, chi2 
+        surf_pot, sigma_pot, qobs_pot \
+            = self.jam_lnprob(sol.x, plot=True, bestfit=True)#**kwargs)
+        #plt.savefig(f'{jam_output_dir}{obj_name}_pl_const_axicyl_fit.png')
+        plt.pause(1)
+
+        # take chi2/dof
+        #dof = len(Vrms)
+        #chi2_red = chi2/dof
+
+        # calculate the enclosed mass
+        #mass_enclosed, gamma_avg, profile_radii, profile_1d \
+#                    = calculate_mass_and_slope_enclosed(surf_pot, sigma_pot, qobs_pot, self.distance, radius=self.theta_E, plot=True)
+
+        #print('Mass enclosed, avg gamma', mass_enclosed, gamma_avg)
+
     ###################
     # function to plot summary
     def summary_plot(self, save=False):

@@ -230,9 +230,23 @@ class total_mass_mge:
     def convergence_to_surf_mass_density(self):
         # Go from convergence to surface mass density with critical surface density
         # get distances
-        DL = cosmo.angular_diameter_distance(self.zlens).to('pc')
-        DS = cosmo.angular_diameter_distance(self.zsource).to('pc')
-        DLS = cosmo.angular_diameter_distance_z1z2(self.zlens, self.zsource).to('pc')
+        DL = cosmo.angular_diameter_distance(self.zlens)#.to('pc')
+        DS = cosmo.angular_diameter_distance(self.zsource)#.to('pc')
+        DLS = cosmo.angular_diameter_distance_z1z2(self.zlens, self.zsource)#.to('pc')
+        # convert to pc
+        try:
+            DL = DL.to('pc')
+            DS = DS.to('pc')
+            DLS = DLS.to('pc')
+        except:
+            print(DL)
+            if DL.unit == 'Mpc':
+                DL *= 1e6
+                DS *= 1e6
+                DLS *= 1e6
+            else:
+                print('The conversion to pc is not right.')
+            
         # calculate critical surface density
         sigma_crit = c2_4piG * DS / DL / DLS
         self.surf_mass_density = self.kappa_int * sigma_crit.value

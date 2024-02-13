@@ -670,7 +670,6 @@ def jam_bestfit (pars, **kwargs):
     shape_anis_bounds=kwargs['shape_anis_bounds']
     qobs_eff=kwargs['qobs_eff']
     
-    
     ##### axisymmetric geometry
     if geometry=='axi':
         # parameters for fitting

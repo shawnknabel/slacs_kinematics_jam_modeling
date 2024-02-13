@@ -692,6 +692,12 @@ for i in range(len(obj_names)):
     
     # get radius of bin centers
     rbin = np.sqrt(xbin**2 + ybin**2)
+        
+    # sort by bin radius
+    sort = np.argsort(rbin)
+    rbin = rbin[sort]
+    Vrms = Vrms[sort]
+    dVrms = dVrms[sort]
     
     # Starting guesses
     ratio0 = 1          # Anisotropy ratio sigma_z/sigma_R
@@ -882,11 +888,6 @@ for i in range(len(obj_names)):
     print(obj_name)
     print()
     
-    if obj_abbr=='J0330':
-        print('J0330 is not reliable and will not be used here.')
-        print()
-        continue
-    
     SN = 15
     mass_model='power_law'
     anisotropy='om'
@@ -898,13 +899,6 @@ for i in range(len(obj_names)):
     cosmo = cosmo
     distance = cosmo.angular_diameter_distance(zlens).to_numpy()[0]
     fast_slow = paper_table.loc[0, 'class_for_JAM_models']
-    
-    # load in the 1D kinematics
-    Vrms_1d = pd.read_csv(f'{milestone_dir}{obj_name}/{obj_name}_kinmap.csv')
-    Vrms = Vrms_1d['binned_Vrms'].to_numpy()
-    rbin = np.mean(Vrms_1d[['bin_inner_edge','bin_outer_edge']].to_numpy(), axis=1)
-    Vrms_cov = np.loadtxt(f'{milestone_dir}{obj_name}/{obj_name}_kinmap_cov.csv', delimiter=',', dtype=float)
-    dVrms = np.sqrt(Vrms_cov.diagonal())
     
     if obj_abbr=='J0330':
         file_dir = f'{kinematics_dir}{obj_name}/target_sn_{SN}/{obj_name}_{SN}_final_kinematics/no_g/'
@@ -925,6 +919,12 @@ for i in range(len(obj_names)):
     
     # get radius of bin centers
     rbin = np.sqrt(xbin**2 + ybin**2)
+    
+    # sort by bin radius
+    sort = np.argsort(rbin)
+    rbin = rbin[sort]
+    Vrms = Vrms[sort]
+    dVrms = dVrms[sort]
     
     # Starting guesses
     ani0 = 0.5          # Anisotropy ratio sigma_z/sigma_R
