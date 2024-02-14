@@ -226,7 +226,7 @@ class slacs_kcwi_kinematics:
         obj_name = 'SDSSJ0029-0055'
         obj_abbr = obj_name[4:9] # e.g. J0029
         zlens = 0.227 # lens redshift
-        T_exp = 1800*5 # exposure time in seconds... this is where I made the disastrous mistake
+        T_exp = 1800*5 # exposure time in seconds
         lens_center_x,lens_center_y = 61, 129
         # other necessary directories ... Be very careful! This is how we will make sure we are using the correct files moving forward.
         mos_dir = f'{data_dir}mosaics/{obj_name}/' # files should be loaded from here but not saved
@@ -374,14 +374,20 @@ class slacs_kcwi_kinematics:
     sps_name: str
         Name of the simple stellar population used with ppxf, e.g. 'emiles'. Other templates can be used, but this is the easiest. I will likely add functionality to do what we originally did with Xshooter (more flexibility, extra steps). The sps model files will be in the ppxf module directory (should be at least). Maybe check the latest version of ppxf from github.
         
+    FWHM_templates: float
+        FWHM of template instrumental dispersion in A, e.g. Xshooter is 0.403, E-Miles is 2.51
+        
     pixel_scale: float
         Pixel scale of the datacube. KCWI is 0.1457 arcseconds per pixel (after we have made the pixels square) (arcseconds / pixel)
         
-    FWHM: float
+    FWHM_data: float
         Estimate of instrument spectral FWHM in Angstroms. KCWI is 1.42 (Angstroms)
-        
+    
     noise: float
         Rough initial estimate of the noise (I might have a bug here... Maybe I need to redo it the way CF did)
+        
+    central_wavelength: float
+        Wavelength of most interest in A, e.g. 3950ish is CaHK; used for S/N estimate and FWHM difference comparison.
         
     velscale_ratio: int
         The ratio of desired resolution of the template spectra with relation to the datacube spectra. We tend to use 2, which means the template spectra are sampled at twice the resolution of the data
@@ -494,9 +500,11 @@ class slacs_kcwi_kinematics:
                  wave_max,
                  degree,
                  sps_name,
+                 FWHM_templates,
+                 FWHM_data,
                  pixel_scale,
-                 FWHM,
                  noise,
+                 central_wavelength,
                  velscale_ratio,
                  radius_in_pixels,
                  bin_target_SN,
@@ -520,9 +528,11 @@ class slacs_kcwi_kinematics:
         self.wave_max = wave_max
         self.degree = degree
         self.sps_name = sps_name
+        self.FWHM_templates = FWHM_templates
+        self.FWHM_data = FWHM_data
         self.pixel_scale = pixel_scale
-        self.FWHM = FWHM
         self.noise = noise
+        self.central_wavelength = central_wavelength
         self.velscale_ratio = velscale_ratio
         self.radius_in_pixels = radius_in_pixels
         self.bin_target_SN = bin_target_SN
@@ -624,7 +634,7 @@ class slacs_kcwi_kinematics:
         self.rest_wave_range = lamRange1/(1+self.zlens)
         
         # Adjust resolution in Angstrom
-        self.rest_FWHM = self.FWHM/(1+self.zlens)  
+        self.rest_FWHM = self.FWHM_data/(1+self.zlens)  
         
         # rebin to log wavelengths and calculate velocity scale (resolution)
         self.central_spectrum, self.rest_wave_log, self.central_velscale = \
@@ -683,52 +693,82 @@ class slacs_kcwi_kinematics:
         self.templates = templates.reshape(templates.shape[0], -1) 
         self.templates_wave = sps.lam_temp
         
+        # if the instrumental resolution of templates is larger than that of data, get correction to velocity dispersion
+        if self.FWHM_templates > self.FWHM_data:
+            print('Resolution of templates is larger than data, correction will be added quadratically to all measured velocity dispersions.')
+            sigma_data = c * self.FWHM_data / self.central_wavelength / 2.355
+            sigma_temp = c * self.FWHM_templates / self.central_wavelength / 2.355
+            sigma_diff2 = (sigma_data**2 - sigma_temp**2)
+            self.resolution_difference = sigma_diff2
+        else:
+            self.resolution_difference = 0
+
+        
         # make sure the template wavelengths extend beyond the galaxy restframe wavelengths in both directions
         # if it's not broad enough to handle the wave_min and wave_max we actually are fitting, raise exception
-        if (self.templates_wave.min() > self.wave_min) or (self.templates_wave.max() < self.wave_max):
-            print('Templates do not cover the indicated wavelength range of fitting.')
-        else:
-            if (self.templates_wave.min() > self.rest_wave.min()):
-                print('Templates do not cover galaxy wavelength range. Adding zeros.')
-                print('Check this fit to be sure the 0s are not in the fit range.')
-                # take the interval between template wavelengths
-                temp_wave_interval = self.templates_wave[1] - self.templates_wave[0]
-                # add enough to cover the min of self.rest_wave
-                add_wavelengths = np.arange(self.rest_wave.min()-temp_wave_interval, 
-                                            self.templates_wave[0], temp_wave_interval
-                                           )
-                # add those wavelengths to the front of the templates wavelength array
-                self.templates_wave = np.concatenate((add_wavelengths, self.templates_wave))
-                # add the same number of 0 values to the flux of the templates so the size is the same
-                self.templates = np.concatenate(
-                                                (
-                                                    np.zeros((add_wavelengths.size, self.templates.shape[1])),
-                                                    self.templates
-                                                )
-                                                )
-                                                
-    
-            if (self.templates_wave.max() < self.rest_wave.max()):
-                print('Templates do not cover galaxy wavelength range. Adding zeros.')
-                print('Check this fit to be sure the 0s are not in the fit range.')
-                # take the interval between template wavelengths
-                temp_wave_interval = self.templates_wave[1] - self.templates_wave[0]
-                # add enough to cover the max of self.rest_wave
-                add_wavelengths = np.arange(self.templates_wave[-1],
-                                            self.rest_wave.min()+temp_wave_interval, 
-                                            temp_wave_interval
-                                           )
-                # add the wavelengths to end of the template wavelengths array
-                self.templates_wave = np.contanenate((add_wavelengths, self.templates_wave))
-                # add the same number of 0 values to the flux of the templates so the size is the same
-                self.templates = np.concatenate(
-                                                (
-                                                    self.templates, 
-                                                    np.zeros((add_wavelengths.size, self.templates.shape[1]))
-                                                )
-                                                )
-            
-        
+        if (self.templates_wave.min() > self.rest_wave.min()):
+            print('Templates do not cover galaxy lower wavelength range. Adding zeros.')
+            print('Check this fit to be sure the 0s are not in the fit range.')
+            # take the interval between template wavelengths
+            temp_wave_interval = self.templates_wave[1] - self.templates_wave[0]
+            # add enough to cover the min of self.rest_wave
+            add_wavelengths = np.arange(
+                                        self.rest_wave.min()-10*temp_wave_interval, 
+                                        self.templates_wave[0], 
+                                        temp_wave_interval
+                                       )
+            # add those wavelengths to the front of the templates wavelength array
+            templates_wave = np.concatenate((add_wavelengths, self.templates_wave))
+            # add the same number of 0 values to the flux of the templates so the size is the same
+            templates = np.concatenate(
+                                            (
+                                                np.zeros((add_wavelengths.size, 
+                                                          self.templates.shape[1])),
+                                                self.templates
+                                            )
+                                            )
+
+            # Now log rebin
+            self.templates, ln_templates \
+                        = ppxf_util.log_rebin(
+                                        templates_wave, 
+                                        templates, 
+                                        velscale=self.central_velscale/ \
+                                                 self.velscale_ratio
+                                            ) [:2]
+            self.templates_wave = np.exp(ln_templates)
+
+
+        if (self.templates_wave.max() < self.rest_wave.max()):
+            print('Templates do not cover galaxy upper wavelength range. Adding zeros.')
+            print('Check this fit to be sure the 0s are not in the fit range.')
+            # take the interval between template wavelengths
+            temp_wave_interval = self.templates_wave[1] - self.templates_wave[0]
+            # add enough to cover the max of self.rest_wave
+            add_wavelengths = np.arange(self.templates_wave[-1],
+                                        self.rest_wave.min()+10*temp_wave_interval, 
+                                        temp_wave_interval
+                                       )
+            # add the wavelengths to end of the template wavelengths array
+            templates_wave = np.contanenate((add_wavelengths, self.templates_wave))
+            # add the same number of 0 values to the flux of the templates so the size is the same
+            templates = np.concatenate(
+                                            (
+                                                self.templates, 
+                                                np.zeros((add_wavelengths.size, self.templates.shape[1]))
+                                            )
+                                            )
+
+            # Now log rebin
+            self.templates, ln_templates \
+                        = ppxf_util.log_rebin(
+                                        templates_wave, 
+                                        templates, 
+                                        velscale=self.central_velscale/self.velscale_ratio
+                                            ) [:2]
+            self.templates_wave = np.exp(ln_templates)
+
+
 #########################################
         
     def set_up_mask(self):
@@ -758,42 +798,93 @@ class slacs_kcwi_kinematics:
         Function fits the central_spectrum with the stellar template spectra, a polynomial of specified degree, and the background source as the "sky" component.
         '''
         
+        # set up galaxy, background source, and wavelengths
+        galaxy = np.copy(self.central_spectrum)
+        background_source = np.copy(self.background_spectrum)
+        wavelengths = np.copy(self.rest_wave)
+        
+        # cut the data, background source, and wavelengths to the wave_min and wave_max we specified
+        cut_lo = self.wave_min*0.9
+        cut_hi = self.wave_max*1.1
+        galaxy = galaxy[wavelengths>cut_lo]
+        background_source = background_source[wavelengths>cut_lo]
+        wavelengths = wavelengths[wavelengths>cut_lo]
+        galaxy = galaxy[wavelengths<cut_hi]
+        background_source = background_source[wavelengths<cut_hi]
+        wavelengths = wavelengths[wavelengths<cut_hi]
+
+        # take the log of the now-cut wavelength array
+        log_wavelengths = np.log(wavelengths)
+        
+        # take range of template wavelengths
+        lam_range_temp = np.array([self.templates_wave[0], self.templates_wave[-1]])
+        
+        # keep only the good pixels, after de-redshift, the initial redshift is zero.
+        goodPixels = ppxf_util.determine_goodpixels(log_wavelengths, lam_range_temp, 0)
+        
+        # find the indices of wave_min and wave_max in wavelengths array
+        ind_min = find_nearest(wavelengths, self.wave_min)
+        ind_max = find_nearest(wavelengths, self.wave_max)
+
+        # mask the appropriate wavelengths and gas emission lines
+        mask=goodPixels[goodPixels<ind_max]
+        mask = mask[mask>ind_min]
+        boolen = ~((2956 < mask) & (mask < 2983))  # mask the Mg II
+        mask = mask[boolen]
+        boolen = ~((2983 < mask) & (mask < 3001))  # mask the Mg II
+        mask = mask[boolen]
+        
+        #####
+        # create a noise array # Assume constant noise per AA
+        noise_array = np.full_like(galaxy, self.noise) 
+        
         # some setup, starting guesses
         vel = c*np.log(1 + 0)   # eq.(8) of Cappellari (2017)
         start = [vel, 250.]  # (km/s), starting guess for [V, sigma]
         #bounds = [[-500, 500],[50, 450]] # not necessary
         t = clock()
         
-        # create a noise array # Assume constant noise per AA
-        noise_array = np.full_like(self.central_spectrum, self.noise) 
-        
         # fit with ppxf
         pp = ppxf(self.templates, # templates for fitting
-                  self.central_spectrum,  # spectrum to be fit
+                  galaxy,#self.central_spectrum,  # spectrum to be fit
                   noise_array,
                   self.central_velscale, # resolution
                   start, # starting guess
                   plot=False, # no need to plot here, will plot after
                   moments=2, # VD and V, no others
-                  goodpixels=self.mask, # mask we made
+                  goodpixels=mask,#self.mask, # mask we made
                   degree=self.degree, # degree of polynomial we specified
                   velscale_ratio=self.velscale_ratio, # resolution of templates wrt. data
-                  sky=self.background_spectrum, # background source spectrum
-                  lam=self.rest_wave, # wavelengths for fitting
+                  sky=background_source,#self.background_spectrum, # background source spectrum
+                  lam=wavelengths,#self.rest_wave, # wavelengths for fitting
                   lam_temp=self.templates_wave, # wavelenghts of templates
                  )
+        
+        # take the fit as attributes for future
+        self.central_spectrum_ppxf = pp
+        
+        # correct for the difference in resolution if the template resolution is larger than the data resolution
+        self.central_spectrum_VD = np.sqrt(pp.sol[1]**2 - self.resolution_difference)
 
         #plot the fit
         # model
         model = pp.bestfit
         # background source
-        background = self.background_spectrum * pp.weights[-1]
+        background = pp.sky[:,0]*pp.weights[-1]#self.background_spectrum * pp.weights[-1]
         # data
         data = pp.galaxy
         
         # linearize the wavelengths for plotting
-        log_axis = self.rest_wave
-        lin_axis = np.linspace(self.rest_wave_range[0], self.rest_wave_range[1], data.size)
+        log_axis = wavelengths#self.rest_wave
+        lin_axis = np.linspace(
+                                wavelengths[0],
+                                wavelengths[-1],
+                                log_axis.size#data.size
+                              )
+            #self.rest_wave_range[0], self.rest_wave_range[1], data.size)
+            
+        assert len(log_axis) == len(lin_axis) == len(background), \
+            f"len(log_axis), len(lin_axis), len(background): {len(log_axis), len(lin_axis), len(background)}"
         
         # rebin in linear space
         back_lin = de_log_rebin(log_axis, background, lin_axis) # background source fit
@@ -823,7 +914,7 @@ class slacs_kcwi_kinematics:
         plt.xlim(self.wave_min, self.wave_max)
         plt.xlabel('wavelength (A)')
         plt.ylabel('relative flux')
-        plt.title(f'Velocity dispersion - {int(pp.sol[1])} km/s')
+        plt.title(f'Velocity dispersion - {int(self.central_spectrum_VD)} km/s')
         plt.show()
         plt.pause(1)
         
@@ -833,8 +924,6 @@ class slacs_kcwi_kinematics:
         print("".join("%8.2g" % f for f in pp.error*np.sqrt(pp.chi2)))
         print('Elapsed time in pPXF: %.2f s' % (clock() - t))
         
-        # take the fit as attributes for future
-        self.central_spectrum_ppxf = pp
         # number of templates
         self.nTemplates = pp.templates.shape[1]
         # global_template is what we use to fit the bins
@@ -1143,12 +1232,12 @@ class slacs_kcwi_kinematics:
                       sky=background_source, # background source spectrum 
                       plot=False, # we plot later 
                       quiet=self.quiet, # suppress the outputs
-                        moments=2, # fit only mean velocity and velocity dispersion
+                      moments=2, # fit only mean velocity and velocity dispersion
                       goodpixels=mask, # mask of wavelengths 
-                        degree=self.degree, # degree of additive polynomial for fitting
-                        velscale_ratio=self.velscale_ratio, # resolution ratio of data vs template
-                        lam=wavelengths, # wavelengths in restframe of data
-                        lam_temp=self.global_template_wave, # wavelenghts in restframe of the global template
+                     degree=self.degree, # degree of additive polynomial for fitting
+                     velscale_ratio=self.velscale_ratio, # resolution ratio of data vs template
+                     lam=wavelengths, # wavelengths in restframe of data
+                     lam_temp=self.global_template_wave, # wavelenghts in restframe of the global template
                         )
             
             # Do another fit using the noise from the previous fit to make a better estimate of the Poisson noise
@@ -1188,6 +1277,9 @@ class slacs_kcwi_kinematics:
                             lam=wavelengths,
                             lam_temp=self.global_template_wave,
                             )
+                
+                # VD will be corrected by the difference in resolution if data has higher resolution than the templates
+                VD_corrected = np.sqrt(pp.sol[1]**2 - self.resolution_difference)
             
             # for viewing each bin spectrum fit
             if plot_bin_fits==True:
@@ -1229,7 +1321,7 @@ class slacs_kcwi_kinematics:
                 plt.xlim(self.wave_min, self.wave_max)
                 plt.xlabel('wavelength (A)')
                 plt.ylabel('relative flux')
-                plt.title(f'Bin {i} - Velocity dispersion - {int(pp.sol[1])} km/s')
+                plt.title(f'Bin {i} - Velocity dispersion - {int(VD_corrected)} km/s')
                 plt.show()
                 plt.pause(1)
                 
@@ -1241,7 +1333,8 @@ class slacs_kcwi_kinematics:
                                                 self.bin_kinematics, 
                                                  np.hstack( 
                                                              (
-                                                                 pp.sol[:2],
+                                                                 pp.sol[0],
+                                                                 VD_corrected,
                                                                  (pp.error*np.sqrt(pp.chi2))[:2],
                                                                  pp.chi2) 
                                                               )

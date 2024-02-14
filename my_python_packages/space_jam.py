@@ -335,7 +335,8 @@ class space_jam:
             self.qobs_eff = 1-eps_eff
         elif geometry=='sph':
             # Circularize MGEs if geometry is spherical
-            self.sigma_lum, self.qobs_lum = circularize_mge(self.sigma_lum, self.qobs_lum)
+            print(self.sigma_lum, self.qobs_lum)
+            self.sigma_lum, self.qobs_lum = self.circularize_mge()
             self.qobs_eff = 1
 
     ###############
@@ -692,6 +693,13 @@ class space_jam:
                 rms = rms[goodbins]
                 erms = erms[goodbins]
                 rad_bin = rad_bin[goodbins]
+                
+                # sort by bin radius
+                sort = np.argsort(rad_bin)
+                rad_bin = rad_bin[sort]
+                Vrms = Vrms[sort]
+                dVrms = dVrms[sort]
+                goodbins = goodbins[sort]
 
                 # Now run the jam model
                 jam = jam_sph_proj(surf_lum, sigma_lum, surf_pot, sigma_pot, 
@@ -712,11 +720,13 @@ class space_jam:
                 chi2 = residual @ residual
                 lnprob = -0.5*chi2 + lnprior
                 # Update the arrays of ratios and lambda_ints
-                if bestfit == False:
+                if (bestfit == False) & (self.minimization=='MCMC'):
                     self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                     self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                     self.chi2s = np.append(self.chi2s, chi2)
                     return lnprob
+                elif (bestfit == False) & (self.minimization=='lsq'):
+                    return residual
                 else:
                     surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
                     return jam, surf_potential, lambda_int
@@ -976,10 +986,10 @@ class space_jam:
 
     # define a function that will circularize the MGE
 
-    def circularize_mge (sigma, qobs):
+    def circularize_mge (self):
 
-        sigma_circ = sigma*np.sqrt(qobs)
-        qobs_circ = np.ones_like(qobs)
+        sigma_circ = self.sigma_lum*np.sqrt(self.qobs_lum)
+        qobs_circ = np.ones_like(self.qobs_lum)
 
         return sigma_circ, qobs_circ
 
