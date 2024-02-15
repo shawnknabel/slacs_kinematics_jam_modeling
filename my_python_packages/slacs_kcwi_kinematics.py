@@ -1152,6 +1152,7 @@ class slacs_kcwi_kinematics:
         # plot to check the binning with luminosity weighted centers
         p=plt.imshow(check, origin="lower", cmap='sauron')
         plt.scatter(self.bin_centers[:,0], self.bin_centers[:,1], c='k', marker='.', s=2)
+        plt.title(f'# bins {self.nbins}')
         plt.colorbar(p)
         plt.pause(1)
         
@@ -1278,8 +1279,8 @@ class slacs_kcwi_kinematics:
                             lam_temp=self.global_template_wave,
                             )
                 
-                # VD will be corrected by the difference in resolution if data has higher resolution than the templates
-                VD_corrected = np.sqrt(pp.sol[1]**2 - self.resolution_difference)
+            # VD will be corrected by the difference in resolution if data has higher resolution than the templates
+            VD_corrected = np.sqrt(pp.sol[1]**2 - self.resolution_difference)
             
             # for viewing each bin spectrum fit
             if plot_bin_fits==True:
