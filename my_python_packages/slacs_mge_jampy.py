@@ -967,7 +967,7 @@ def rotate_bins (PA, xbin_arcsec, ybin_arcsec, V_bin, plot=True):
         PA_kin_rot, dPA_kin_rot, velocity_offset_rot = fit_kinematic_pa(xbin, ybin, V_bin)
         PA_kin_correction = 90 - PA_kin_rot
        
-    return xbin, ybin, PA_kin_correction
+    return xbin, ybin, PA_kin_correction, velocity_offset_rot, dPA_kin_rot
 
 ##############################################################################
 

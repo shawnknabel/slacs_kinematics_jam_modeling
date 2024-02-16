@@ -293,7 +293,7 @@ def try_fractions_for_find_galaxy (img):
         plt.pause(1)
 
         
-def convert_mge_model_outputs (model, exp_time, q, data_source='F435W'):
+def convert_mge_model_outputs (obj_name, model, exp_time, q, data_dir, data_source='F435W'):
 
     '''
     This function takes model outputs and converts them to what is needed for jampy.
@@ -345,23 +345,25 @@ def convert_mge_model_outputs (model, exp_time, q, data_source='F435W'):
     # F814W zeropoint: 25.520
     ###############################################################################################################
     
+    inf_ap_correction = 0.1
+    
     # for surface density translation
     if data_source=='F435W':
         zeropoint = 25.793
+        # bring in dust extinction table
+        extinctions = pd.read_csv(f'{data_dir}tables/slacs_extinctions.csv')
+        extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_B'].values[0]
         # convert to B band surface brightness
         surf_br = zeropoint + inf_ap_correction + 5 * np.log10(scale) + 2.5 * np.log10(exp_time) - 2.5 * np.log10(peak_surf_br) - extinction
         M_sol = 5.45 # M_sol_B = 5.45
-        # bring in dust extinction table
-        extinctions = pd.read_csv(f'{data_dir}tables/slacs_Iband_extinctions.csv')
-        extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_B'].values[0]
     elif data_source=='F814W':
         zeropoint = 25.520
+        # bring in dust extinction table
+        extinctions = pd.read_csv(f'{data_dir}tables/slacs_extinctions.csv')
+        extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_I'].values[0]
         # convert to I band surface brightness
         surf_br = zeropoint + inf_ap_correction + 5 * np.log10(scale) + 2.5 * np.log10(exp_time) - 2.5 * np.log10(peak_surf_br) - extinction
         M_sol = 4.08 # I band
-        # bring in dust extinction table
-        extinctions = pd.read_csv(f'{data_dir}tables/slacs_Iband_extinctions.csv')
-        extinction = extinctions.loc[extinctions.obj_name == obj_name, 'A_I'].values[0]
     
     inf_ap_correction = 0.1
         
@@ -965,7 +967,7 @@ def rotate_bins (PA, xbin_arcsec, ybin_arcsec, V_bin, plot=True):
         PA_kin_rot, dPA_kin_rot, velocity_offset_rot = fit_kinematic_pa(xbin, ybin, V_bin)
         PA_kin_correction = 90 - PA_kin_rot
        
-    return xbin, ybin, PA_kin_correction
+    return xbin, ybin, PA_kin_correction, velocity_offset_rot, dPA_kin_rot
 
 ##############################################################################
 
