@@ -694,9 +694,9 @@ class slacs_kcwi_kinematics:
         self.templates_wave = sps.lam_temp
         
         # if the instrumental resolution of templates is larger than that of data, get correction to velocity dispersion
-        if self.FWHM_templates > self.FWHM_data:
+        if self.FWHM_templates > self.rest_FWHM:
             print('Resolution of templates is larger than data, correction will be added quadratically to all measured velocity dispersions.')
-            sigma_data = c * self.FWHM_data / self.central_wavelength / 2.355
+            sigma_data = c * self.rest_FWHM / self.central_wavelength / 2.355
             sigma_temp = c * self.FWHM_templates / self.central_wavelength / 2.355
             sigma_diff2 = (sigma_data**2 - sigma_temp**2)
             self.resolution_difference = sigma_diff2
