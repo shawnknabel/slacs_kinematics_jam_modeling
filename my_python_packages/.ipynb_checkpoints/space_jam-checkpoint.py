@@ -107,7 +107,7 @@ class space_jam:
     jam_dir = f'{data_dir}jam_outputs/'
     
     # initialize
-    we_jammin = space_jam(kin_dir, jam_dir,
+    we_jammin = space_jam(jam_dir, jampy_details_file,
                      obj_name, SN, mass_model, anisotropy, geometry, align, 
                     zlens, zsource, cosmo, fast_slow,
                    p0, bounds, sigpar, prior_type, lensprior, 
@@ -120,18 +120,15 @@ class space_jam:
     
     Input Parameters
     ------------------
-    
-    kin_dir: str
-        Directory containing the set of kinematics from some ppxf run (not galaxy-specific). Change the method "self.create_model_directory" for your file/path conventions. Sorry :)
-        
+          
     jam_dir: str
-        Directory where you want outputs in general to go (not galaxy-specific)
+        Directory where you want outputs in general to go (galaxy-specific)
+        
+    jampy_details_file: str
+        Pkl file containing the inputs needed for JAM modeling (luminosity MGEs, Vrms, dVrms, axis rotation, etc.)
         
     obj_name: str
         Name of object for calling files, naming plots, etc. E.g. 'SDSSJ0029-0055'
-        
-    SN: str or int
-        Target signal-to-noise used for Voronoi binning. I use this as part of my naming scheme. Not strictly necessary
     
     mass_model: str
         Mass model desired for MGE mass model. Default "power_law". Eventually will include composite model as well. I use this as part of my naming scheme. Not strictly necessary
@@ -172,14 +169,19 @@ class space_jam:
     lambda_int: float
         Explicit mass sheet parameter; if specified, will overwrite k_mst
         
+    systematics_est: float
+        Percent estimate of systematics if they have not been folded into the uncertainty dVrms_bin, e.g. 5%
+        
+    covariance_est: float
+        Percent estimate of bin covariance, e.g. 2%
+        
     
     '''
     
-    def __init__(self, 
-                 kin_dir, 
+    def __init__(self,
                  jam_dir,
-                 obj_name, 
-                 SN, 
+                 jampy_details_file,
+                 obj_name,
                  mass_model, 
                  anisotropy, 
                  geometry, 
@@ -189,6 +191,8 @@ class space_jam:
                  sigmapsf,
                  cosmo, 
                  fast_slow,
+                 systematics_est,
+                 covariance_est,
                  p0, 
                  bounds, 
                  sigpar, 
@@ -214,7 +218,6 @@ class space_jam:
         self.sampler_args = sampler_args
         self.date_time = date_time
         self.run_id = run_id
-        self.SN = SN 
         self.mass_model = mass_model
         self.anisotropy = anisotropy
         self.geometry = geometry
@@ -231,40 +234,39 @@ class space_jam:
         self.sigmapsf = sigmapsf
         self.cosmo = cosmo
         self.fast_slow = fast_slow
+        self.systematics_est = systematics_est
+        self.covariance_est = covariance_est
         
-        #bigbigbug
         # get model directory
-        target_kin_dir = self.create_model_directory(kin_dir, jam_dir,
-                                                        date_time, overwrite, run_id,
-                                                        constant_err, kinmap_test)
+        self.create_model_directory(jam_dir,
+                                    date_time, 
+                                    overwrite, 
+                                    run_id,
+                                    constant_err, 
+                                    kinmap_test)
+        
         # get details from pickle
-        self.prepare_to_jam(target_kin_dir, constant_err, kinmap_test, geometry)
+        self.prepare_to_jam(jampy_details_file, 
+                            constant_err, 
+                            kinmap_test, 
+                            geometry)
+        
         # set up the labels and priors
         self.get_priors_and_labels()
+        
+        # approximate the covariance matrix
+        self.approximate_covariance_matrix()
         
         
 ###########################################################
         
     def create_model_directory (self, 
-                                kin_dir, jam_dir, 
-                                date_time=None, overwrite=False, run_id=None,
-                                constant_err=False, kinmap_test=None):
-        
-        #############################################################
-        # Directories
-        ##############################################################################
-        ##############################################################################
-        obj_kin_dir = f'{kin_dir}{self.obj_name}/'
-        obj_jam_dir = f'{jam_dir}{self.obj_name}/'
-        # create a directory for JAM outputs
-        Path(jam_dir).mkdir(parents=True, exist_ok=True)
-        # J0330 has no G-band
-        if self.obj_abbr=='J0330':
-            target_kin_dir = f'{obj_kin_dir}target_sn_{self.SN}/{self.obj_name}_{self.SN}_final_kinematics/no_g/'
-        else:
-            target_kin_dir = f'{obj_kin_dir}target_sn_{self.SN}/{self.obj_name}_{self.SN}_marginalized_gnog_final_kinematics/'
-
-        # make the model directory
+                                jam_dir, 
+                                date_time=None, 
+                                overwrite=False, 
+                                run_id=None,
+                                constant_err=False, 
+                                kinmap_test=None):
 
         self.model_dir = f'{jam_dir}{self.model_name}/'
         if not os.path.exists(self.model_dir):
@@ -276,17 +278,16 @@ class space_jam:
                 print('Do not overwrite your files dummy.')
                     
         print()
-        print('Outputs to ', self.model_dir)
+        print('JAM Outputs to ', self.model_dir)
         print()
-        
-        return target_kin_dir
+
 
     ############################
     
-    def prepare_to_jam(self, target_kin_dir, constant_err, kinmap_test, geometry):
+    def prepare_to_jam(self, jampy_details_file, constant_err, kinmap_test, geometry):
 
         # take the surface density, etc from mge saved parameters
-        with open(f'{target_kin_dir}{self.obj_name}_{self.SN}_details_for_jampy.pkl', 'rb') as f:
+        with open(jampy_details_file, 'rb') as f:
             tommy_pickles = pickle.load(f)
 
         self.surf_lum = tommy_pickles.surf_density
@@ -461,6 +462,34 @@ class space_jam:
 
 
         return q_intr_eff_bound_lo, q_intr_eff_bound_hi
+    
+    
+    ###################
+    # function to estimate approximate covariance matrix
+    def approximate_covariance_matrix (self):
+    
+        Vrms = self.Vrms
+        dVrms = self.dVrms
+
+        # make a covariance matrix without systematics or covariance
+        cov_matrix_no_cov = np.identity(dVrms.size) * dVrms**2
+
+        # add constant 5% systematics in quadrature
+        cov_matrix_no_cov_w_syst = cov_matrix_no_cov + np.identity(dVrms.size) * (Vrms*self.systematics_est)**2
+
+        # calculate grid of Vrms for off-diagonal covariance terms
+        xx, yy = np.meshgrid(Vrms, Vrms)
+        off_diagonals = (xx * yy * self.covariance_est**2)
+        # make diagonal 0
+        off_diagonals = off_diagonals - np.identity(Vrms.size) * off_diagonals.diagonal()
+
+        # add the off-diagonals to the covariance matrix
+        self.covariance_matrix = cov_matrix_no_cov_w_syst + off_diagonals
+        
+        if self.systematics_est != 0:
+            print(f'Added {self.systematics_est*100}% systematics to diagonal.')
+        if self.covariance_est != 0:
+            print(f'Covariance terms are {self.covariance_est*100}%.')
         
     ###################
     # function to evaluate the prior for each given sample
@@ -599,26 +628,18 @@ class space_jam:
                                            data=self.Vrms, errors=self.dVrms, goodbins=self.goodbins,
                                            pixsize=self.pixsize, sigmapsf=self.sigmapsf, normpsf=self.normpsf, 
                                            plot=plot,  quiet=1, ml=1, nodots=True)
-
-                        residual = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
-                        chi2 = residual @ residual
-                        lnprob = -0.5*chi2 + lnprior
-                        if np.isnan(lnprob):
-                            print('Vrms', self.Vrms)
-                            print('dVrms', self.dVrms)
-                            print('goodbins', self.goodbins)
-                            print('nan value, setting lnprob to -inf')
-                            print('resid', resid)
-                            print('model', jam.model[self.goodbins])
-                            print('chi2', chi2)
-                            print('lnprior', lnprior)
                         # Update the arrays of ratios and lambda_ints
                         if (bestfit == False) & (self.minimization=='MCMC'):
+                            model = jam.model[self.goodbins]
+                            data = self.Vrms[self.goodbins]
+                            chi2 = (model - data).T @ np.linalg.inv(self.covariance_matrix) @ (model - data)
+                            lnprob = -0.5*chi2 + lnprior
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                             self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                             self.chi2s = np.append(self.chi2s, chi2)
                             return lnprob
                         elif (bestfit == False) & (self.minimization=='lsq'):
+                            residual = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
                             return residual
                         else:
                             surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
@@ -633,6 +654,7 @@ class space_jam:
                         self.chi2s = np.append(self.chi2s, np.inf)
                         return lnprob
                     elif (bestfit == False) & (self.minimization=='lsq'):
+                        residual = np.inf
                         return residual
                     else:
                         surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
@@ -716,16 +738,18 @@ class space_jam:
                  #                  data=rms, errors=erms, goodbins=goodbins,
                  #                  pixsize=pixsize, sigmapsf=sigmapsf, normpsf=normpsf, 
                  #                  plot=plot,  quiet=1, ml=1, nodots=True)
-                residual = (self.Vrms[goodbins] - jam.model[goodbins])/self.dVrms[goodbins]
-                chi2 = residual @ residual
-                lnprob = -0.5*chi2 + lnprior
                 # Update the arrays of ratios and lambda_ints
                 if (bestfit == False) & (self.minimization=='MCMC'):
+                    model = jam.model[self.goodbins]
+                    data = self.Vrms[self.goodbins]
+                    chi2 = (model - data).T @ np.linalg.inv(self.covariance_matrix) @ (model - data)
+                    lnprob = -0.5*chi2 + lnprior
                     self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
                     self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
                     self.chi2s = np.append(self.chi2s, chi2)
                     return lnprob
                 elif (bestfit == False) & (self.minimization=='lsq'):
+                    residual = (self.Vrms[goodbins] - jam.model[goodbins])/self.dVrms[goodbins]
                     return residual
                 else:
                     surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
