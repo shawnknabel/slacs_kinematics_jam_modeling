@@ -531,6 +531,10 @@ class space_jam:
 
         """
         
+        # jankily fix parameters to the initialization
+        pars[np.array(self.fix_pars, dtype=bool)] = np.array(self.p0)[np.array(self.fix_pars, dtype=bool)]
+        
+        # get the log prior
         lnprior = self.jam_lnprior (pars)
 
         if test_prior == True:
@@ -843,7 +847,7 @@ class space_jam:
 
     ###################
     # function to plot summary
-    def summary_plot(self, save=False):
+    def summary_plot(self, burn=0, save=False):
 
         """
         Print the best fitting solution with uncertainties.
@@ -860,7 +864,7 @@ class space_jam:
 
         plot_pars = self.pars.copy()
         plot_bounds = np.array(self.bounds).copy()#self.bounds.copy()
-        plot_truths = self.p0.copy()
+        plot_truths = self.p0.copy()*0 # let them all be 0s for now, I'll get back to this
         #truths should only be for gamma, theta_E and q_intr
         plot_truths[2] = 0
         plot_truths[-1] = 0
@@ -873,6 +877,9 @@ class space_jam:
         plot_bounds[1][2] = self.shape_anis_bounds[1]
         plot_bounds[0][-2] = 0.8
         plot_bounds[1][-2] = 1.2
+        
+        # burn samples
+        plot_pars = plot_pars[burn:]
 
         # calculate uncertainties in posterior
         plot_bestfit = plot_pars[np.nanargmax(self.lnprob)]

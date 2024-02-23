@@ -139,13 +139,13 @@ def task_1(i):
     lensprior = False
     fix_pars = [0, 0, 0, 0, 1, 1]
     lambda_int= 1.0
-    nstep = 1000
+    nstep = 1
     nwalkers = 12
     ndim = 6
     minimization = 'MCMC'
     sampler_args = [nstep, nwalkers, ndim] # 10 walkers
     date_time = datetime.now().strftime("%Y_%m_%d")#-%I_%M_%S_%p"
-    run_id = 1
+    run_id = 1.1
 
     welcome_to_the_jam = space_jam(jam_dir, jam_details_file,
                                      obj_name, mass_model, anisotropy, geometry, align, 
@@ -157,6 +157,7 @@ def task_1(i):
 
     welcome_to_the_jam.run_mcmc()
     welcome_to_the_jam.save_space_jam()
+    welcome_to_the_jam.summary_plot(save=True)
     
 '''
 Second task is axisymmetric cylindrical
@@ -188,13 +189,13 @@ def task_2(i):
     lensprior = False
     fix_pars = [0, 0, 0, 0, 1, 1]
     lambda_int= 1.0
-    nstep = 1000
+    nstep = 1
     nwalkers = 12
     ndim = 6
     minimization = 'MCMC'
     sampler_args = [nstep, nwalkers, ndim] # 10 walkers
     date_time = datetime.now().strftime("%Y_%m_%d")#-%I_%M_%S_%p"
-    run_id = 1
+    run_id = 1.2
 
     welcome_to_the_jam = space_jam(jam_dir, jam_details_file,
                                      obj_name, mass_model, anisotropy, geometry, align, 
@@ -206,6 +207,7 @@ def task_2(i):
 
     welcome_to_the_jam.run_mcmc()
     welcome_to_the_jam.save_space_jam()
+    welcome_to_the_jam.summary_plot(save=True)
     
 # protect the entry point
 from concurrent.futures import ProcessPoolExecutor
