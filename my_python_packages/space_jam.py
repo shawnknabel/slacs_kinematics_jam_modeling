@@ -407,9 +407,12 @@ class space_jam:
 
             self.labels = [label0, label1, label2, label3, label4, label5]
 
-        elif self.geometry=='sph':
+        try:
             if any(self.prior_type==None):
-                self.prior_type=['uniform','uniform','uniform','uniform','uniform']  
+                    self.prior_type=['uniform','uniform','uniform','uniform','uniform']  
+        except:
+            if self.prior_type==None:
+                self.prior_type=['uniform','uniform','uniform','uniform','uniform']
 
             # mass model labels
             if self.mass_model=='power_law':
@@ -670,11 +673,11 @@ class space_jam:
                 # parameters for fitting
                 # Mass model
                 if self.mass_model=='power_law':
-                    gamma, anis_param, theta_E, k_mst, rs_mst = pars
+                    gamma, anis_param, theta_E, k_mst, a_mst = pars
                     # let f_dm = 0 for a power law
                     f_dm = 0
                 elif self.mass_model=='nfw':
-                    f_dm, anis_param, lg_ml, k_mst, rs_mst = pars
+                    f_dm, anis_param, lg_ml, k_mst, a_mst = pars
                     # gamma = -1 for NFW
                     gamma = -1
                 # Anisotropy is dependent on model
@@ -682,7 +685,7 @@ class space_jam:
                     logistic=False
                     ratio = anis_param
                     beta = np.full_like(self.qobs_lum, 1 - ratio**2)   # assume constant anisotropy, anis_param is the ratio of q_t/q_r
-                    rani = None
+                    r_a = None
                 elif self.anisotropy=='OM':
                     logistic=True
                     a_ani = anis_param # anis_param is the anisotropy transition radius in units of the effective radius
@@ -712,40 +715,44 @@ class space_jam:
                         self.chi2s = np.append(self.chi2s, np.inf)
                     return lnprob
                 # get radius of bin centers
-                rad_bin = np.sqrt(xbin**2 + ybin**2)
+                rad_bin = np.sqrt(self.xbin**2 + self.ybin**2)
                 # ignore central black hole
                 mbh=0.
                 # There is no "goodbins" keyword for jam_sph_proj, so I need to adjust the data as such
-                rms = rms[goodbins]
-                erms = erms[goodbins]
-                rad_bin = rad_bin[goodbins]
+                Vrms = self.Vrms[self.goodbins]
+                dVrms = self.dVrms[self.goodbins]
+                rad_bin = rad_bin[self.goodbins]
                 
                 # sort by bin radius
                 sort = np.argsort(rad_bin)
                 rad_bin = rad_bin[sort]
                 Vrms = Vrms[sort]
                 dVrms = dVrms[sort]
-                goodbins = goodbins[sort]
+                #goodbins = goodbins[sort]
 
                 # Now run the jam model
-                jam = jam_sph_proj(surf_lum, sigma_lum, surf_pot, sigma_pot, 
-                                   mbh, distance, rad_bin, #xbin, ybin, align=align, 
+                jam = jam_sph_proj(self.surf_lum, self.sigma_lum, surf_pot, sigma_pot, 
+                                   mbh, self.distance, rad_bin, #xbin, ybin, align=align, 
                                     beta=beta, logistic=logistic, rani=r_a,
-                                   data=rms, errors=erms, #goodbins=goodbins, # there is no goodbins
-                                   pixsize=pixsize, sigmapsf=sigmapsf, normpsf=normpsf, 
+                                   data=Vrms, errors=dVrms, #goodbins=goodbins, # there is no goodbins
+                                   pixsize=self.pixsize, sigmapsf=self.sigmapsf, normpsf=self.normpsf,
                                    plot=plot, quiet=1, ml=1)#, nodots=True) # there is no nodots
+                
                 ####### 10/02/23 - for now, we will run jam_axi_proj, which is the same as jam_sph_proj in the spherical limit that q=1
                 #inc=90
-                #jam = jam_axi_proj(surf_lum, sigma_lum, qobs_lum, surf_pot, sigma_pot, qobs_pot,
-                 #                  inc, mbh, distance, xbin, ybin, 
+                #jam = jam_axi_proj(self.surf_lum, self.sigma_lum, self.qobs_lum, surf_pot, sigma_pot, qobs_pot,
+                 #                  inc, mbh, self.distance, self.xbin, self.ybin, 
                  #                   align=align, beta=beta, logistic=logistic,
-                 #                  data=rms, errors=erms, goodbins=goodbins,
-                 #                  pixsize=pixsize, sigmapsf=sigmapsf, normpsf=normpsf, 
+                 #                  data=Vrms, errors=dVrms, goodbins=self.goodbins,
+                 #                  pixsize=self.pixsize, sigmapsf=self.sigmapsf, self.normpsf=normpsf, 
                  #                  plot=plot,  quiet=1, ml=1, nodots=True)
                 # Update the arrays of ratios and lambda_ints
+                
+                # take data and model for likelihood inference
+                model = jam.model #[self.goodbins] # 03/12/24 - I already mask goodbins before this
+                data = Vrms #self.Vrms[self.goodbins]
+                # return residuals or whatever else
                 if (bestfit == False) & (self.minimization=='MCMC'):
-                    model = jam.model[self.goodbins]
-                    data = self.Vrms[self.goodbins]
                     chi2 = (model - data).T @ np.linalg.inv(self.covariance_matrix) @ (model - data)
                     lnprob = -0.5*chi2 + lnprior
                     self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
@@ -753,7 +760,7 @@ class space_jam:
                     self.chi2s = np.append(self.chi2s, chi2)
                     return lnprob
                 elif (bestfit == False) & (self.minimization=='lsq'):
-                    residual = (self.Vrms[goodbins] - jam.model[goodbins])/self.dVrms[goodbins]
+                    residual = (data - model)/dVrms
                     return residual
                 else:
                     surf_potential = np.stack((surf_pot, sigma_pot, qobs_pot))
