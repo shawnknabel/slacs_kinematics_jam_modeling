@@ -661,7 +661,7 @@ class slacs_kcwi_kinematics:
             background_source, _, _ = ppxf_util.log_rebin(self.rest_wave_range, background_source_lin)
             
             # Normalize spectrum to avoid numerical issues
-            self.background_spectrum = background_source/np.median(background_source)  
+            self.background_spectrum = background_source/abs(np.median(background_source))
             
         else:
             # return an array of zeros
@@ -750,7 +750,7 @@ class slacs_kcwi_kinematics:
                                         temp_wave_interval
                                        )
             # add the wavelengths to end of the template wavelengths array
-            templates_wave = np.contanenate((add_wavelengths, self.templates_wave))
+            templates_wave = np.concatenate((add_wavelengths, self.templates_wave))
             # add the same number of 0 values to the flux of the templates so the size is the same
             templates = np.concatenate(
                                             (

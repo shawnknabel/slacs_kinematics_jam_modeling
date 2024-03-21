@@ -330,18 +330,20 @@ class space_jam:
             dVrms = kinmap_test * self.dVrms
 
         # prepare MGEs for axisymmetric or spherical geometry
-        if geometry=='axi':
+        if self.geometry=='axi':
             # Get the effective shape and (not) effective radius from the half-light isophote
             _, _, eps_eff, _ = mge_half_light_isophote(self.surf_lum, self.sigma_lum, self.qobs_lum)
             self.qobs_eff = 1-eps_eff
-        elif geometry=='sph':
+        elif self.geometry=='sph':
             # Circularize MGEs if geometry is spherical
             print(self.sigma_lum, self.qobs_lum)
             self.sigma_lum, self.qobs_lum = self.circularize_mge()
             self.qobs_eff = 1
 
-    ###############
+        ###############
     def get_priors_and_labels (self):
+        
+        # 3/19/24 - parameters need to be much more flexible... get to that later. For now, just make it so they only take the ones with fix_pars==0
     
         ###### axisymmetric geometry
         if self.geometry=='axi':
@@ -357,45 +359,48 @@ class space_jam:
                 label0 = r'$\gamma$'
             elif self.mass_model=='nfw':
                 label0 = r"$f_{\rm DM}$"
+                
+            # einstein radius is universal across models
+            label1 = r"$\theta_E$"
 
             # intrinsic axis ratio
             # The calculation of the inclination from q_intr involves a few steps
             bound_q_intr_lo, bound_q_intr_hi = self.get_bounds_on_q_intr_eff()
-            self.bounds[0][1] = bound_q_intr_lo
-            self.bounds[1][1] = bound_q_intr_hi  
+            self.bounds[0][2] = bound_q_intr_lo
+            self.bounds[1][2] = bound_q_intr_hi  
 
-            label1 =  r"$q_{\rm intr}$"
+            label2 =  r"$q_{\rm intr}$"
             # priors based on fast/slow
             if self.fast_slow == 'fast':
                 # make the prior a gaussian from Weijman 2014
-                self.p0[1] = 0.25
-                self.sigpar[1] = 0.14
-                self.prior_type[1]='gaussian'
+                self.p0[2] = 0.25
+                self.sigpar[2] = 0.14
+                self.prior_type[2]='gaussian'
             elif self.fast_slow == 'slow':
                # make the prior a gaussian from Li 2018
-                self.p0[1] = 0.74
-                self.sigpar[1] = 0.08
-                self.prior_type[1]='gaussian'  
+                self.p0[2] = 0.74
+                self.sigpar[2] = 0.08
+                self.prior_type[2]='gaussian'  
                 # bound it lower by the max of either bound_q_intr_lo or q_intr > 0.6
-                self.bounds[0][1] = np.max([0.6, bound_q_intr_lo])
+                self.bounds[0][2] = np.max([0.6, bound_q_intr_lo])
 
             # anisotropy priors and labels
             if (self.align == 'sph') & (self.anisotropy == 'const'):
                 bound_ani_ratio_hi = 2.0 # anisotropy of spherical can be up to 2.0
-                label2 = r"$\sigma_{\theta}/\sigma_r$"
+                label3 = r"$\sigma_{\theta}/\sigma_r$"
+                # shape and anisotropy secondary bounds
+                self.shape_anis_bounds = np.array([0.0, bound_ani_ratio_hi])
+                # set up empty array and add the ratios here so they don't have to be calculated again
+                self.anisotropy_ratio_samples = np.array([], dtype='f')
             elif (self.align == 'cyl') & (self.anisotropy == 'const'):
                 bound_ani_ratio_hi = 1.0 # anisotropy of cylindrical CANNOT be up to 2.0
-                label2 = r"$\sigma_z/\sigma_R$"
+                label3 = r"$\sigma_z/\sigma_R$"
+                # shape and anisotropy secondary bounds
+                self.shape_anis_bounds = np.array([0.0, bound_ani_ratio_hi])
+                # set up empty array and add the ratios here so they don't have to be calculated again
+                self.anisotropy_ratio_samples = np.array([], dtype='f')
             elif self.anisotropy == 'OM':
-                label2 = r"$a_{ani}$"
-
-            # shape and anisotropy secondary bounds
-            self.shape_anis_bounds = np.array([0.0, bound_ani_ratio_hi])
-            # set up empty array and add the ratios here so they don't have to be calculated again
-            self.anisotropy_ratio_samples = np.array([], dtype='f')
-
-            # einstein radius is universal across models
-            label3 = r"$\theta_E$"
+                label3 = r"$a_{ani}$"
 
             # 11/14/23 - lambda_int is now a parameter k_mst, but the label will be the same, lambda_int is universal across models
             label4 = r'$\lambda_{int}$'
@@ -407,33 +412,37 @@ class space_jam:
 
             self.labels = [label0, label1, label2, label3, label4, label5]
 
-        try:
-            if any(self.prior_type==None):
-                    self.prior_type=['uniform','uniform','uniform','uniform','uniform']  
-        except:
-            if self.prior_type==None:
-                self.prior_type=['uniform','uniform','uniform','uniform','uniform']
+        ###### spherical geometry
+        # 03/18/24 - This block got messed up somehow... redoing
+        elif self.geometry=='sph':
+            
+            try:
+                if any(self.prior_type==None):
+                        self.prior_type=['uniform','uniform','uniform','uniform','uniform']  
+            except:
+                if self.prior_type==None:
+                    self.prior_type=['uniform','uniform','uniform','uniform','uniform']
 
             # mass model labels
             if self.mass_model=='power_law':
                 label0 = r'$\gamma$'
             elif self.mass_model=='nfw':
                 label0 = r"$f_{\rm DM}$"
+                
+            # einstein radius is universal across models
+            label1 = r"$\theta_E$"
 
-            # parameter 1 is q, which is not here...
+            # parameter 2 is q, which is not here...
 
             # anisotropy priors and labels
             if (self.align == 'sph') & (self.anisotropy == 'const'):
                 bound_ani_ratio_hi = 2.0 # anisotropy of spherical can be up to 2.0
-                label2 = r"$\sigma_{\theta}/\sigma_r$"
+                label3 = r"$\sigma_{\theta}/\sigma_r$"
+                self.shape_anis_bounds = np.array([0.0, bound_ani_ratio_hi])
+                # set up empty array and add the ratios here so they don't have to be calculated again
+                self.anisotropy_ratio_samples = np.array([], dtype='f')
             elif self.anisotropy == 'OM':
-                label2 = r"$a_{ani}$"
-            self.shape_anis_bounds = np.array([0.0, bound_ani_ratio_hi])
-            # set up empty array and add the ratios here so they don't have to be calculated again
-            self.anisotropy_ratio_samples = np.array([], dtype='f')
-
-            # einstein radius is universal across models
-            label3 = r"$\theta_E$"
+                label3 = r"$a_{ani}$"
 
             # 11/14/23 - lambda_int is now a parameter k_mst, but the label will be the same, lambda_int is universal across models
             label4 = r'$\lambda_{int}$'
@@ -443,8 +452,9 @@ class space_jam:
             # r_scale is universal across models
             label5 = r'$a_{MST}$'
 
-            self.labels = [label0, label2, label3, label4, label5]  
-
+            self.labels = [label0, label1, label3, label4, label5]  
+        
+        print('Parameters are ', self.labels)
         print('Priors are now ', self.prior_type)
         print('Mean prior values are ', self.p0)
         
@@ -454,16 +464,28 @@ class space_jam:
     
         # intrinsic shape must be flatter than the observed shape
         q_intr_eff_bound_hi = self.qobs_eff
+        
         # all MGE components must be flatter than observed
         qobs_min = np.min(self.qobs_lum)
         inc_min = np.arccos(qobs_min)
         q_intr_eff_bound_lo = np.sqrt( (self.qobs_eff**2 - qobs_min**2)/(1 - qobs_min**2))
-        #print('qobs_min ', qobs_min)
-        #print('q_intr lower bound from qobs_min ', q_intr_eff_bound_lo)
-        inc_bound_lo = np.sqrt( np.rad2deg(np.arcsin( (1 - qobs_min**2) / (1 - q_intr_eff_bound_lo**2))) ) # check what this minimum inclination is
-        #print('minimum inclination from qobs_min ', inc_bound_lo)
-
-
+        
+        # calculate the inclination
+        y = (1 - self.qobs_eff**2)/(1 - q_intr_eff_bound_lo**2) # sin^2(inclination)
+        inc = np.arcsin(np.sqrt(y))
+        # calculate the q_obs_min
+        qmin = 0.05 # let minimum deprojected q_intr be 0.05 (as in jampy)
+        qobs_min = np.sqrt(np.cos(inc)**2 + (qmin*np.sin(inc))**2)
+        if not np.all(self.qobs_lum >= qobs_min):
+            print("Giving the qs a little nudge")
+            # give a little buffer to the low end (it's a numerical thing, I think)
+            # this *basically* gives it another lower limit
+            q_intr_eff_bound_lo = q_intr_eff_bound_lo * (1 + qmin**2)
+        else:
+            print(np.all(self.qobs_lum >= qobs_min))
+            print('qobs_min is: ', qobs_min)
+            print('inc is this somehow: ', inc)
+            
         return q_intr_eff_bound_lo, q_intr_eff_bound_hi
     
     
@@ -546,9 +568,10 @@ class space_jam:
         if np.isinf(lnprior) or np.isnan(lnprior):
             # Update the arrays of ratios and lambda_ints
             if bestfit == False:
-                self.lambda_int_samples = np.append(self.lambda_int_samples, 'nan')
-                self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, 'nan')
-                self.chi2s = np.append(self.chi2s, np.inf)
+                self.lambda_int_samples = np.append(self.lambda_int_samples, np.nan)
+                if self.anisotropy == 'const':
+                    self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, np.nan)
+                self.chi2_samples = np.append(self.chi2_samples, np.inf)
                 return -np.inf
             else:
                 print('bestfit is excluded by the priors')
@@ -560,11 +583,11 @@ class space_jam:
                 # parameters for fitting
                 # Mass model
                 if self.mass_model=='power_law':
-                    gamma, q, anis_param, theta_E, k_mst, a_mst = pars
+                    gamma, theta_E, q, anis_param, k_mst, a_mst = pars
                     # let f_dm = 0 for a power law
                     f_dm = 0
                 elif self.mass_model=='nfw':
-                    f_dm, q, anis_param, lg_ml, k_mst, a_mst = pars
+                    f_dm, lg_ml, q, anis_param, k_mst, a_mst = pars
                     # gamma = -1 for NFW
                     gamma = -1
                 # Anisotropy is dependent on model
@@ -583,7 +606,7 @@ class space_jam:
                 elif self.anisotropy=='OM':
                     logistic=True
                     a_ani = anis_param # anis_param is the anisotropy transition radius in units of the effective radius
-                    r_a = a_ani*reff
+                    r_a = a_ani*self.reff
                     beta_0 = 0 # fully isotropic
                     beta_inf = 1 # fully radially anisotropic
                     alpha = 2 # sharpness of transition
@@ -615,8 +638,9 @@ class space_jam:
                         # pdate the arrays of ratios and lambda_ints
                         if (bestfit == False) & (self.minimization=='MCMC'):
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
-                            self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
-                            self.chi2s = np.append(self.chi2s, np.inf)
+                            if self.anisotropy == 'const':
+                                self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
+                            self.chi2_samples = np.append(self.chi2_samples, np.inf)
                             return lnprob
                         elif self.minimization=='lsq':
                             residual = np.full_like(self.Vrms[self.goodbins], np.inf)
@@ -642,8 +666,9 @@ class space_jam:
                             chi2 = (model - data).T @ np.linalg.inv(self.covariance_matrix) @ (model - data)
                             lnprob = -0.5*chi2 + lnprior
                             self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
-                            self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
-                            self.chi2s = np.append(self.chi2s, chi2)
+                            if self.anisotropy == 'const':
+                                self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
+                            self.chi2_samples = np.append(self.chi2_samples, chi2)
                             return lnprob
                         elif (bestfit == False) & (self.minimization=='lsq'):
                             residual = (self.Vrms[self.goodbins] - jam.model[self.goodbins])/self.dVrms[self.goodbins]
@@ -657,8 +682,9 @@ class space_jam:
                     # Update the arrays of ratios and lambda_ints
                     if (bestfit == False) & (self.minimization=='MCMC'):
                         self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
-                        self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
-                        self.chi2s = np.append(self.chi2s, np.inf)
+                        if self.anisotropy == 'const':
+                            self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
+                        self.chi2_samples = np.append(self.chi2_samples, np.inf)
                         return lnprob
                     elif (bestfit == False) & (self.minimization=='lsq'):
                         residual = np.inf
@@ -673,11 +699,11 @@ class space_jam:
                 # parameters for fitting
                 # Mass model
                 if self.mass_model=='power_law':
-                    gamma, anis_param, theta_E, k_mst, a_mst = pars
+                    gamma, theta_E, anis_param, k_mst, a_mst = pars
                     # let f_dm = 0 for a power law
                     f_dm = 0
                 elif self.mass_model=='nfw':
-                    f_dm, anis_param, lg_ml, k_mst, a_mst = pars
+                    f_dm, lg_ml, anis_param, k_mst, a_mst = pars
                     # gamma = -1 for NFW
                     gamma = -1
                 # Anisotropy is dependent on model
@@ -689,7 +715,7 @@ class space_jam:
                 elif self.anisotropy=='OM':
                     logistic=True
                     a_ani = anis_param # anis_param is the anisotropy transition radius in units of the effective radius
-                    r_a = a_ani*reff
+                    r_a = a_ani*self.reff
                     # put in r_ani keyword
                     beta_0 = 0 # fully isotropic
                     beta_inf = 1 # fully radially anisotropic
@@ -711,8 +737,9 @@ class space_jam:
                     lnprob = -np.inf
                     if bestfit == False:
                         self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
-                        self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
-                        self.chi2s = np.append(self.chi2s, np.inf)
+                        if self.anisotropy == 'const':
+                            self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
+                        self.chi2_samples = np.append(self.chi2_samples, np.inf)
                     return lnprob
                 # get radius of bin centers
                 rad_bin = np.sqrt(self.xbin**2 + self.ybin**2)
@@ -756,8 +783,9 @@ class space_jam:
                     chi2 = (model - data).T @ np.linalg.inv(self.covariance_matrix) @ (model - data)
                     lnprob = -0.5*chi2 + lnprior
                     self.lambda_int_samples = np.append(self.lambda_int_samples, lambda_int)
-                    self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
-                    self.chi2s = np.append(self.chi2s, chi2)
+                    if self.anisotropy == 'const':
+                        self.anisotropy_ratio_samples = np.append(self.anisotropy_ratio_samples, ratio)
+                    self.chi2_samples = np.append(self.chi2_samples, chi2)
                     return lnprob
                 elif (bestfit == False) & (self.minimization=='lsq'):
                     residual = (data - model)/dVrms
@@ -779,7 +807,7 @@ class space_jam:
         # set to MCMC
         self.minimization = 'MCMC'
         # set up chi2s to be saved for later use
-        self.chi2s = np.array([], dtype=float)
+        self.chi2_samples = np.array([], dtype=float)
         # Do the fit
         print("Started Emcee please wait...")
         print("Progress is printed periodically")
@@ -808,7 +836,7 @@ class space_jam:
         self.minimization='lsq'
         
         # set up chi2s to be saved for later use
-        self.chi2s = np.array([], dtype=float)
+        self.chi2_samples = np.array([], dtype=float)
         
         sol = capfit(self.jam_lnprob, self.p0, bounds=self.bounds, verbose=2, fixed=self.fix_pars)
         if sol.success==True:
@@ -826,6 +854,9 @@ class space_jam:
         #anis_ratio = sol.x[1]
         #gamma_fit = sol.x[2]
         print('Best fit,', sol.x)#anis_ratio, gamma_fit)
+        
+        # take the best fit parameters
+        self.bestfit = sol.x
 
         # covariance matrix of free parameters
         cov = sol.cov
@@ -840,6 +871,7 @@ class space_jam:
         surf_pot, sigma_pot, qobs_pot \
             = self.jam_lnprob(sol.x, plot=True, bestfit=True)#**kwargs)
         #plt.savefig(f'{jam_output_dir}{obj_name}_pl_const_axicyl_fit.png')
+        plt.show()
         plt.pause(1)
 
         # take chi2/dof
@@ -868,89 +900,149 @@ class space_jam:
             return 'Cannot plot this bestfit'
         rms_model = jam.model
         flux_model = jam.flux
-
-        plot_pars = self.pars.copy()
-        plot_bounds = np.array(self.bounds).copy()#self.bounds.copy()
-        plot_truths = self.p0.copy()*0 # let them all be 0s for now, I'll get back to this
-        #truths should only be for gamma, theta_E and q_intr
-        plot_truths[2] = 0
-        plot_truths[-1] = 0
-        plot_truths[-2] = 0
-        # substitute the plot parameters with the ratios and lambda_ints
-        plot_pars[:,2] = self.anisotropy_ratio_accepted
-        plot_pars[:,-2] = self.lambda_int_accepted
-        # bounds should change
-        plot_bounds[0][2] = self.shape_anis_bounds[0]
-        plot_bounds[1][2] = self.shape_anis_bounds[1]
-        plot_bounds[0][-2] = 0.8
-        plot_bounds[1][-2] = 1.2
         
-        # burn samples
-        plot_pars = plot_pars[burn:]
+        # sort the xbin and ybin by radius if spherical
+        if self.geometry == 'sph':
+            # get radius of bin centers
+            rad_bin = np.sqrt(self.xbin**2 + self.ybin**2)
+            # sort by bin radius
+            sort = np.argsort(rad_bin)
+            xbin = self.xbin.copy()[sort]
+            ybin = self.ybin.copy()[sort]
+        else:
+            xbin = self.xbin
+            ybin = self.ybin
+        
+        # if least squares, just plot the best fit
+        if self.minimization == 'lsq':
+            plt.figure(figsize=(8,6))
+            
+            # plot circular reff
+            reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
 
-        # calculate uncertainties in posterior
-        plot_bestfit = plot_pars[np.nanargmax(self.lnprob)]
-        print('bestfit', plot_bestfit)
-        perc = np.percentile(plot_pars, [15.86, 84.14], axis=0)  # 68% interval
-        sig_bestfit = np.squeeze(np.diff(perc, axis=0)/2)   # half of interval (1sigma)
-        chi2_bestfit = self.chi2s[self.index_accepted][np.nanargmax(self.lnprob)]
+            # plot data
+            rms1 = self.Vrms.copy()
+            rms1[self.goodbins] = symmetrize_velfield(xbin[self.goodbins], ybin[self.goodbins], self.Vrms[self.goodbins])
+            vmin, vmax = np.percentile(rms1[self.goodbins], [0.5, 99.5])
+            plot_velfield(xbin, ybin, rms1, vmin=vmin, vmax=vmax, linescolor='w', 
+                          colorbar=1, label=r"Data $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
+            plt.tick_params(labelbottom=False)
+            plt.ylabel('arcsec')
+            #ax = plt.gca()
+            #ax.add_patch(reff_plot)
+            
+            plt.figure(figsize=(8,6))
 
-        # For plotting, only show the finite probability points
-        finite = np.isfinite(self.lnprob)
+            # plot circular reff again... can only patch one time
+            reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
 
-        # Produce final corner plot without trial values and with best fitting JAM
-        plt.rcParams.update({'font.size': 14})
-        plt.clf()
-        corner_plot(plot_pars[finite], self.lnprob[finite], labels=self.labels, extents=plot_bounds, truths=plot_truths, truth_color='k', fignum=1)
+            # plot model
+            plot_velfield(xbin, ybin, rms_model, vmin=vmin, vmax=vmax, linescolor='w',
+                          colorbar=1, label=r"Model $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
+            #plt.tick_params(labelbottom=False)
+            plt.xlabel('arcsec')
+            plt.ylabel('arcsec')
+            #ax = plt.gca()
+            #ax.add_patch(reff_plot)
 
-        dx = 0.24
-        yfac = 0.87
-        fig = plt.gcf()
-        fig.set_size_inches((12,12))
-        fig.tight_layout()
+        else:
+            plot_pars = self.pars.copy()
+            plot_probs = self.lnprob.copy()
+            plot_bounds = np.array(self.bounds).copy()#self.bounds.copy()
+            plot_truths = np.zeros_like(self.p0)#self.p0.copy() # let them all be 0s for now, I'll get back to this
+            #truths should only be for gamma, theta_E and q_intr
+            #plot_truths[2] = 0
+            #plot_truths[-1] = 0
+            #plot_truths[-2] = 0
+            # substitute the plot parameters with the ratios and lambda_ints
+            if self.anisotropy == 'const':
+                plot_pars[:,3] = self.anisotropy_ratio_accepted.astype(float)
+            plot_pars[:,-2] = self.lambda_int_accepted.astype(float)
+            # some bounds should change
+            # anistropy
+            if self.anisotropy == 'const':
+                plot_bounds[0][3] = self.shape_anis_bounds[0]
+                plot_bounds[1][3] = self.shape_anis_bounds[1]
+            # lambda_int
+            plot_bounds[0][-2] = 0.8
+            plot_bounds[1][-2] = 1.2
 
-        i = 0                          
-        # annotate the model results
-        plt.annotate(f'chi2 = {np.around(chi2_bestfit, 2)}', (0.30, 0.97-(1+len(self.labels))*0.03), xycoords='figure fraction', fontsize=16)
-        for label, best, sig in zip(self.labels, plot_bestfit, sig_bestfit):
-            string = f"{label} = {best:#.4g} ± {sig:#.2g}"
-            plt.annotate(string, (0.30, 0.94-i*0.03), xycoords='figure fraction', fontsize=16) 
-            i = i+1
+            # burn samples
+            plot_pars = plot_pars[burn:]
+            plot_probs = plot_probs[burn:]
 
-        # plot circular reff
-        reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
+            # take only the parameters that weren't fixed
+            plot_pars = plot_pars[:,~np.array(self.fix_pars, dtype=bool)]
+            plot_bounds = plot_bounds[:,~np.array(self.fix_pars, dtype=bool)]
+            plot_truths = plot_truths[~np.array(self.fix_pars, dtype=bool)]
+            plot_labels = np.copy(self.labels)[~np.array(self.fix_pars, dtype=bool)]
 
-        # plot data
-        fig.add_axes([0.69, 0.99 - dx*yfac, dx, dx*yfac])  # left, bottom, xsize, ysize
-        rms1 = self.Vrms.copy()
-        rms1[self.goodbins] = symmetrize_velfield(self.xbin[self.goodbins], self.ybin[self.goodbins], self.Vrms[self.goodbins])
-        vmin, vmax = np.percentile(rms1[self.goodbins], [0.5, 99.5])
-        plot_velfield(self.xbin, self.ybin, rms1, vmin=vmin, vmax=vmax, linescolor='w', 
-                      colorbar=1, label=r"Data $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
-        plt.tick_params(labelbottom=False)
-        plt.ylabel('arcsec')
-        ax = plt.gca()
-        ax.add_patch(reff_plot)
+            # calculate uncertainties in posterior
+            plot_bestfit = plot_pars[np.nanargmax(plot_probs)]
+            print('bestfit', plot_bestfit)
+            perc = np.percentile(plot_pars, [15.86, 84.14], axis=0)  # 68% interval
+            sig_bestfit = np.squeeze(np.diff(perc, axis=0)/2)   # half of interval (1sigma)
+            chi2_bestfit = self.chi2_accepted[burn:][np.nanargmax(plot_probs)]
 
-        # plot circular reff again... can only patch one time
-        reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
+            # For plotting, only show the finite probability points
+            finite = np.isfinite(plot_probs)
 
-        # plot model
-        fig.add_axes([0.69, 0.98 - 2*dx*yfac, dx, dx*yfac])  # left, bottom, xsize, ysize
-        plot_velfield(self.xbin, self.ybin, rms_model, vmin=vmin, vmax=vmax, linescolor='w',
-                      colorbar=1, label=r"Model $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
-        #plt.tick_params(labelbottom=False)
-        plt.xlabel('arcsec')
-        plt.ylabel('arcsec')
-        ax = plt.gca()
-        ax.add_patch(reff_plot)
+            # Produce final corner plot without trial values and with best fitting JAM
+            plt.rcParams.update({'font.size': 14})
+            plt.clf()
+            #corner_plot(plot_pars[finite], plot_probs[finite], labels=plot_labels, extents=plot_bounds, truths=plot_truths, truth_color='k', fignum=1)
+            corner.corner(plot_pars[finite], labels=plot_labels, range=plot_bounds.T, truths=plot_truths, truth_color='k', fignum=1)
+
+            dx = 0.24
+            yfac = 0.87
+            fig = plt.gcf()
+            fig.set_size_inches((12,12))
+            fig.tight_layout()
+
+            i = 0                          
+            # annotate the model results
+            plt.annotate(f'chi2 = {np.around(chi2_bestfit, 2)}', (0.30, 0.97-(1+len(self.labels))*0.03), xycoords='figure fraction', fontsize=16)
+            for label, best, sig in zip(self.labels, plot_bestfit, sig_bestfit):
+                string = f"{label} = {best:#.4g}"# ± {sig:#.2g}"
+                plt.annotate(string, (0.30, 0.94-i*0.03), xycoords='figure fraction', fontsize=16) 
+                i = i+1
+
+            # plot circular reff
+            reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
+
+            # plot data
+            fig.add_axes([0.69, 0.99 - dx*yfac, dx, dx*yfac])  # left, bottom, xsize, ysize
+            rms1 = self.Vrms.copy()
+            rms1[self.goodbins] = symmetrize_velfield(xbin[self.goodbins], ybin[self.goodbins], self.Vrms[self.goodbins])
+            vmin, vmax = np.percentile(rms1[self.goodbins], [0.5, 99.5])
+            plot_velfield(xbin, ybin, rms1, vmin=vmin, vmax=vmax, linescolor='w', 
+                          colorbar=1, label=r"Data $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
+            plt.tick_params(labelbottom=False)
+            plt.ylabel('arcsec')
+            ax = plt.gca()
+            ax.add_patch(reff_plot)
+
+            # plot circular reff again... can only patch one time
+            reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
+
+            # plot model
+            fig.add_axes([0.69, 0.98 - 2*dx*yfac, dx, dx*yfac])  # left, bottom, xsize, ysize
+            plot_velfield(xbin, ybin, rms_model, vmin=vmin, vmax=vmax, linescolor='w',
+                          colorbar=1, label=r"Model $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
+            #plt.tick_params(labelbottom=False)
+            plt.xlabel('arcsec')
+            plt.ylabel('arcsec')
+            ax = plt.gca()
+            ax.add_patch(reff_plot)
 
         if save==True:
+            print(f'Saving figure to {self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.png/pdf')
             plt.savefig(f'{self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.png', bbox_inches='tight')
             plt.savefig(f'{self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.pdf', bbox_inches='tight')
 
         plt.show()
         plt.pause(1)
+    
 
     #################
     # function to identify where samples were updated (accepted) vs rejected, so I can index the "anisotropy_ratio_samples" etc. properly                              
@@ -981,7 +1073,8 @@ class space_jam:
                 param_index = (j-1)*nwalkers+i
                 # the replace_index is the index of the "lambda_int" samples, shape (nwalkers+1)*nsteps to include the initial state
                 replace_index = j*nwalkers+i
-                if np.all(this_walker[j] != last_accepted_state):
+                # update the accepted index and state with the new one if it is new AND finite
+                if (not np.all(this_walker[j] == last_accepted_state)) & (np.isfinite(self.chi2_samples[replace_index])):
                     # report this index to the array
                     self.index_accepted[param_index] = replace_index
                     last_accepted_state = this_walker[j]
@@ -990,34 +1083,16 @@ class space_jam:
                     self.index_accepted[(j-1)*nwalkers+i] = last_accepted_index
 
         # save the accepted lambda_int and anisotropy
-        self.anisotropy_ratio_accepted = np.zeros(self.pars.shape[0], dtype=float)
+        if self.anisotropy == 'const':
+            self.anisotropy_ratio_accepted = np.zeros(self.pars.shape[0], dtype=float)
         self.lambda_int_accepted = np.zeros(self.pars.shape[0], dtype=float)
+        self.chi2_accepted = np.zeros(self.pars.shape[0], dtype=float)
         # loop through the steps
         for i in range(self.pars.shape[0]):
-            self.anisotropy_ratio_accepted[i] = self.anisotropy_ratio_samples[self.index_accepted[i]]
+            if self.anisotropy == 'const':
+                self.anisotropy_ratio_accepted[i] = self.anisotropy_ratio_samples[self.index_accepted[i]]
             self.lambda_int_accepted[i] = self.lambda_int_samples[self.index_accepted[i]]
-
-
-    ###############################################################################
-
-
-    def check_convergence(samples): # stolen from https://github.com/exoplanet-dev/exoplanet/blob/2e66605f3d51e4cc052759438657c41d646de446/paper/notebooks/scaling/scaling.py#L124
-        tau = emcee.autocorr.integrated_time(samples, tol=0)
-        num = samples.shape[0] * samples.shape[1]
-        converged = np.all(tau * 1 < num)
-        converged &= np.all(len(samples) > 50 * tau)
-        return converged, num / tau
-
-
-    ###############################################################################
-
-
-    # make a 2D gaussian
-
-    def make_2d_gaussian_xy (x, y, surf_pot, sigma_pot, qobs_pot):
-        gauss = surf_pot * np.exp( - x**2 / (2 * sigma_pot**2 * qobs_pot**2) -  y**2 / (2 * sigma_pot**2))
-        return gauss
-
+            self.chi2_accepted[i] = self.chi2_samples[self.index_accepted[i]]
 
     ###############################################################################
 
@@ -1056,3 +1131,26 @@ class space_jam:
         ratio = R_q + (self.shape_anis_bounds[1] - R_q) * k
 
         return ratio
+
+    ###############################################################################
+
+
+    def check_convergence(samples): # stolen from https://github.com/exoplanet-dev/exoplanet/blob/2e66605f3d51e4cc052759438657c41d646de446/paper/notebooks/scaling/scaling.py#L124
+        tau = emcee.autocorr.integrated_time(samples, tol=0)
+        num = samples.shape[0] * samples.shape[1]
+        converged = np.all(tau * 1 < num)
+        converged &= np.all(len(samples) > 50 * tau)
+        return converged, num / tau
+
+
+    ###############################################################################
+
+
+    # make a 2D gaussian
+
+    def make_2d_gaussian_xy (x, y, surf_pot, sigma_pot, qobs_pot):
+        gauss = surf_pot * np.exp( - x**2 / (2 * sigma_pot**2 * qobs_pot**2) -  y**2 / (2 * sigma_pot**2))
+        return gauss
+
+
+
