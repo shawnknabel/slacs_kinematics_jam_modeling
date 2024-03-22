@@ -105,6 +105,9 @@ class total_mass_mge:
     skip_mge: boolean
         if true, doesn't do the mge fit, useful just to return the mass profile to look at it
         
+    spherical_mass: boolean
+        if true, qobs_pot is overridden to be 1, so that the mass is spherical
+        
     Output Parameters
     --------------
     
@@ -127,7 +130,7 @@ class total_mass_mge:
                  model, qobs_eff, reff, break_factor, zlens, zsource, cosmo,
                  gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=None, 
                  ngauss=30, inner_slope=2, outer_slope=3, 
-                 quiet=1, plot=False, skip_mge=False):
+                 quiet=1, plot=False, skip_mge=False, spherical_mass=False):
         
         # luminosity MGE decomponsition
         self.surf_lum = surf_lum
@@ -149,6 +152,7 @@ class total_mass_mge:
         self.k_mst = k_mst
         self.lambda_int = lambda_int
         self.a_mst = a_mst
+        self.spherical_mass = spherical_mass
         
         # value of c^2 / 4 pi G
         c2_4piG = (constants.c **2 / constants.G / 4 / np.pi).to('solMass/pc')        
@@ -168,14 +172,22 @@ class total_mass_mge:
         if skip_mge == False:
             # get surface mass density by dividing by sigma crit
             self.convergence_to_surf_mass_density()
+            
+            # 03/21/24 - adding spherical mass keyword
+            if self.spherical_mass == True:
+                # make it circular
+                qobs_mass = 1
+            else:
+                # otherwise it's the same as the light
+                qobs_mass = self.qobs_eff
 
             # get 1d mge profile
             m = mge_fit_1d(self.r, self.surf_mass_density, ngauss=ngauss, inner_slope=inner_slope, outer_slope=outer_slope, quiet=quiet, plot=plot) # this creates a circular gaussian with sigma=sigma_x (i.e. along the major axis)
             surf_pot_tot, sigma_pot = m.sol           # total counts of gaussians Msol/(pc*2/arcsec**2)
             # Normalize by dividing by sqrt(2 * np.pi * sigma_pot**2 * q)
-            self.surf_pot = surf_pot_tot / np.sqrt(2 * np.pi * sigma_pot**2 * self.qobs_eff) # peak surface density
+            self.surf_pot = surf_pot_tot / np.sqrt(2 * np.pi * sigma_pot**2 * qobs_mass) # peak surface density
             self.sigma_pot = sigma_pot
-            self.qobs_pot = np.ones_like(self.surf_pot)*self.qobs_eff   # Multiply by q to convert to elliptical Gaussians where sigma is along the major axis...    
+            self.qobs_pot = np.ones_like(self.surf_pot)*qobs_mass   # Multiply by q to convert to elliptical Gaussians where sigma is along the major axis...    
 
     def power_law_check(r, gamma, ):
         return (3 - gamma) / 2 * (theta_E/r)**(gamma-1)

@@ -175,6 +175,9 @@ class space_jam:
     covariance_est: float
         Percent estimate of bin covariance, e.g. 2%
         
+    spherical_mass: bool
+        If true, will override the qobs_pot to be spherical, default is False
+        
     
     '''
     
@@ -208,7 +211,8 @@ class space_jam:
                  overwrite=False, 
                  test_prior=False, 
                  constant_err=False, 
-                 kinmap_test=None):
+                 kinmap_test=None,
+                 spherical_mass=False):
     
         self.obj_name = obj_name
         self.obj_abbr = obj_name[4:9]
@@ -236,6 +240,7 @@ class space_jam:
         self.fast_slow = fast_slow
         self.systematics_est = systematics_est
         self.covariance_est = covariance_est
+        self.spherical_mass = spherical_mass
         
         # get model directory
         self.create_model_directory(jam_dir,
@@ -626,7 +631,8 @@ class space_jam:
                                                self.zlens, self.zsource, self.cosmo,
                                                  gamma, f_dm, theta_E, k_mst, a_mst, lambda_int=self.lambda_int, 
                                                  ngauss=30, inner_slope=2, outer_slope=3, 
-                                                 quiet=1, plot=plot, skip_mge=False)
+                                                 quiet=1, plot=plot, skip_mge=False,
+                                               spherical_mass=self.spherical_mass)
                     surf_pot = total_mass.surf_pot
                     sigma_pot = total_mass.sigma_pot
                     qobs_pot = total_mass.qobs_pot
@@ -730,7 +736,7 @@ class space_jam:
                                              quiet=1, plot=False, skip_mge=False)
                 surf_pot = total_mass.surf_pot
                 sigma_pot = total_mass.sigma_pot
-                qobs_pot = total_mass.qobs_pot
+                qobs_pot = total_mass.qobs_pot # spherical JAM ignores qobs_pot and is spherical by default
                 lambda_int = total_mass.lambda_int
                 # reject if negative mass calculated
                 if lambda_int==0:
@@ -900,37 +906,47 @@ class space_jam:
             return 'Cannot plot this bestfit'
         rms_model = jam.model
         flux_model = jam.flux
-        
+
         # sort the xbin and ybin by radius if spherical
+        # set the correct parameter number for the anisotropy ratio
         if self.geometry == 'sph':
+            # anisotropy is at index 2 because there is no q_intr
+            anis_index = 2
             # get radius of bin centers
             rad_bin = np.sqrt(self.xbin**2 + self.ybin**2)
             # sort by bin radius
             sort = np.argsort(rad_bin)
             xbin = self.xbin.copy()[sort]
             ybin = self.ybin.copy()[sort]
+            Vrms = self.Vrms.copy()[sort]
+            goodbins = self.goodbins.copy()[sort]
         else:
+            # anisotropy is at index 3 because there is a q_intr
+            anis_index = 3
+            # keep bin centers
             xbin = self.xbin
             ybin = self.ybin
-        
+            Vrms = self.Vrms
+            goodbins = self.goodbins
+
         # if least squares, just plot the best fit
         if self.minimization == 'lsq':
             plt.figure(figsize=(8,6))
-            
+
             # plot circular reff
             reff_plot = plt.Circle((0,0), self.reff, color='k', fill=False, linestyle='--')
 
             # plot data
-            rms1 = self.Vrms.copy()
-            rms1[self.goodbins] = symmetrize_velfield(xbin[self.goodbins], ybin[self.goodbins], self.Vrms[self.goodbins])
-            vmin, vmax = np.percentile(rms1[self.goodbins], [0.5, 99.5])
+            rms1 = Vrms.copy()
+            rms1[goodbins] = symmetrize_velfield(xbin[goodbins], ybin[goodbins], Vrms[goodbins])
+            vmin, vmax = np.percentile(rms1[goodbins], [0.5, 99.5])
             plot_velfield(xbin, ybin, rms1, vmin=vmin, vmax=vmax, linescolor='w', 
                           colorbar=1, label=r"Data $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
             plt.tick_params(labelbottom=False)
             plt.ylabel('arcsec')
             #ax = plt.gca()
             #ax.add_patch(reff_plot)
-            
+
             plt.figure(figsize=(8,6))
 
             # plot circular reff again... can only patch one time
@@ -947,6 +963,9 @@ class space_jam:
 
         else:
             plot_pars = self.pars.copy()
+
+            print(plot_pars.shape)
+            print(self.pars.shape)
             plot_probs = self.lnprob.copy()
             plot_bounds = np.array(self.bounds).copy()#self.bounds.copy()
             plot_truths = np.zeros_like(self.p0)#self.p0.copy() # let them all be 0s for now, I'll get back to this
@@ -956,20 +975,23 @@ class space_jam:
             #plot_truths[-2] = 0
             # substitute the plot parameters with the ratios and lambda_ints
             if self.anisotropy == 'const':
-                plot_pars[:,3] = self.anisotropy_ratio_accepted.astype(float)
+                plot_pars[:,anis_index] = self.anisotropy_ratio_accepted.astype(float)
             plot_pars[:,-2] = self.lambda_int_accepted.astype(float)
             # some bounds should change
             # anistropy
             if self.anisotropy == 'const':
-                plot_bounds[0][3] = self.shape_anis_bounds[0]
-                plot_bounds[1][3] = self.shape_anis_bounds[1]
+                plot_bounds[0][anis_index] = self.shape_anis_bounds[0]
+                plot_bounds[1][anis_index] = self.shape_anis_bounds[1]
             # lambda_int
             plot_bounds[0][-2] = 0.8
             plot_bounds[1][-2] = 1.2
 
+            print(plot_pars.shape)
             # burn samples
             plot_pars = plot_pars[burn:]
             plot_probs = plot_probs[burn:]
+
+            print(plot_pars.shape)
 
             # take only the parameters that weren't fixed
             plot_pars = plot_pars[:,~np.array(self.fix_pars, dtype=bool)]
@@ -977,6 +999,7 @@ class space_jam:
             plot_truths = plot_truths[~np.array(self.fix_pars, dtype=bool)]
             plot_labels = np.copy(self.labels)[~np.array(self.fix_pars, dtype=bool)]
 
+            print(plot_pars.shape)
             # calculate uncertainties in posterior
             plot_bestfit = plot_pars[np.nanargmax(plot_probs)]
             print('bestfit', plot_bestfit)
@@ -1012,8 +1035,8 @@ class space_jam:
 
             # plot data
             fig.add_axes([0.69, 0.99 - dx*yfac, dx, dx*yfac])  # left, bottom, xsize, ysize
-            rms1 = self.Vrms.copy()
-            rms1[self.goodbins] = symmetrize_velfield(xbin[self.goodbins], ybin[self.goodbins], self.Vrms[self.goodbins])
+            rms1 = Vrms.copy()
+            rms1[goodbins] = symmetrize_velfield(xbin[goodbins], ybin[goodbins], Vrms[goodbins])
             vmin, vmax = np.percentile(rms1[self.goodbins], [0.5, 99.5])
             plot_velfield(xbin, ybin, rms1, vmin=vmin, vmax=vmax, linescolor='w', 
                           colorbar=1, label=r"Data $V_{\rm rms}$ (km/s)", flux=flux_model, nodots=True)
@@ -1036,12 +1059,12 @@ class space_jam:
             ax.add_patch(reff_plot)
 
         if save==True:
-            print(f'Saving figure to {self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.png/pdf')
             plt.savefig(f'{self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.png', bbox_inches='tight')
             plt.savefig(f'{self.model_dir}{self.obj_name}_corner_plot_{self.model_name}_{self.date_time}.pdf', bbox_inches='tight')
 
         plt.show()
         plt.pause(1)
+
     
 
     #################
